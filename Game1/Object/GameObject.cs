@@ -8,7 +8,6 @@ namespace Object
     public class GameObject : IGameObject
     {
         Vector2 position;
-
         InputComponent inputComponent;
         PhysicsComponent physicsComponent;
         GraphicComponent graphicComponent;

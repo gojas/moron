@@ -5,7 +5,7 @@ namespace Component.Input
     public class InputComponent : IComponent
     {
 
-        public void update(IGameObject gameObject)
+        public virtual void update(IGameObject gameObject)
         {
 
             KeyboardState state = Keyboard.GetState();
@@ -17,8 +17,6 @@ namespace Component.Input
 
             // use Command Pattern
             // gameObject.update(command.up()) something like that
-
-
         }
     }
 }

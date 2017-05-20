@@ -44,6 +44,7 @@
     <Compile Include="Component\Graphic\GraphicComponent.cs" />
     <Compile Include="Component\IComponent.cs" />
     <Compile Include="Component\Input\InputComponent.cs" />
+    <Compile Include="Component\Input\MoronInputComponent.cs" />
     <Compile Include="Component\Physics\PhysicsComponent.cs" />
     <Compile Include="Core\IDrawable.cs" />
     <Compile Include="Core\IUpdateable.cs" />

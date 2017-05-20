@@ -5,9 +5,15 @@ using Component.Graphic;
 namespace Object.Factory
 {
     using Game1;
+    using System;
+    using System.Linq;
 
     public class GameObjectFactory
     {
+        private const string COMPONENT_NAME_INPUT = "Input";
+        private const string COMPONENT_NAME_PHYSICS = "Physics";
+        private const string COMPONENT_NAME_GRAPHIC = "Graphic";
+
         Game1 game;
 
         public GameObjectFactory(Game1 aGame)
@@ -17,18 +23,67 @@ namespace Object.Factory
 
         public GameObject get(string name)
         {
-            // NOT like this! set texture based on model itself... Player model can have 'dude' texture :(
+            return new GameObject(
+                getInputComponent(name),
+                getPhysicsComponent(name),
+                getGraphicComponent(name)
+            );
+        }
 
-            switch (name)
+        private string getComponentNamespaceName(string type)
+        {
+            return "Component." + type;
+        }
+
+        private string getComponentName(string type)
+        {
+            return type + "Component";
+        }
+
+        private string FirstCharToUpper(string input)
+        {
+            if (String.IsNullOrEmpty(input))
+                throw new ArgumentException("String not defined!");
+            return input.First().ToString().ToUpper() + String.Join("", input.Skip(1));
+        }
+
+        private InputComponent getInputComponent(string name)
+        {
+            string namespaceName = getComponentNamespaceName(COMPONENT_NAME_INPUT);
+            string componentName = getComponentName(COMPONENT_NAME_INPUT);
+
+            if (Type.GetType(namespaceName + "." + this.FirstCharToUpper(name) + componentName) != null)
             {
-                case "moron":
-                    //build for example MoronInputComponent() if exists, if not use InputComponent();
-                    return new GameObject(new InputComponent(), new PhysicsComponent(), new GraphicComponent());
-
-                    // testing yoooo
+                componentName = this.FirstCharToUpper(name) + componentName;
             }
 
-            return new GameObject(new InputComponent(), new PhysicsComponent(), new GraphicComponent());
+            return Activator.CreateInstance(Type.GetType(namespaceName + "." + componentName)) as InputComponent;
+        }
+
+        private PhysicsComponent getPhysicsComponent(string name)
+        {
+            string namespaceName = getComponentNamespaceName(COMPONENT_NAME_PHYSICS);
+            string componentName = getComponentName(COMPONENT_NAME_PHYSICS);
+
+            if (Type.GetType(namespaceName + "." + this.FirstCharToUpper(name) + componentName) != null)
+            {
+                componentName = this.FirstCharToUpper(name) + componentName;
+            }
+
+            return Activator.CreateInstance(Type.GetType(namespaceName + "." + componentName)) as PhysicsComponent;
+        }
+
+        private GraphicComponent getGraphicComponent(string name)
+        {
+            string namespaceName = getComponentNamespaceName(COMPONENT_NAME_GRAPHIC);
+            string componentName = getComponentName(COMPONENT_NAME_GRAPHIC);
+
+            if (Type.GetType(namespaceName + "." + this.FirstCharToUpper(name) + componentName) != null)
+            {
+                componentName = this.FirstCharToUpper(name) + componentName;
+            }
+
+            return Activator.CreateInstance(Type.GetType(namespaceName + "." + componentName)) as GraphicComponent;
         }
     }
 }
