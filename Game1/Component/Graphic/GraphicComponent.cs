@@ -1,13 +1,15 @@
 ﻿namespace Component.Graphic
 {
-    public class GraphicComponent : IComponent
+    public class GraphicComponent : AbstractComponent
     {
-        public void update(IGameObject gameObject)
+        public override void update(IGameObject gameObject)
         {
 
             // based on gameObject.position DRAW 
 
             // spriteBatch.Draw(gameObject.texture, gameObject.position, gameObject.position2, Color.White);
+
+            System.Diagnostics.Debug.WriteLine("GRAPHIC HELLO");
         }
     }
 }

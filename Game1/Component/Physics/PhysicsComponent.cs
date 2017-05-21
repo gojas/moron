@@ -2,10 +2,10 @@
 
 namespace Component.Physics
 {
-    public class PhysicsComponent : IComponent
+    public class PhysicsComponent : AbstractComponent
     {
 
-        public void update(IGameObject gameObject) // add world as second param
+        public override void update(IGameObject gameObject) // add world as second param
         {
 
             // gameObject.position

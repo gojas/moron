@@ -6,12 +6,15 @@ using Core.Service.Factory;
 using Core.Model;
 using Object;
 using Object.Factory;
-
+using Component;
+using Component.Input;
+using Component.Graphic;
 
 
 namespace Core.Service.Content
 {
     using Game1;
+    using System.Collections.Generic;
 
     public class ContentManager : IContentManager
     {
@@ -24,6 +27,8 @@ namespace Core.Service.Content
         AbstractModel player;
         AbstractModel brick;
 
+        GameObjectContainer gameObjectContainer;
+
         BackgroundManager backgroundManager;
 
         public ContentManager(Game1 game1)
@@ -31,6 +36,8 @@ namespace Core.Service.Content
             game = game1;
 
             backgroundManager = new BackgroundManager(game);
+
+            gameObjectContainer = new GameObjectContainer();
         }
 
         public void loadContent()
@@ -45,7 +52,16 @@ namespace Core.Service.Content
             // load player
             player = modelFactory.get("player");
 
-            playerMoron = gameObjectFactory.get("moron");
+            ComponentContainer compontentContainer = new ComponentContainer();
+            compontentContainer.add(new MoronInputComponent());
+            compontentContainer.add(new GraphicComponent());
+
+            // my awesome player configuration -> use xml, json, simple array (work with memory, or not?)
+            playerMoron = gameObjectFactory.get(compontentContainer);
+
+            gameObjectContainer.add(playerMoron);
+
+            
 
 
             // load rest of the shit
@@ -60,7 +76,15 @@ namespace Core.Service.Content
             player.Update();
             brick.Update();
 
-            playerMoron.updateInput();
+            gameObjectContainer.getAll().ForEach((gameObject) =>
+            {
+                gameObject.getComponentContainer().getInputComponent().update(gameObject);
+            });
+
+            // GameObjectListManager list of gameObjects 
+            // GameObjectListManager getObjectsWithInput.forEach -> update
+
+            //playerMoron.updateInput();
         }
 
         public void updatePhysics()
@@ -77,7 +101,12 @@ namespace Core.Service.Content
             player.Draw(spriteBatch, new Vector2(player.getXPosition(), player.getYPosition()));
             brick.Draw(spriteBatch, new Vector2(brick.getXPosition(), brick.getYPosition()));
 
-            playerMoron.updateGraphic();
+            gameObjectContainer.getAll().ForEach((gameObject) =>
+            {
+                gameObject.getComponentContainer().getGraphicComponent().update(gameObject);
+            });
+
+            //playerMoron.updateGraphic();
         }
     }
 }

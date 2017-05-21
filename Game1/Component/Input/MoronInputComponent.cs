@@ -8,12 +8,11 @@ namespace Component.Input
 
         public override void update(IGameObject gameObject)
         {
-
             KeyboardState state = Keyboard.GetState();
 
             System.Text.StringBuilder sb = new System.Text.StringBuilder();
 
-            Console.WriteLine("Moron says hello");
+            System.Diagnostics.Debug.WriteLine("MORON SAYS HELLO");
         }
     }
 }

@@ -1,4 +1,5 @@
-﻿using Component.Input;
+﻿using Component;
+using Component.Input;
 using Component.Physics;
 using Component.Graphic;
 
@@ -10,6 +11,8 @@ namespace Object.Factory
 
     public class GameObjectFactory
     {
+        ComponentContainer componentContainer;
+
         private const string COMPONENT_NAME_INPUT = "Input";
         private const string COMPONENT_NAME_PHYSICS = "Physics";
         private const string COMPONENT_NAME_GRAPHIC = "Graphic";
@@ -18,16 +21,27 @@ namespace Object.Factory
 
         public GameObjectFactory(Game1 aGame)
         {
-            game = aGame;    
+            game = aGame;
         }
 
-        public GameObject get(string name)
+        public GameObject get(ComponentContainer componentContainer)
         {
-            return new GameObject(
+            return new GameObject(componentContainer);
+            // Moron -> UpdateAware, DrawAware, PhysicsAware
+
+            // Brick -> DrawAware
+
+            /**
+            GameObject gameObject = new GameObject(
                 getInputComponent(name),
                 getPhysicsComponent(name),
                 getGraphicComponent(name)
             );
+
+    **/
+            // if implements Updateable, add setOnUpdate, getOnUpdate etc... 
+            // cars can update, bricks don't! except some draw particles, but that is Drawable
+
         }
 
         private string getComponentNamespaceName(string type)

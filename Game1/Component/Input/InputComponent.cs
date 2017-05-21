@@ -2,10 +2,10 @@
 
 namespace Component.Input
 {
-    public class InputComponent : IComponent
+    public class InputComponent : AbstractComponent
     {
 
-        public virtual void update(IGameObject gameObject)
+        public override void update(IGameObject gameObject)
         {
 
             KeyboardState state = Keyboard.GetState();

@@ -41,8 +41,10 @@
     <ApplicationManifest>app.manifest</ApplicationManifest>
   </PropertyGroup>
   <ItemGroup>
+    <Compile Include="Component\ComponentContainer.cs" />
     <Compile Include="Component\Graphic\GraphicComponent.cs" />
     <Compile Include="Component\IComponent.cs" />
+    <Compile Include="Component\IComponentContainerAware.cs" />
     <Compile Include="Component\Input\InputComponent.cs" />
     <Compile Include="Component\Input\MoronInputComponent.cs" />
     <Compile Include="Component\Physics\PhysicsComponent.cs" />
@@ -62,6 +64,8 @@
     <Compile Include="Object\GameObject.cs" />
     <Compile Include="Object\Factory\GameObjectFactory.cs" />
     <Compile Include="Object\IGameObject.cs" />
+    <Compile Include="Object\GameObjectContainer.cs" />
+    <Compile Include="Object\IGameObjectContainerAware.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
@@ -99,6 +103,10 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Core\Service\Model\" />
+    <Folder Include="Object\Service\" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Component\AbstractComponent.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Import Project="$(MSBuildExtensionsPath)\MonoGame\v3.0\MonoGame.Content.Builder.targets" />

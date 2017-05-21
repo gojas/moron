@@ -1,41 +1,31 @@
 ﻿using Microsoft.Xna.Framework;
+using System.Collections.Generic;
 using Component.Input;
-using Component.Physics;
-using Component.Graphic;
+using Component;
 
 namespace Object
 {
     public class GameObject : IGameObject
     {
         Vector2 position;
-        InputComponent inputComponent;
-        PhysicsComponent physicsComponent;
-        GraphicComponent graphicComponent;
+        ComponentContainer componentContainer;
 
-        public GameObject(
-            InputComponent aInputComponent,
-            PhysicsComponent aPhysicsComponent,
-            GraphicComponent aGraphicComponent
-        )
+        public GameObject(ComponentContainer aComponentContainer)
         {
-            inputComponent = aInputComponent;
-            physicsComponent = aPhysicsComponent;
-            graphicComponent = aGraphicComponent;
+            componentContainer = aComponentContainer;
         }
 
-        public void updateInput()
+        public void update()
         {
-            inputComponent.update(this);
+            componentContainer.getAll().ForEach((component) =>
+            {
+                component.update(this);
+            });
         }
 
-        public void updatePhysics()
+        public ComponentContainer getComponentContainer()
         {
-            physicsComponent.update(this);
-        }
-
-        public void updateGraphic()
-        {
-            graphicComponent.update(this);
+            return componentContainer;
         }
     }
 }
