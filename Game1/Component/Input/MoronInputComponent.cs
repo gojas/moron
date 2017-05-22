@@ -1,18 +1,25 @@
 ﻿using Microsoft.Xna.Framework.Input;
-using System;
+using Object;
 
-namespace Component.Input
+namespace Component
 {
     public class MoronInputComponent : InputComponent
     {
 
-        public override void update(IGameObject gameObject)
+        public override void update(GameObject gameObject)
         {
             KeyboardState state = Keyboard.GetState();
 
             System.Text.StringBuilder sb = new System.Text.StringBuilder();
 
-            System.Diagnostics.Debug.WriteLine("MORON SAYS HELLO");
+            if (state.IsKeyDown(Keys.D))
+                gameObject.position.X += gameObject.speed;
+            if (state.IsKeyDown(Keys.A))
+                gameObject.position.X -= gameObject.speed;
+            if (state.IsKeyDown(Keys.W))
+                gameObject.position.Y -= gameObject.speed;
+            if (state.IsKeyDown(Keys.S))
+                gameObject.position.Y += gameObject.speed;
         }
     }
 }

@@ -1,15 +1,15 @@
-﻿namespace Component.Graphic
+﻿using Microsoft.Xna.Framework;
+using Microsoft.Xna.Framework.Graphics;
+using Object;
+
+namespace Component
 {
-    public class GraphicComponent : AbstractComponent
+    public class GraphicComponent : Component
     {
-        public override void update(IGameObject gameObject)
+        public override void update(GameObject gameObject)
         {
 
-            // based on gameObject.position DRAW 
-
-            // spriteBatch.Draw(gameObject.texture, gameObject.position, gameObject.position2, Color.White);
-
-            System.Diagnostics.Debug.WriteLine("GRAPHIC HELLO");
+            
         }
     }
 }

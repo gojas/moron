@@ -1,10 +1,8 @@
 ﻿using System.Collections.Generic;
 
-using Component.Input;
-
 namespace Object
 {
-    public class GameObjectContainer 
+    public class GameObjectContainer : IGameObjectContainer
     {
         private List<GameObject> objectList = new List<GameObject>();
 

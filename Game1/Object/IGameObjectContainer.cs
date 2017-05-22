@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
 using Object;
 
-public interface IGameObjectContainerAware
+public interface IGameObjectContainer
 {
     void add(GameObject gameObject);
 

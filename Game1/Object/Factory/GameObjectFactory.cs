@@ -1,103 +1,49 @@
-﻿using Component;
-using Component.Input;
-using Component.Physics;
-using Component.Graphic;
+﻿using Microsoft.Xna.Framework;
+using Microsoft.Xna.Framework.Graphics;
+using Object.List;
 
 namespace Object.Factory
 {
     using Game1;
     using System;
-    using System.Linq;
+    using Component;
 
     public class GameObjectFactory
     {
-        ComponentContainer componentContainer;
-
-        private const string COMPONENT_NAME_INPUT = "Input";
-        private const string COMPONENT_NAME_PHYSICS = "Physics";
-        private const string COMPONENT_NAME_GRAPHIC = "Graphic";
 
         Game1 game;
+
 
         public GameObjectFactory(Game1 aGame)
         {
             game = aGame;
         }
 
-        public GameObject get(ComponentContainer componentContainer)
+        public GameObject get(int gameObjectId)
         {
-            return new GameObject(componentContainer);
-            // Moron -> UpdateAware, DrawAware, PhysicsAware
+            Vector2 position = new Vector2(300, 400);
+            Texture2D texture = game.Content.Load<Texture2D>("player");
 
-            // Brick -> DrawAware
+            // add components yoooo
+            ComponentContainer componentContainer = new ComponentContainer();
 
-            /**
-            GameObject gameObject = new GameObject(
-                getInputComponent(name),
-                getPhysicsComponent(name),
-                getGraphicComponent(name)
-            );
-
-    **/
-            // if implements Updateable, add setOnUpdate, getOnUpdate etc... 
-            // cars can update, bricks don't! except some draw particles, but that is Drawable
-
-        }
-
-        private string getComponentNamespaceName(string type)
-        {
-            return "Component." + type;
-        }
-
-        private string getComponentName(string type)
-        {
-            return type + "Component";
-        }
-
-        private string FirstCharToUpper(string input)
-        {
-            if (String.IsNullOrEmpty(input))
-                throw new ArgumentException("String not defined!");
-            return input.First().ToString().ToUpper() + String.Join("", input.Skip(1));
-        }
-
-        private InputComponent getInputComponent(string name)
-        {
-            string namespaceName = getComponentNamespaceName(COMPONENT_NAME_INPUT);
-            string componentName = getComponentName(COMPONENT_NAME_INPUT);
-
-            if (Type.GetType(namespaceName + "." + this.FirstCharToUpper(name) + componentName) != null)
+            foreach (var componentName in GameObjectList.getComponentsByIndex(0))
             {
-                componentName = this.FirstCharToUpper(name) + componentName;
+                componentContainer.add(getInputComponent(componentName.ToString()));
             }
 
-            return Activator.CreateInstance(Type.GetType(namespaceName + "." + componentName)) as InputComponent;
+            // if gameObjectId has custom object let's say MoronGameObject, initialize it instead of abstract one
+            GameObject gameObject = new GameObject(position, texture, componentContainer);
+
+            // still figuring out if this is silly or not...
+            gameObject.setSpriteBatch(game.getSpriteBatch());
+
+            return gameObject;
         }
 
-        private PhysicsComponent getPhysicsComponent(string name)
+        private Component getInputComponent(string componentName)
         {
-            string namespaceName = getComponentNamespaceName(COMPONENT_NAME_PHYSICS);
-            string componentName = getComponentName(COMPONENT_NAME_PHYSICS);
-
-            if (Type.GetType(namespaceName + "." + this.FirstCharToUpper(name) + componentName) != null)
-            {
-                componentName = this.FirstCharToUpper(name) + componentName;
-            }
-
-            return Activator.CreateInstance(Type.GetType(namespaceName + "." + componentName)) as PhysicsComponent;
-        }
-
-        private GraphicComponent getGraphicComponent(string name)
-        {
-            string namespaceName = getComponentNamespaceName(COMPONENT_NAME_GRAPHIC);
-            string componentName = getComponentName(COMPONENT_NAME_GRAPHIC);
-
-            if (Type.GetType(namespaceName + "." + this.FirstCharToUpper(name) + componentName) != null)
-            {
-                componentName = this.FirstCharToUpper(name) + componentName;
-            }
-
-            return Activator.CreateInstance(Type.GetType(namespaceName + "." + componentName)) as GraphicComponent;
+            return Activator.CreateInstance(Type.GetType("Component." + componentName)) as Component;
         }
     }
 }

@@ -1,4 +1,6 @@
-﻿public interface IComponent
+﻿using Object;
+
+public interface IComponent
 {
-    void update(IGameObject gameObject);
+    void update(GameObject gameObject);
 }

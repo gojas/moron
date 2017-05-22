@@ -1,11 +1,12 @@
 ﻿using Microsoft.Xna.Framework.Input;
+using Object;
 
-namespace Component.Input
+namespace Component
 {
-    public class InputComponent : AbstractComponent
+    public class InputComponent : Component
     {
 
-        public override void update(IGameObject gameObject)
+        public override void update(GameObject gameObject)
         {
 
             KeyboardState state = Keyboard.GetState();

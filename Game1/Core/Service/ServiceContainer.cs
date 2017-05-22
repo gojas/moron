@@ -1,7 +1,6 @@
 ﻿using Microsoft.Xna.Framework;
 
-using Core.Service.Factory;
-using Core.Service.Content;
+using Content;
 using Object.Factory;
 
 namespace Core.Service
@@ -40,7 +39,6 @@ namespace Core.Service
 
         public static void registerServices(Game1 game)
         {
-            AddService<ModelFactory>(new ModelFactory(game));
             AddService<ContentManager>(new ContentManager(game));
             AddService<GameObjectFactory>(new GameObjectFactory(game));
         }

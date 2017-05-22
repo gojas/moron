@@ -1,11 +1,12 @@
 ﻿using Microsoft.Xna.Framework.Input;
+using Object;
 
-namespace Component.Physics
+namespace Component
 {
-    public class PhysicsComponent : AbstractComponent
+    public class PhysicsComponent : Component
     {
 
-        public override void update(IGameObject gameObject) // add world as second param
+        public override void update(GameObject gameObject) // add world as second param
         {
 
             // gameObject.position

@@ -1,6 +1,6 @@
 ﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
-using Core.Service.Content;
+using Content;
 using Core.Service;
 
 namespace Game1
@@ -90,12 +90,17 @@ namespace Game1
             spriteBatch.Begin(SpriteSortMode.BackToFront, BlendState.AlphaBlend);
             
             /** draw! **/
-            contentManager.updateGraphic(spriteBatch);
+            contentManager.updateGraphic();
 
             spriteBatch.End();
 
 
             base.Draw(gameTime);
+        }
+
+        public SpriteBatch getSpriteBatch()
+        {
+            return spriteBatch;
         }
     }
 }

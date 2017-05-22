@@ -1,17 +1,28 @@
 ﻿using Microsoft.Xna.Framework;
-using System.Collections.Generic;
-using Component.Input;
+using Microsoft.Xna.Framework.Graphics;
 using Component;
 
 namespace Object
 {
     public class GameObject : IGameObject
     {
-        Vector2 position;
-        ComponentContainer componentContainer;
+        public SpriteBatch spriteBatch;
 
-        public GameObject(ComponentContainer aComponentContainer)
+        public Vector2 position;
+        public Texture2D texture;
+        public ComponentContainer componentContainer;
+
+        // huh hah?!
+        public float speed = 5;
+
+        public GameObject(
+            Vector2 aPosition,
+            Texture2D aTexture,
+            ComponentContainer aComponentContainer
+        )
         {
+            position = aPosition;
+            texture = aTexture;
             componentContainer = aComponentContainer;
         }
 
@@ -26,6 +37,18 @@ namespace Object
         public ComponentContainer getComponentContainer()
         {
             return componentContainer;
+        }
+
+        public GameObject setSpriteBatch(SpriteBatch aSpriteBatch)
+        {
+            spriteBatch = aSpriteBatch;
+
+            return this;
+        }
+
+        public SpriteBatch getSpriteBatch()
+        {
+            return spriteBatch;
         }
     }
 }
