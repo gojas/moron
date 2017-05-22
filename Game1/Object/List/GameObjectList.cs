@@ -7,34 +7,27 @@ namespace Object.List
     public static class GameObjectList
     {
         // pusi kurac
-        public static object getByIndex(int index)
+        public static object getById(int id)
         {
             var list = new[]
             {
                 new {
                     velocity = 50,
                     positionX = 40,
-                    positionY = 40
+                    positionY = 40,
+                    texture = "player",
+                    components = new string[] { "MoronInputComponent", "PhysicsComponent", "MoronGraphicComponent" }
                 },
                 new {
                     velocity = 0,
                     positionX = 300,
-                    positionY = 300
+                    positionY = 300,
+                    texture = "player",
+                    components = new string[] { "GraphicComponent" }
                 }
             };
 
-            return list[index];
-        }
-
-        public static Array getComponentsByIndex(int index)
-        {
-
-            string[] moron = { "MoronInputComponent", "PhysicsComponent", "MoronGraphicComponent" };
-            string[] brick = { "GraphicComponent" };
-
-            string[][] list = { moron, brick };
-
-            return list[index];
+            return list[id];
         }
 
     }

@@ -26,13 +26,15 @@ namespace Content
 
             // will use add range when we initialize ALL game objects of the current scene...
             gameObjectContainer.add(gameObjectFactory.get(0));
+            gameObjectContainer.add(gameObjectFactory.get(1));
         }
 
         public void updateInput()
         {
             gameObjectContainer.getAll().ForEach((gameObject) =>
             {
-                gameObject.getComponentContainer().getInputComponent().update(gameObject);
+                if(null != gameObject.getComponentContainer().getInputComponent())
+                    gameObject.getComponentContainer().getInputComponent().update(gameObject);
             });
         }
 
@@ -46,7 +48,8 @@ namespace Content
 
             gameObjectContainer.getAll().ForEach((gameObject) =>
             {
-                gameObject.getComponentContainer().getGraphicComponent().update(gameObject);
+                if(null != gameObject.getComponentContainer().getGraphicComponent())
+                    gameObject.getComponentContainer().getGraphicComponent().update(gameObject);
             });
 
         }

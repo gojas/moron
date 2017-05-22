@@ -16,11 +16,13 @@ namespace Object
         public float speed = 5;
 
         public GameObject(
+            SpriteBatch aSpriteBatch,
             Vector2 aPosition,
             Texture2D aTexture,
             ComponentContainer aComponentContainer
         )
         {
+            spriteBatch = aSpriteBatch;
             position = aPosition;
             texture = aTexture;
             componentContainer = aComponentContainer;
@@ -44,11 +46,6 @@ namespace Object
             spriteBatch = aSpriteBatch;
 
             return this;
-        }
-
-        public SpriteBatch getSpriteBatch()
-        {
-            return spriteBatch;
         }
     }
 }
