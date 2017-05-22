@@ -17,7 +17,9 @@ namespace Component
             Rectangle sourceRectangle = new Rectangle(width * column, height * row, width, height);
             Rectangle destinationRectangle = new Rectangle((int)gameObject.position.X, (int)gameObject.position.Y, width, height);
 
-            gameObject.spriteBatch.Draw(gameObject.texture, destinationRectangle, sourceRectangle, Color.White);
+            gameObject.getGame()
+                .getSpriteBatch()
+                .Draw(gameObject.texture, destinationRectangle, sourceRectangle, Color.White);
         }
     }
 }

@@ -46,5 +46,13 @@ namespace Component
                 return component is GraphicComponent;
             });
         }
+
+        public Component getPhysicsComponent()
+        {
+            return components.Find((Component component) =>
+            {
+                return component is PhysicsComponent;
+            });
+        }
     }
 }

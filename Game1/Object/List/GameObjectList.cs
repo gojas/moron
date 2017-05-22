@@ -16,14 +16,14 @@ namespace Object.List
                     positionX = 40,
                     positionY = 40,
                     texture = "player",
-                    components = new string[] { "MoronInputComponent", "PhysicsComponent", "MoronGraphicComponent" }
+                    components = new string[] { "MoronInputComponent", "MoronPhysicsComponent", "MoronGraphicComponent" }
                 },
                 new {
                     velocity = 0,
                     positionX = 300,
                     positionY = 300,
                     texture = "player",
-                    components = new string[] { "GraphicComponent" }
+                    components = new string[] { "RectanglePhysicsComponent", "GraphicComponent" }
                 }
             };
 

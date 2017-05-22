@@ -1,7 +1,10 @@
-﻿using Microsoft.Xna.Framework;
+﻿using System;
+using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Content;
 using Core.Service;
+using Comora;
+using Microsoft.Xna.Framework.Input;
 
 namespace Game1
 {
@@ -15,6 +18,8 @@ namespace Game1
         ContentManager contentManager;
 
         SpriteBatch spriteBatch;
+
+        private Camera camera;
 
         public Game1()
         {
@@ -35,6 +40,7 @@ namespace Game1
         /// </summary>
         protected override void Initialize()
         {
+            camera = new Camera(GraphicsDevice);
 
             base.Initialize();
         }
@@ -47,6 +53,8 @@ namespace Game1
         {
             // Create a new SpriteBatch, which can be used to draw textures.
             spriteBatch = new SpriteBatch(GraphicsDevice);
+
+            camera.LoadContent(GraphicsDevice);
 
             contentManager.loadContent();
 
@@ -70,8 +78,13 @@ namespace Game1
         /// <param name="gameTime">Provides a snapshot of timing values.</param>
         protected override void Update(GameTime gameTime)
         {
+            
+
+            // camera.Position = Mouse.GetState().Position.ToVector2();
+
+
             /** player or AI input goes here **/
-            contentManager.updateInput();
+            contentManager.updateInput(gameTime);
 
             /** checking the state of a game, did player hit the wall? **/
             contentManager.updatePhysics();
@@ -87,8 +100,8 @@ namespace Game1
         {
             graphics.GraphicsDevice.Clear(Color.White);
 
-            spriteBatch.Begin(SpriteSortMode.BackToFront, BlendState.AlphaBlend);
-            
+            spriteBatch.Begin(this.camera);
+
             /** draw! **/
             contentManager.updateGraphic();
 
@@ -101,6 +114,11 @@ namespace Game1
         public SpriteBatch getSpriteBatch()
         {
             return spriteBatch;
+        }
+
+        public Camera getCamera()
+        {
+            return camera;
         }
     }
 }

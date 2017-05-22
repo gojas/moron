@@ -20,6 +20,8 @@ namespace Component
                 gameObject.position.Y -= gameObject.speed;
             if (state.IsKeyDown(Keys.S))
                 gameObject.position.Y += gameObject.speed;
+
+            gameObject.getGame().getCamera().Position = gameObject.position;
         }
     }
 }

@@ -2,11 +2,14 @@
 using Microsoft.Xna.Framework.Graphics;
 using Component;
 
+
 namespace Object
 {
+    using Game1;
+
     public class GameObject : IGameObject
     {
-        public SpriteBatch spriteBatch;
+        public Game1 game;
 
         public Vector2 position;
         public Texture2D texture;
@@ -16,13 +19,13 @@ namespace Object
         public float speed = 5;
 
         public GameObject(
-            SpriteBatch aSpriteBatch,
+            Game1 aGame,
             Vector2 aPosition,
             Texture2D aTexture,
             ComponentContainer aComponentContainer
         )
         {
-            spriteBatch = aSpriteBatch;
+            game = aGame;
             position = aPosition;
             texture = aTexture;
             componentContainer = aComponentContainer;
@@ -41,11 +44,9 @@ namespace Object
             return componentContainer;
         }
 
-        public GameObject setSpriteBatch(SpriteBatch aSpriteBatch)
+        public Game1 getGame()
         {
-            spriteBatch = aSpriteBatch;
-
-            return this;
+            return game;
         }
     }
 }

@@ -1,4 +1,5 @@
-﻿using Object;
+﻿using Microsoft.Xna.Framework;
+using Object;
 using Object.Factory;
 using Core.Service;
 
@@ -29,8 +30,10 @@ namespace Content
             gameObjectContainer.add(gameObjectFactory.get(1));
         }
 
-        public void updateInput()
+        public void updateInput(GameTime gameTime)
         {
+            game.getCamera().Update(gameTime);
+
             gameObjectContainer.getAll().ForEach((gameObject) =>
             {
                 if(null != gameObject.getComponentContainer().getInputComponent())
@@ -41,6 +44,11 @@ namespace Content
         public void updatePhysics()
         {
             // check for collision, explosion, and other stuff...
+            gameObjectContainer.getAll().ForEach((gameObject) =>
+            {
+                if (null != gameObject.getComponentContainer().getPhysicsComponent())
+                    gameObject.getComponentContainer().getPhysicsComponent().update(gameObject);
+            });
         }
 
         public void updateGraphic()

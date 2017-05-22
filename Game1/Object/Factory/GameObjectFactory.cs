@@ -34,7 +34,6 @@ namespace Object.Factory
             PropertyInfo positionYPropertyInfo = type.GetProperty("positionY");
             PropertyInfo texturePropertyInfo = type.GetProperty("texture");
 
-
             object positionXPropertyInfoValue = positionXPropertyInfo.GetValue(gameObjectConfiguration, null);
 
             // set position
@@ -45,7 +44,6 @@ namespace Object.Factory
 
             // set texture
             Texture2D texture = game.Content.Load<Texture2D>(texturePropertyInfo.GetValue(gameObjectConfiguration, null).ToString());
-
 
             // set components
             ComponentContainer componentContainer = new ComponentContainer();
@@ -58,7 +56,8 @@ namespace Object.Factory
                 componentContainer.add(getInputComponent(componentName.ToString()));
 
             // if gameObjectId has custom object let's say MoronGameObject, initialize it instead of abstract one
-            return new GameObject(game.getSpriteBatch(), position, texture, componentContainer);
+            // big question remains. pass game instance here, or in ContentManager in update methods?
+            return new GameObject(game, position, texture, componentContainer);
         }
 
         private Component getInputComponent(string componentName)

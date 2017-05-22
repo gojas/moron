@@ -1,8 +1,10 @@
-﻿public interface IContentManager
+﻿using Microsoft.Xna.Framework;
+
+public interface IContentManager
 {
     void loadContent();
 
-    void updateInput();
+    void updateInput(GameTime gameTime);
 
     void updatePhysics();
 
