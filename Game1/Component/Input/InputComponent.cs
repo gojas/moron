@@ -8,16 +8,18 @@ namespace Component
 
         public override void update(GameObject gameObject)
         {
-
             KeyboardState state = Keyboard.GetState();
 
             System.Text.StringBuilder sb = new System.Text.StringBuilder();
 
-            // UPDATE gameObject.position
-
-
-            // use Command Pattern
-            // gameObject.update(command.up()) something like that
+            if (state.IsKeyDown(Keys.D))
+                gameObject.position.X += gameObject.speed;
+            if (state.IsKeyDown(Keys.A))
+                gameObject.position.X -= gameObject.speed;
+            if (state.IsKeyDown(Keys.W))
+                gameObject.position.Y -= gameObject.speed;
+            if (state.IsKeyDown(Keys.S))
+                gameObject.position.Y += gameObject.speed;
         }
     }
 }

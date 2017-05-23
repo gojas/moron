@@ -1,23 +1,15 @@
 ﻿using Microsoft.Xna.Framework.Input;
 using Object;
+using QuadTree;
+using System.Collections.Generic;
+using System.Diagnostics;
 
 namespace Component
 {
     public class PhysicsComponent : Component
     {
-
-        public override void update(GameObject gameObject) // add world as second param
+        public override void update(GameObject gameObject, QuadTree.QuadTree quadTree) // add world as second param
         {
-
-            // gameObject.position
-
-            // gameObject.collides with?
-
-            // send message if it does
-
-            // gameObject.position.x += gameObject.speed;
-            // world.resolveCollision(volume_,
-            // bjorn.x, bjorn.y, bjorn.velocity);
 
         }
     }

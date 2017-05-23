@@ -65,6 +65,7 @@
     <Compile Include="Object\List\GameObjectList.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Quadtree\Quadtree.cs" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="Comora, Version=0.5.0.0, Culture=neutral, processorArchitecture=MSIL">

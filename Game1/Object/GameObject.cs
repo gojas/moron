@@ -10,6 +10,7 @@ namespace Object
     public class GameObject : IGameObject
     {
         public Game1 game;
+        public QuadTree.QuadTree quadTree;
 
         public Vector2 position;
         public Texture2D texture;

@@ -24,6 +24,13 @@ namespace Object.List
                     positionY = 300,
                     texture = "player",
                     components = new string[] { "RectanglePhysicsComponent", "GraphicComponent" }
+                },
+                new {
+                    velocity = 0,
+                    positionX = 200,
+                    positionY = 200,
+                    texture = "background",
+                    components = new string[] { "GraphicComponent" }
                 }
             };
 
