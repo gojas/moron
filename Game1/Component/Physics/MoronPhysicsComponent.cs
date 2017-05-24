@@ -1,25 +1,16 @@
-﻿using Object;
-using QuadTree;
-using System.Collections.Generic;
-using System.Diagnostics;
-
-namespace Component
+﻿namespace Component
 {
+    using GameObject;
+    using QuadTree;
+
     public class MoronPhysicsComponent : PhysicsComponent
     {
-
-        public override void update(GameObject gameObject, QuadTree.QuadTree quadTree)
+        public override void update(GameObject gameObject, QuadTree quadTree)
         {
-            Debug.WriteLine(gameObject.position.X + " " + gameObject.position.Y);
-
-            List<GameObject> objects = quadTree.getObjects(gameObject);
-
-
-            objects.ForEach((returnObject) => {
+            // nearby objects...
+            quadTree.getObjects(gameObject).ForEach((returnObject) => {
                 
             });
-
-            Debug.Write(objects.Count);
         }
     }
 }

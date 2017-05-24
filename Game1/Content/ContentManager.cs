@@ -1,15 +1,14 @@
 ﻿using Microsoft.Xna.Framework;
-using Object;
-using Object.Factory;
+using GameObject.Factory;
 using Core.Service;
 using System.Diagnostics;
 
 
 namespace Content
 {
+    using GameObject;
     using Game1;
     using QuadTree;
-    using System.Collections.Generic;
 
     public class ContentManager : IContentManager
     {

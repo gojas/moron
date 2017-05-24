@@ -1,8 +1,9 @@
 ﻿using Microsoft.Xna.Framework.Input;
-using Object;
 
 namespace Component
 {
+    using GameObject;
+
     public class InputComponent : Component
     {
 

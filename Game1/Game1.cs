@@ -83,11 +83,6 @@ namespace Game1
         /// <param name="gameTime">Provides a snapshot of timing values.</param>
         protected override void Update(GameTime gameTime)
         {
-            
-
-            // camera.Position = Mouse.GetState().Position.ToVector2();
-
-
             /** player or AI input goes here **/
             contentManager.updateInput(gameTime);
 

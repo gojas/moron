@@ -2,12 +2,11 @@
 using Microsoft.Xna.Framework.Graphics;
 using Component;
 
-
-namespace Object
+namespace GameObject
 {
     using Game1;
 
-    public class GameObject : IGameObject
+    public class GameObject
     {
         public Game1 game;
         public QuadTree.QuadTree quadTree;
@@ -30,14 +29,6 @@ namespace Object
             position = aPosition;
             texture = aTexture;
             componentContainer = aComponentContainer;
-        }
-
-        public void update()
-        {
-            componentContainer.getAll().ForEach((component) =>
-            {
-                component.update(this);
-            });
         }
 
         public ComponentContainer getComponentContainer()

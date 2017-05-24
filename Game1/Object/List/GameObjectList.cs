@@ -1,7 +1,4 @@
-﻿using System;
-using System.Linq;
-
-namespace Object.List
+﻿namespace GameObject.List
 {
 
     public static class GameObjectList

@@ -1,9 +1,10 @@
 ﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
-using Object;
 
 namespace Component
 {
+    using GameObject;
+
     public class MoronGraphicComponent : GraphicComponent
     {
         public override void update(GameObject gameObject)

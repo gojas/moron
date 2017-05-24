@@ -1,14 +1,14 @@
 ﻿using Microsoft.Xna.Framework;
 using System.Linq;
 using System.Collections.Generic;
-using Object;
 
 namespace QuadTree
 {
+    using GameObject;
 
     public class QuadTree
     {
-        public const int MAX_OBJECTS = 3;
+        public const int MAX_OBJECTS = 10;
         public const int MAX_DEPTH = 4;
 
         private List<GameObject> objects = new List<GameObject>();

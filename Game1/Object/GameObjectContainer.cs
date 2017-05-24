@@ -1,7 +1,8 @@
 ﻿using System.Collections.Generic;
 
-namespace Object
+namespace GameObject
 {
+
     public class GameObjectContainer : IGameObjectContainer
     {
         private List<GameObject> objectList = new List<GameObject>();

@@ -1,12 +1,12 @@
-﻿using Microsoft.Xna.Framework.Input;
-using Object;
-
-namespace Component
+﻿namespace Component
 {
+    using GameObject;
+    using QuadTree;
+
     public class RectanglePhysicsComponent : PhysicsComponent
     {
 
-        public override void update(GameObject gameObject, QuadTree.QuadTree quadTree)
+        public override void update(GameObject gameObject, QuadTree quadTree)
         {
             float gameObjectPositionX = gameObject.position.X;
             float gameObjectPositionY = gameObject.position.Y;

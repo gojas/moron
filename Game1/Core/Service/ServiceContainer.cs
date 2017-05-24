@@ -1,7 +1,7 @@
 ﻿using Microsoft.Xna.Framework;
 
 using Content;
-using Object.Factory;
+using GameObject.Factory;
 
 namespace Core.Service
 {

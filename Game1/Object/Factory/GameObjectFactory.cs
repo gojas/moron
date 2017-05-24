@@ -1,8 +1,8 @@
 ﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
-using Object.List;
+using GameObject.List;
 
-namespace Object.Factory
+namespace GameObject.Factory
 {
     using Game1;
     using System;
