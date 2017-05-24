@@ -1,43 +1,17 @@
 ﻿using Microsoft.Xna.Framework;
-using System;
 using System.Linq;
-using System.Collections;
 using System.Collections.Generic;
-
-public interface INode
-{
-    
-}
-
+using Object;
 
 namespace QuadTree
 {
 
-    public class QuadTreeObject
-    {
-
-        // public just for now, chill!
-        public float positionX = 0;
-        public float positionY = 0;
-        public float width = 0;
-        public float height = 0;
-
-        public QuadTreeObject(float aPositionX, float aPositionY, float aWidth, float aHeight)
-        {
-            positionX = aPositionX;
-            positionY = aPositionY;
-            width = aWidth;
-            height = aHeight;
-        }
-
-    }
-
     public class QuadTree
     {
-        public const int MAX_OBJECTS = 10;
+        public const int MAX_OBJECTS = 3;
         public const int MAX_DEPTH = 4;
 
-        private List<QuadTreeObject> objects = new List<QuadTreeObject>();
+        private List<GameObject> objects = new List<GameObject>();
         private Rectangle bounds;
 
         private QuadTreeNode root;
@@ -49,14 +23,15 @@ namespace QuadTree
             root = new QuadTreeNode(bounds, 0);
         }
 
-        public QuadTree insert(QuadTreeObject aObject)
+        public QuadTree insert(GameObject aObject)
         {
             root.insert(aObject);
 
             return this;
         }
 
-        public QuadTree insertList(List<QuadTreeObject> objects)
+        // TODO :: optimize!
+        public QuadTree insertList(List<GameObject> objects)
         {
             foreach (var anObject in objects)
                 insert(anObject);
@@ -64,12 +39,12 @@ namespace QuadTree
             return this;
         }
 
-        public List<QuadTreeObject> retrieve(QuadTreeObject aObject)
+        public List<GameObject> getObjects(GameObject aObject)
         {
-            List<QuadTreeObject> objects = root.retrieve(aObject);
+            List<GameObject> objects = root.getObjects(aObject);
 
             if (objects.Count() > 0)
-                objects.RemoveAt(0);
+                objects.Remove(aObject);
 
             return objects;
         }
@@ -79,15 +54,19 @@ namespace QuadTree
             root.clear();
         }
 
+        public List<GameObject> getAllObjects() {
+            return root.getAllObjects(); ;
+        }
+
     }
 
-    public class QuadTreeNode : INode
+    public class QuadTreeNode
     {
         //subnodes
         private List<QuadTreeNode> nodes = new List<QuadTreeNode>();
 
         // children
-        private List<QuadTreeObject> children = new List<QuadTreeObject>();
+        private List<GameObject> children = new List<GameObject>();
 
         //read only
         Rectangle bounds;
@@ -105,7 +84,7 @@ namespace QuadTree
             depth = aDepth;
         }
 
-        public void insert(QuadTreeObject aObject)
+        public void insert(GameObject aObject)
         {
             if (nodes.Count() > 0)
             {
@@ -134,21 +113,28 @@ namespace QuadTree
             }
         }
 
-        public List<QuadTreeObject> retrieve(QuadTreeObject aObject)
+        public List<GameObject> getObjects(GameObject aObject)
         {
             if (nodes.Count() > 0)
             {
                 var index = findIndex(aObject);
 
-                return nodes[index].retrieve(aObject);
+                return nodes[index].getObjects(aObject);
             }
 
+            return children;
+        }
+
+        public List<GameObject> getAllObjects()
+        {
             return children;
         }
 
         public void clear()
         {
             children.Clear();
+
+            depth = 0;
 
             var len = nodes.Count();
 
@@ -160,11 +146,11 @@ namespace QuadTree
             nodes.Clear();
         }
 
-        private int findIndex(QuadTreeObject aObject)
+        private int findIndex(GameObject aObject)
         {
             var b = bounds;
-            var left = (aObject.positionX > bounds.Location.X + bounds.Width / 2) ? false : true;
-            var top = (aObject.positionY > bounds.Location.Y + bounds.Height / 2) ? false : true;
+            var left = (aObject.position.X > bounds.Location.X + bounds.Width / 2) ? false : true;
+            var top = (aObject.position.Y > bounds.Location.Y + bounds.Height / 2) ? false : true;
 
             //top left
             var index = TOP_LEFT;

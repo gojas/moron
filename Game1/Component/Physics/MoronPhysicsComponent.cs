@@ -10,14 +10,16 @@ namespace Component
 
         public override void update(GameObject gameObject, QuadTree.QuadTree quadTree)
         {
-            QuadTreeObject quadTreeObject = new QuadTreeObject(gameObject.position.X, gameObject.position.Y, 10, 10);
-            quadTree.insert(quadTreeObject);
-
             Debug.WriteLine(gameObject.position.X + " " + gameObject.position.Y);
 
-            List<QuadTreeObject> objects = quadTree.retrieve(quadTreeObject);
+            List<GameObject> objects = quadTree.getObjects(gameObject);
 
-            Debug.WriteLine(objects.Count);
+
+            objects.ForEach((returnObject) => {
+                
+            });
+
+            Debug.Write(objects.Count);
         }
     }
 }

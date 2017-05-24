@@ -32,8 +32,6 @@ namespace Content
 
             quadTree = new QuadTree(new Rectangle(0, 0, game.GraphicsDevice.Viewport.Bounds.Width, game.GraphicsDevice.Viewport.Bounds.Height));
 
-            
-
             Debug.WriteLine(game.GraphicsDevice.Viewport.Bounds.Width + " " + game.GraphicsDevice.Viewport.Bounds.Height);
 
             
@@ -42,38 +40,31 @@ namespace Content
             gameObjectContainer.add(gameObjectFactory.get(2));
             gameObjectContainer.add(gameObjectFactory.get(0));
             gameObjectContainer.add(gameObjectFactory.get(1));
+            gameObjectContainer.add(gameObjectFactory.get(3));
+            gameObjectContainer.add(gameObjectFactory.get(4));
+            gameObjectContainer.add(gameObjectFactory.get(5));
         }
 
         public void updateInput(GameTime gameTime)
         {
             game.getCamera().Update(gameTime);
 
+            quadTree.clear();
+
             gameObjectContainer.getAll().ForEach((gameObject) =>
             {
                 if(null != gameObject.getComponentContainer().getInputComponent())
                     gameObject.getComponentContainer().getInputComponent().update(gameObject);
+
+                // prepare data for physics component
+                if (null != gameObject.getComponentContainer().getPhysicsComponent())
+                    quadTree.insert(gameObject);
             });
         }
 
         public void updatePhysics()
         {
-            quadTree.clear();
 
-            quadTree.insert(new QuadTreeObject(1800, 1200, 10, 10))
-                .insert(new QuadTreeObject(42, 32, 10, 10))
-                .insert(new QuadTreeObject(43, 33, 10, 10))
-                .insert(new QuadTreeObject(623, 12, 10, 10))
-                .insert(new QuadTreeObject(1, 900, 10, 10))
-                .insert(new QuadTreeObject(1442, 932, 10, 10))
-                .insert(new QuadTreeObject(242, 44, 10, 10))
-                .insert(new QuadTreeObject(1542, 1052, 10, 10))
-                .insert(new QuadTreeObject(2, 12, 10, 10))
-                .insert(new QuadTreeObject(442, 82, 10, 10))
-                .insert(new QuadTreeObject(32, 333, 10, 10));
-
-
-            // quad tree, read
-            // http://gameprogrammingpatterns.com/spatial-partition.html
             // check for collision, explosion, and other stuff...
             gameObjectContainer.getAll().ForEach((gameObject) =>
             {
