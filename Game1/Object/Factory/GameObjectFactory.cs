@@ -10,6 +10,7 @@ namespace GameObject.Factory
     using System.Reflection;
     using System.Linq;
     using System.Collections;
+    using Texture;
 
     public class GameObjectFactory
     {
@@ -30,20 +31,19 @@ namespace GameObject.Factory
             Type type = gameObjectConfiguration.GetType();
 
             PropertyInfo componentsPropertyInfo = type.GetProperty("components");
-            PropertyInfo positionXPropertyInfo = type.GetProperty("positionX");
-            PropertyInfo positionYPropertyInfo = type.GetProperty("positionY");
-            PropertyInfo texturePropertyInfo = type.GetProperty("texture");
+            PropertyInfo textureAtlasPropertyInfo = type.GetProperty("textureAtlas");
 
-            object positionXPropertyInfoValue = positionXPropertyInfo.GetValue(gameObjectConfiguration, null);
-
-            // set position
+            // set position, for now here
             Vector2 position = new Vector2(
-                Convert.ToSingle(positionXPropertyInfo.GetValue(gameObjectConfiguration, null)),
-                Convert.ToSingle(positionYPropertyInfo.GetValue(gameObjectConfiguration, null))
+                300,
+                300
             );
 
             // set texture
-            Texture2D texture = game.Content.Load<Texture2D>(texturePropertyInfo.GetValue(gameObjectConfiguration, null).ToString());
+
+            /** REALLY BAD, INSTANTIATING TextureAtlasLoader and SpriteSheet for EVERY GAME OBJECT, YOU NUTS! **/
+            TextureAtlasLoader textureAtlasLoader = new TextureAtlasLoader(game.Content);
+            SpriteSheetContainer spriteSheetContainer = textureAtlasLoader.load(textureAtlasPropertyInfo.GetValue(gameObjectConfiguration, null).ToString());
 
             // set components
             ComponentContainer componentContainer = new ComponentContainer();
@@ -57,7 +57,7 @@ namespace GameObject.Factory
 
             // if gameObjectId has custom object let's say MoronGameObject, initialize it instead of abstract one
             // big question remains. pass game instance here, or in ContentManager in update methods?
-            return new GameObject(game, position, texture, componentContainer);
+            return new GameObject(spriteSheetContainer, componentContainer);
         }
 
         private Component getInputComponent(string componentName)

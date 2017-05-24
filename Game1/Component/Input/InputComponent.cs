@@ -3,11 +3,11 @@
 namespace Component
 {
     using GameObject;
+    using Game1;
 
     public class InputComponent : Component
     {
-
-        public override void update(GameObject gameObject)
+        public override void update(GameObject gameObject, Game1 game)
         {
             KeyboardState state = Keyboard.GetState();
 

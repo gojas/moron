@@ -1,44 +1,34 @@
 ﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Component;
+using Texture;
 
 namespace GameObject
 {
-    using Game1;
 
     public class GameObject
     {
-        public Game1 game;
-        public QuadTree.QuadTree quadTree;
 
         public Vector2 position;
-        public Texture2D texture;
+
+        public SpriteSheetContainer spriteSheetContainer;
         public ComponentContainer componentContainer;
 
         // huh hah?!
         public float speed = 5;
 
         public GameObject(
-            Game1 aGame,
-            Vector2 aPosition,
-            Texture2D aTexture,
-            ComponentContainer aComponentContainer
+            SpriteSheetContainer spriteSheetContainer,
+            ComponentContainer componentContainer
         )
         {
-            game = aGame;
-            position = aPosition;
-            texture = aTexture;
-            componentContainer = aComponentContainer;
+            this.spriteSheetContainer = spriteSheetContainer;
+            this.componentContainer = componentContainer;
         }
 
         public ComponentContainer getComponentContainer()
         {
             return componentContainer;
-        }
-
-        public Game1 getGame()
-        {
-            return game;
         }
     }
 }

@@ -1,14 +1,13 @@
 ﻿using Microsoft.Xna.Framework;
 using GameObject.Factory;
 using Core.Service;
-using System.Diagnostics;
-
 
 namespace Content
 {
     using GameObject;
     using Game1;
     using QuadTree;
+    using Texture;
 
     public class ContentManager : IContentManager
     {
@@ -17,6 +16,7 @@ namespace Content
         GameObjectContainer gameObjectContainer;
         GameObjectFactory gameObjectFactory;
         QuadTree quadTree;
+        SpriteRender spriteRender;
 
         public ContentManager(Game1 game1)
         {
@@ -31,17 +31,11 @@ namespace Content
 
             quadTree = new QuadTree(new Rectangle(0, 0, game.GraphicsDevice.Viewport.Bounds.Width, game.GraphicsDevice.Viewport.Bounds.Height));
 
-            Debug.WriteLine(game.GraphicsDevice.Viewport.Bounds.Width + " " + game.GraphicsDevice.Viewport.Bounds.Height);
+            spriteRender = new SpriteRender(game.getSpriteBatch());
 
-            
 
-             // will use add range when we initialize ALL game objects of the current scene...
-            gameObjectContainer.add(gameObjectFactory.get(2));
+            // will use add range when we initialize ALL game objects of the current scene...
             gameObjectContainer.add(gameObjectFactory.get(0));
-            gameObjectContainer.add(gameObjectFactory.get(1));
-            gameObjectContainer.add(gameObjectFactory.get(3));
-            gameObjectContainer.add(gameObjectFactory.get(4));
-            gameObjectContainer.add(gameObjectFactory.get(5));
         }
 
         public void updateInput(GameTime gameTime)
@@ -53,7 +47,7 @@ namespace Content
             gameObjectContainer.getAll().ForEach((gameObject) =>
             {
                 if(null != gameObject.getComponentContainer().getInputComponent())
-                    gameObject.getComponentContainer().getInputComponent().update(gameObject);
+                    gameObject.getComponentContainer().getInputComponent().update(gameObject, game);
 
                 // prepare data for physics component
                 if (null != gameObject.getComponentContainer().getPhysicsComponent())
@@ -74,11 +68,10 @@ namespace Content
 
         public void updateGraphic()
         {
-
             gameObjectContainer.getAll().ForEach((gameObject) =>
             {
                 if(null != gameObject.getComponentContainer().getGraphicComponent())
-                    gameObject.getComponentContainer().getGraphicComponent().update(gameObject);
+                    gameObject.getComponentContainer().getGraphicComponent().update(gameObject, spriteRender);
             });
 
         }

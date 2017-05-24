@@ -1,4 +1,7 @@
-﻿namespace Component
+﻿using Core.Service;
+using System.Diagnostics;
+
+namespace Component
 {
     using GameObject;
     using QuadTree;
@@ -9,8 +12,12 @@
         {
             // nearby objects...
             quadTree.getObjects(gameObject).ForEach((returnObject) => {
-                
+                if (CollisionDetection.areObjectsColliding(gameObject, returnObject)) {
+                    Debug.Write("collision yoo");
+                }
             });
+
+            
         }
     }
 }

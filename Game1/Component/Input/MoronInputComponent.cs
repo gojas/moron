@@ -3,15 +3,16 @@
 namespace Component
 {
     using GameObject;
+    using Game1;
 
     public class MoronInputComponent : InputComponent
     {
 
-        public override void update(GameObject gameObject)
+        public override void update(GameObject gameObject, Game1 game)
         {
-            base.update(gameObject);
+            base.update(gameObject, game);
 
-            gameObject.getGame().getCamera().Position = gameObject.position;
+            game.getCamera().Position = gameObject.position;
         }
     }
 }
