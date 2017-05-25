@@ -3,7 +3,7 @@ using System.Diagnostics;
 
 namespace Component
 {
-    using GameObject;
+    using World.GameObject;
     using QuadTree;
 
     public class MoronPhysicsComponent : PhysicsComponent

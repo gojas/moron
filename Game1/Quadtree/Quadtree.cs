@@ -4,7 +4,7 @@ using System.Collections.Generic;
 
 namespace QuadTree
 {
-    using GameObject;
+    using World.GameObject;
 
     public class QuadTree
     {

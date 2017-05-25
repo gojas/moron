@@ -1,8 +1,6 @@
-﻿using Microsoft.Xna.Framework;
-
-namespace Core.Service
+﻿namespace Core.Service
 {
-	using GameObject;
+	using World.GameObject;
 	using System;
 
 	public static class CollisionDetection
@@ -13,6 +11,7 @@ namespace Core.Service
 					Math.Min(min0, max0) <= Math.Max(min1, max1);
 		}
 
+        // FIX TO VECTORS, NOT GAME OBJECTS!!!!
         public static bool areRectanglesColliding(GameObject gameObject1, GameObject gameObject2) { // fix to position1x, position1y, widht, height, don't use game objects
             float gameObject1Width = 100;
             float gameObject2Width = 100;

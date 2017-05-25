@@ -16,6 +16,7 @@ namespace Game1
 
         GraphicsDeviceManager graphics;
         ContentManager contentManager;
+        FrameCounter frameCounter;
 
         SpriteBatch spriteBatch;
 
@@ -28,6 +29,7 @@ namespace Game1
             ServiceContainer.registerServices(this);
 
             contentManager = ServiceContainer.GetService<ContentManager>();
+            frameCounter = ServiceContainer.GetService<FrameCounter>();
 
             Content.RootDirectory = "Content";
         }
@@ -42,9 +44,9 @@ namespace Game1
         {
             camera = new Camera(GraphicsDevice);
 
-            graphics.PreferredBackBufferWidth = GraphicsDevice.DisplayMode.Width;
-            graphics.PreferredBackBufferHeight = GraphicsDevice.DisplayMode.Height;
-            graphics.IsFullScreen = true;
+            //graphics.PreferredBackBufferWidth = GraphicsDevice.DisplayMode.Width;
+            //graphics.PreferredBackBufferHeight = GraphicsDevice.DisplayMode.Height;
+            //graphics.IsFullScreen = true;
             graphics.ApplyChanges();
 
             base.Initialize();
@@ -86,9 +88,6 @@ namespace Game1
             /** player or AI input goes here **/
             contentManager.updateInput(gameTime);
 
-            /** checking the state of a game, did player hit the wall? **/
-            contentManager.updatePhysics();
-
             base.Update(gameTime);
         }
 
@@ -98,12 +97,16 @@ namespace Game1
         /// <param name="gameTime">Provides a snapshot of timing values.</param>
         protected override void Draw(GameTime gameTime)
         {
-            graphics.GraphicsDevice.Clear(Color.White);
+            var deltaTime = (float)gameTime.ElapsedGameTime.TotalSeconds;
 
+            frameCounter.Update(deltaTime);
+
+            graphics.GraphicsDevice.Clear(Color.White);
+            
             spriteBatch.Begin(this.camera);
 
             /** draw! **/
-            contentManager.updateGraphic();
+            contentManager.updateGraphic(gameTime);
 
             spriteBatch.End();
 

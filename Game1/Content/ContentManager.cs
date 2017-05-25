@@ -1,41 +1,37 @@
 ﻿using Microsoft.Xna.Framework;
-using GameObject.Factory;
-using Core.Service;
 
 namespace Content
 {
-    using GameObject;
     using Game1;
     using QuadTree;
     using Texture;
+    using World.Scene;
+    using World.GameObject;
+    using System.Collections.Generic;
 
     public class ContentManager : IContentManager
     {
         Game1 game;
 
-        GameObjectContainer gameObjectContainer;
-        GameObjectFactory gameObjectFactory;
+        SceneManager sceneManager;
+        
         QuadTree quadTree;
         SpriteRender spriteRender;
 
         public ContentManager(Game1 game1)
         {
             game = game1;
-
-            gameObjectContainer = new GameObjectContainer();
         }
 
         public void loadContent()
         {
-            gameObjectFactory = ServiceContainer.GetService<GameObjectFactory>();
+            sceneManager = new SceneManager(game.Content);
+
+            sceneManager.FirstGet(1).ThenLoadScene();
 
             quadTree = new QuadTree(new Rectangle(0, 0, game.GraphicsDevice.Viewport.Bounds.Width, game.GraphicsDevice.Viewport.Bounds.Height));
 
             spriteRender = new SpriteRender(game.getSpriteBatch());
-
-
-            // will use add range when we initialize ALL game objects of the current scene...
-            gameObjectContainer.add(gameObjectFactory.get(0));
         }
 
         public void updateInput(GameTime gameTime)
@@ -44,35 +40,37 @@ namespace Content
 
             quadTree.clear();
 
-            gameObjectContainer.getAll().ForEach((gameObject) =>
-            {
-                if(null != gameObject.getComponentContainer().getInputComponent())
-                    gameObject.getComponentContainer().getInputComponent().update(gameObject, game);
+            // 1, 2 means get only specific objects, based on position.X and position.Y
+            IDictionary<int, GameObject> objectList = sceneManager.GetGameObjectContainer(1, 2).GetAll();
 
+            foreach (var item in objectList)
+            {
                 // prepare data for physics component
-                if (null != gameObject.getComponentContainer().getPhysicsComponent())
-                    quadTree.insert(gameObject);
-            });
+                if (null != item.Value.getComponentContainer().getPhysicsComponent())
+                    quadTree.insert(item.Value);
+            }
+
+            foreach (var item in objectList)
+            {
+                /** handle user input here **/
+                if (null != item.Value.getComponentContainer().getInputComponent())
+                    item.Value.getComponentContainer().getInputComponent().update(item.Value, game);
+
+                /** checking the state of a game, did player hit the wall? **/
+                if (null != item.Value.getComponentContainer().getPhysicsComponent())
+                    item.Value.getComponentContainer().getPhysicsComponent().update(item.Value, quadTree);
+            }
         }
 
-        public void updatePhysics()
+        public void updateGraphic(GameTime gameTime)
         {
+            IDictionary<int, GameObject> objectList = sceneManager.GetGameObjectContainer(1, 2).GetAll();
 
-            // check for collision, explosion, and other stuff...
-            gameObjectContainer.getAll().ForEach((gameObject) =>
+            foreach (var item in objectList)
             {
-                if (null != gameObject.getComponentContainer().getPhysicsComponent())
-                    gameObject.getComponentContainer().getPhysicsComponent().update(gameObject, quadTree);
-            });
-        }
-
-        public void updateGraphic()
-        {
-            gameObjectContainer.getAll().ForEach((gameObject) =>
-            {
-                if(null != gameObject.getComponentContainer().getGraphicComponent())
-                    gameObject.getComponentContainer().getGraphicComponent().update(gameObject, spriteRender);
-            });
+                if (null != item.Value.getComponentContainer().getGraphicComponent())
+                    item.Value.getComponentContainer().getGraphicComponent().update(item.Value, spriteRender, gameTime);
+            }
 
         }
     }

@@ -1,6 +1,6 @@
 ﻿namespace Component
 {
-    using GameObject;
+    using World.GameObject;
     using QuadTree;
 
     public class PhysicsComponent : Component

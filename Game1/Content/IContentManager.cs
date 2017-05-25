@@ -6,7 +6,5 @@ public interface IContentManager
 
     void updateInput(GameTime gameTime);
 
-    void updatePhysics();
-
-    void updateGraphic();
+    void updateGraphic(GameTime gameTime);
 }

@@ -1,16 +1,18 @@
 ﻿using Microsoft.Xna.Framework;
-using Microsoft.Xna.Framework.Graphics;
 
 namespace Component
 {
-    using GameObject;
+    using World.GameObject;
     using Texture;
 
     public class MoronGraphicComponent : GraphicComponent
     {
-        public override void update(GameObject gameObject, SpriteRender spriteRender)
+        public override void update(GameObject gameObject, SpriteRender spriteRender, GameTime gameTime)
         {
-            base.update(gameObject, spriteRender);
+            // gameObject.state as first param
+            Sprite sprite = gameObject.animationContainer.getCurrentSprite("cowboy", gameObject.state, gameTime);
+
+            spriteRender.Draw(sprite, gameObject.position);
         }
     }
 }

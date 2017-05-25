@@ -1,0 +1,65 @@
+﻿using Microsoft.Xna.Framework.Content;
+using System;
+using System.Collections;
+using System.Reflection;
+
+namespace World.GameObject.Factory
+{
+    using Component;
+    using GameObjects;
+    using System.Linq;
+    using Texture;
+
+    public class GameObjectFactory
+    {
+        private const string COMPONENTS_NAMESPACE = "Component";
+
+        ContentManager contentManager;
+
+        public GameObjectFactory(ContentManager contentManager)
+        {
+            this.contentManager = contentManager;
+        }
+
+        public void Load(GameObjectContainer gameObjectContainer, int id)
+        {
+            object gameObjectConfiguration = GameObjects.getById(id);
+
+            Type type = gameObjectConfiguration.GetType();
+
+            PropertyInfo componentsPropertyInfo = type.GetProperty("components");
+            PropertyInfo textureAtlasPropertyInfo = type.GetProperty("textureAtlases");
+
+
+            // set texture
+            string[] textureAtlasesArray = ((IEnumerable)textureAtlasPropertyInfo.GetValue(gameObjectConfiguration, null)).Cast<object>()
+                                 .Select(x => x.ToString())
+                                 .ToArray();
+
+            /** REALLY BAD, INSTANTIATING TextureAtlasLoader and SpriteSheet for EVERY GAME OBJECT, YOU NUTS! **/
+            TextureAtlasLoader textureAtlasLoader = new TextureAtlasLoader(this.contentManager);
+            AnimationContainer animationContainer = new AnimationContainer();
+
+            foreach (var textureAtlasName in textureAtlasesArray)
+                animationContainer.Add(textureAtlasName.ToString(), textureAtlasLoader.load(textureAtlasName.ToString()));
+
+            // set components
+            ComponentContainer componentContainer = new ComponentContainer();
+
+            string[] componentsArray = ((IEnumerable)componentsPropertyInfo.GetValue(gameObjectConfiguration, null)).Cast<object>()
+                                 .Select(x => x.ToString())
+                                 .ToArray();
+
+            foreach (var componentName in componentsArray)
+                componentContainer.add(getInputComponent(componentName.ToString()));
+            
+            gameObjectContainer.Add(id, new GameObject(animationContainer, componentContainer));
+        }
+
+        private Component getInputComponent(string componentName)
+        {
+            return Activator.CreateInstance(Type.GetType(COMPONENTS_NAMESPACE + "." + componentName)) as Component;
+        }
+
+    }
+}

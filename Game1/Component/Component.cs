@@ -1,6 +1,8 @@
-﻿namespace Component
+﻿using Microsoft.Xna.Framework;
+
+namespace Component
 {
-    using GameObject;
+    using World.GameObject;
     using Game1;
     using QuadTree;
     using Texture;
@@ -22,7 +24,7 @@
 
         }
 
-        public virtual void update(GameObject gameObject, SpriteRender spriteRender)
+        public virtual void update(GameObject gameObject, SpriteRender spriteRender, GameTime gameTime)
         {
 
         }

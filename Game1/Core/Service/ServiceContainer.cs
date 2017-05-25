@@ -1,7 +1,6 @@
 ﻿using Microsoft.Xna.Framework;
 
 using Content;
-using GameObject.Factory;
 
 namespace Core.Service
 {
@@ -40,7 +39,7 @@ namespace Core.Service
         public static void registerServices(Game1 game)
         {
             AddService<ContentManager>(new ContentManager(game));
-            AddService<GameObjectFactory>(new GameObjectFactory(game));
+            AddService<FrameCounter>(new FrameCounter());
         }
     }
 }

@@ -2,7 +2,7 @@
 
 namespace Component
 {
-    using GameObject;
+    using World.GameObject;
     using Game1;
 
     public class InputComponent : Component

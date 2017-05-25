@@ -2,8 +2,6 @@
 
 namespace Texture
 {
-    
-
     public class SpriteSheetContainer
     {
         private readonly IDictionary<string, Sprite> spriteList;
