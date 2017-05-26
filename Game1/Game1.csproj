@@ -62,10 +62,24 @@
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Quadtree\Quadtree.cs" />
+    <Compile Include="Texture\GameObjectTextureDefinition\Cowboy\CowboyWalkingDownPistol.cs" />
+    <Compile Include="Texture\GameObjectTextureDefinition\Cowboy\CowboyWalkingLeftPistol.cs" />
+    <Compile Include="Texture\GameObjectTextureDefinition\Cowboy\CowboyWalkingRightPistol.cs" />
+    <Compile Include="Texture\GameObjectTextureDefinition\Cowboy\CowboyStandingPistol.cs" />
+    <Compile Include="Texture\GameObjectTextureDefinition\Cowboy\CowboyWalkingUpPistol.cs" />
+    <Compile Include="Texture\GameObjectTextureDefinition\TextureDefinition.cs" />
+    <Compile Include="Texture\GameObjectTextureDefinition\TextureDefinitionFactory.cs" />
     <Compile Include="World\GameObject\Factory\GameObjectFactory.cs" />
     <Compile Include="World\GameObject\GameObject.cs" />
     <Compile Include="World\GameObject\GameObjectContainer.cs" />
     <Compile Include="World\GameObject\GameObjects\GameObjects.cs" />
+    <Compile Include="World\GameObject\Item\GameObjectItemsContainer.cs" />
+    <Compile Include="World\GameObject\Item\GameObjectItem.cs" />
+    <Compile Include="World\GameObject\Item\Items\Weapons\Range\Pistol.cs" />
+    <Compile Include="World\GameObject\Item\Items\Weapons\Range\GameObjectRangeWeaponItem.cs" />
+    <Compile Include="World\GameObject\Item\Items\Weapons\GameObjectWeaponItem.cs" />
+    <Compile Include="World\GameObject\State\GameObjectState.cs" />
+    <Compile Include="World\GameObject\State\Provider\GameObjectStateProvider.cs" />
     <Compile Include="World\Scene\Factory\SceneFactory.cs" />
     <Compile Include="World\Scene\Factory\SceneObjectFactory.cs" />
     <Compile Include="World\Scene\Loader\SceneLoader.cs" />
@@ -105,7 +119,7 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Content\background.jpg" />
-    <Content Include="Content\cowboy.png" />
+    <Content Include="Content\cowboy_walking_pistol.png" />
     <Content Include="Content\demo_tileset.png" />
     <Content Include="Content\player.png" />
     <Content Include="Content\sprite.png">

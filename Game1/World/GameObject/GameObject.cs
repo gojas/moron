@@ -4,34 +4,33 @@ using Texture;
 
 namespace World.GameObject
 {
-    public class State
-    {
-        public const string STATE_STANDING = "STATE_STANDING";
-        public const string STATE_WALKING_UP = "STATE_WALKING_UP";
-        public const string STATE_WALKING_DOWN = "STATE_WALKING_DOWN";
-        public const string STATE_WALKING_LEFT = "STATE_WALKING_LEFT";
-        public const string STATE_WALKING_RIGHT = "STATE_WALKING_RIGHT";
-    }
+    using World.GameObject.State;
+    using World.GameObject.Item;
 
     public class GameObject
     {
         public Vector2 position;
 
+        public string name;
+
+        public GameObjectItemsContainer gameObjectItemsContainer;
         public AnimationContainer animationContainer;
         public ComponentContainer componentContainer;
-        public string state;
+        public GameObjectState state;
 
         // huh hah?!
         public float speed = 5;
 
         public GameObject(
+            GameObjectItemsContainer gameObjectItemsContainer,
             AnimationContainer animationContainer,
             ComponentContainer componentContainer
         )
         {
+            this.gameObjectItemsContainer = gameObjectItemsContainer;
             this.animationContainer = animationContainer;
             this.componentContainer = componentContainer;
-            this.state = State.STATE_STANDING;
+            this.state = new GameObjectState(this);
         }
 
         public ComponentContainer getComponentContainer()
@@ -39,7 +38,22 @@ namespace World.GameObject
             return componentContainer;
         }
 
-        public string getState()
+        public GameObjectItemsContainer GetItemsContainer()
+        {
+            return gameObjectItemsContainer;
+        }
+
+        public GameObjectItem GetPotionItem(string name)
+        {
+            return gameObjectItemsContainer.Get(name);
+        }
+
+        public GameObjectItem GetWeaponItem(string name)
+        {
+            return gameObjectItemsContainer.Get(name);
+        }
+
+        public GameObjectState getState()
         {
             return state;
         }

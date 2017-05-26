@@ -3,7 +3,7 @@ using System.Collections.Generic;
 
 namespace Texture
 {
-    using Core.Service;
+    using Texture.GameObjectTextureDefinition;
     using System;
 
     public class AnimationContainer
@@ -15,7 +15,7 @@ namespace Texture
             spriteSheetContainerList = new Dictionary<string, SpriteSheetContainer>();
         }
 
-        public Sprite getCurrentSprite(string spriteSheetContainerName, string spriteName, GameTime gameTime)
+        public Sprite getCurrentSprite(TextureDefinition textureDefinition, GameTime gameTime)
         {
             float gameTotalSeconds = (float)gameTime.TotalGameTime.TotalSeconds;
 
@@ -26,8 +26,12 @@ namespace Texture
             float totalSecondsPerRefreshRate = gameTotalSeconds / refreshRate;
 
             int animationIndex = (int)Math.Round(totalSecondsPerRefreshRate) % 10;
-            
-            return SpriteSheetContainer(spriteSheetContainerName).Sprite("cowboy_" + animationIndex + "_0");
+
+
+            // CowboyStandingPistol.spriteList[1]
+            string sprite = textureDefinition.GetSpriteIndex(animationIndex);
+
+            return SpriteSheetContainer(textureDefinition.GetContentFile()).Sprite(textureDefinition.GetSpriteIndex(animationIndex));
         }
 
         public void Add(string spriteSheetContainerName, SpriteSheetContainer spriteSheetContainer)

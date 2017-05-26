@@ -61,7 +61,7 @@
 /processorParam:TextureFormat=Color
 /build:demo_tileset.png
 
-#begin cowboy.png
+#begin cowboy_walking_pistol.png
 /importer:TextureImporter
 /processor:TextureProcessor
 /processorParam:ColorKeyColor=255,0,255,255
@@ -71,5 +71,5 @@
 /processorParam:ResizeToPowerOfTwo=False
 /processorParam:MakeSquare=False
 /processorParam:TextureFormat=Color
-/build:cowboy.png
+/build:cowboy_walking_pistol.png
 

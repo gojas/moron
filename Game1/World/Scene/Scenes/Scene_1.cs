@@ -25,7 +25,7 @@
 
         public override string[] GetTextures()
         {
-            string[] a = { "cowboy" };
+            string[] a = { "cowboy_walking_pistol" };
 
             return a;
         }
