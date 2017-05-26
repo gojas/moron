@@ -13,7 +13,7 @@ namespace Component
             // nearby objects...
             quadTree.getObjects(gameObject).ForEach((returnObject) => {
                 if (CollisionDetection.areObjectsColliding(gameObject, returnObject)) {
-                    Debug.Write("collision yoo");
+                    
                 }
             });
 

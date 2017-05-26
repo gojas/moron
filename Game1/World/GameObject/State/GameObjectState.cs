@@ -5,8 +5,15 @@
     public class MovementState
     {
         public const string STANDING = "Standing";
+
         public const string WALKING_UP = "WalkingUp";
+        public const string WALKING_UP_LEFT = "WalkingUpLeft";
+        public const string WALKING_UP_RIGHT = "WalkingUpRight";
+
         public const string WALKING_DOWN = "WalkingDown";
+        public const string WALKING_DOWN_LEFT = "WalkingDownLeft";
+        public const string WALKING_DOWN_RIGHT = "WalkingDownRight";
+
         public const string WALKING_LEFT = "WalkingLeft";
         public const string WALKING_RIGHT = "WalkingRight";
     }
