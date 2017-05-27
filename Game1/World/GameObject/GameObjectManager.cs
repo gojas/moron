@@ -3,29 +3,25 @@
 namespace World.GameObject
 {
     using World.GameObject.Factory;
+    using Texture;
 
     public class GameObjectManager
     {
         ContentManager contentManager;
 
         GameObjectContainer gameObjectContainer;
-        private GameObjectFactory gameObjectFactory;
+        GameObjectFactory gameObjectFactory;
 
-        public GameObjectManager(ContentManager contentManager)
+        public GameObjectManager(ContentManager contentManager, SpriteManager spriteManager)
         {
             this.contentManager = contentManager;
-            this.gameObjectFactory = new GameObjectFactory(contentManager);
+            this.gameObjectFactory = new GameObjectFactory(spriteManager.GetSpriteContainerList());
             this.gameObjectContainer = new GameObjectContainer();
-        }
-
-        public void Load(int id)
-        {
-            gameObjectFactory.Load(gameObjectContainer, id);
         }
 
         public GameObject Get(int id)
         {
-            return gameObjectContainer.Get(id);
+            return gameObjectFactory.Get(id);
         }
 
         public GameObjectContainer GetGameObjectContainer()

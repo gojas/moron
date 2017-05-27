@@ -17,6 +17,7 @@ namespace Content
         
         QuadTree quadTree;
         SpriteRender spriteRender;
+        List<GameObject> gameObjectList;
 
         public ContentManager(Game1 game1)
         {
@@ -27,7 +28,7 @@ namespace Content
         {
             sceneManager = new SceneManager(game.Content);
 
-            sceneManager.FirstGet(1).ThenLoadScene();
+            sceneManager.FirstGet(1).ThenLoadScene().InitScene();
 
             quadTree = new QuadTree(new Rectangle(0, 0, game.GraphicsDevice.Viewport.Bounds.Width, game.GraphicsDevice.Viewport.Bounds.Height));
 
@@ -39,38 +40,32 @@ namespace Content
             game.getCamera().Update(gameTime);
 
             quadTree.clear();
+            gameObjectList = sceneManager.GetSceneObjectsContainer(1, 2).GetAll();
 
             // 1, 2 means get only specific objects, based on position.X and position.Y
-            IDictionary<int, GameObject> objectList = sceneManager.GetGameObjectContainer(1, 2).GetAll();
-
-            foreach (var item in objectList)
-            {
+            gameObjectList.ForEach((gameObject) => {
                 // prepare data for physics component
-                if (null != item.Value.getComponentContainer().getPhysicsComponent())
-                    quadTree.insert(item.Value);
-            }
+                if (null != gameObject.getComponentContainer().getPhysicsComponent())
+                    quadTree.insert(gameObject);
+            });
 
-            foreach (var item in objectList)
-            {
+            gameObjectList.ForEach((gameObject) => {
                 /** handle user input here **/
-                if (null != item.Value.getComponentContainer().getInputComponent())
-                    item.Value.getComponentContainer().getInputComponent().update(item.Value, game);
+                if (null != gameObject.getComponentContainer().getInputComponent())
+                    gameObject.getComponentContainer().getInputComponent().update(gameObject, game);
 
                 /** checking the state of a game, did player hit the wall? **/
-                if (null != item.Value.getComponentContainer().getPhysicsComponent())
-                    item.Value.getComponentContainer().getPhysicsComponent().update(item.Value, quadTree);
-            }
+                if (null != gameObject.getComponentContainer().getPhysicsComponent())
+                    gameObject.getComponentContainer().getPhysicsComponent().update(gameObject, quadTree);
+            });
         }
 
         public void updateGraphic(GameTime gameTime)
         {
-            IDictionary<int, GameObject> objectList = sceneManager.GetGameObjectContainer(1, 2).GetAll();
-
-            foreach (var item in objectList)
-            {
-                if (null != item.Value.getComponentContainer().getGraphicComponent())
-                    item.Value.getComponentContainer().getGraphicComponent().update(item.Value, spriteRender, gameTime);
-            }
+            gameObjectList.ForEach((gameObject) => {
+                if (null != gameObject.getComponentContainer().getGraphicComponent())
+                    gameObject.getComponentContainer().getGraphicComponent().update(gameObject, spriteRender, gameTime);
+            });
 
         }
     }

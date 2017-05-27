@@ -5,10 +5,12 @@ namespace World.Scene
     using World.Scene.Factory;
     using World.Scene.Loader;
     using World.GameObject;
+    using Texture;
 
     public class SceneManager
     {
         ContentManager contentManager;
+        SpriteManager spriteManager;
         GameObjectManager gameObjectManager;
         SceneLoader sceneLoader;
 
@@ -17,7 +19,8 @@ namespace World.Scene
         public SceneManager(ContentManager contentManager)
         {
             this.contentManager = contentManager;
-            this.gameObjectManager = new GameObjectManager(contentManager);
+            this.spriteManager = new SpriteManager(contentManager);
+            this.gameObjectManager = new GameObjectManager(contentManager, spriteManager);
         }
 
         public SceneManager FirstGet(int id)
@@ -29,7 +32,7 @@ namespace World.Scene
 
         public SceneManager ThenLoadScene()
         {
-            sceneLoader = new SceneLoader(contentManager, gameObjectManager, scene);
+            sceneLoader = new SceneLoader(spriteManager, gameObjectManager, scene);
 
             sceneLoader.Load();
 
@@ -41,17 +44,36 @@ namespace World.Scene
             return scene;
         }
 
-        public GameObjectContainer GetGameObjectContainer(int x, int y)
+        public SceneObjectContainer GetSceneObjectsContainer(int x, int y)
         {
-            // based on scene matrix, get array of objects you want to render, i guess...
-            // still didn't figure this out XD
+            int[,] matrix = scene.GetGameObjectMatrix();
 
-            return gameObjectManager.GetGameObjectContainer();
+            SceneObjectContainer sceneObjects = new SceneObjectContainer();
+
+            for (int i = 0; i < matrix.GetLength(0); i++)
+            {
+                int firstLayerObjectId = matrix[i, 0];
+                int secondLayerObjectId = matrix[i, 1];
+
+                GameObject firstLayerObject = gameObjectManager.Get(firstLayerObjectId);
+                GameObject secondLayerObject = gameObjectManager.Get(secondLayerObjectId);
+
+                
+                firstLayerObject.position.X = i * 128;
+                firstLayerObject.position.Y = i * 128;
+                firstLayerObject.depth = 0;
+                
+
+                sceneObjects.Add(firstLayerObject);
+                sceneObjects.Add(secondLayerObject);
+            }
+
+            return sceneObjects;
         }
 
         public void InitScene()
         {
-
+            
         }
 
         public void DestroyScene()

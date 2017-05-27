@@ -72,6 +72,7 @@
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Quadtree\Quadtree.cs" />
+    <Compile Include="Texture\Atlas\TextureAtlasContainer.cs" />
     <Compile Include="Texture\GameObjectTextureDefinition\Cowboy\CowboyWalkingDownLeftPistol.cs" />
     <Compile Include="Texture\GameObjectTextureDefinition\Cowboy\CowboyWalkingDownPistol.cs" />
     <Compile Include="Texture\GameObjectTextureDefinition\Cowboy\CowboyWalkingDownRightPistol.cs" />
@@ -81,8 +82,12 @@
     <Compile Include="Texture\GameObjectTextureDefinition\Cowboy\CowboyWalkingUpLeftPistol.cs" />
     <Compile Include="Texture\GameObjectTextureDefinition\Cowboy\CowboyWalkingUpPistol.cs" />
     <Compile Include="Texture\GameObjectTextureDefinition\Cowboy\CowboyWalkingUpRightPistol.cs" />
+    <Compile Include="Texture\GameObjectTextureDefinition\Orange\OrangeTileStanding.cs" />
+    <Compile Include="Texture\GameObjectTextureDefinition\Orange\OrangeWallHalfCornerStanding.cs" />
     <Compile Include="Texture\GameObjectTextureDefinition\TextureDefinition.cs" />
     <Compile Include="Texture\GameObjectTextureDefinition\TextureDefinitionFactory.cs" />
+    <Compile Include="Texture\SpriteManager.cs" />
+    <Compile Include="Texture\Sprite\SpriteContainerList.cs" />
     <Compile Include="World\GameObject\Factory\GameObjectFactory.cs" />
     <Compile Include="World\GameObject\GameObject.cs" />
     <Compile Include="World\GameObject\GameObjectContainer.cs" />
@@ -99,13 +104,14 @@
     <Compile Include="World\Scene\Loader\SceneLoader.cs" />
     <Compile Include="World\GameObject\GameObjectManager.cs" />
     <Compile Include="World\Scene\Renderer\SceneRenderer.cs" />
+    <Compile Include="World\Scene\SceneObjectContainer.cs" />
     <Compile Include="World\Scene\Scenes\Scene_1.cs" />
     <Compile Include="World\Scene\Scene.cs" />
     <Compile Include="World\Scene\SceneManager.cs" />
     <Compile Include="Texture\Animation\AnimationContainer.cs" />
     <Compile Include="Texture\Sprite\Sprite.cs" />
     <Compile Include="Texture\Sprite\SpriteRender.cs" />
-    <Compile Include="Texture\Sprite\SpriteSheetContainer.cs" />
+    <Compile Include="Texture\Sprite\SpriteContainer.cs" />
     <Compile Include="Texture\Atlas\TextureAtlas.cs" />
     <Compile Include="Texture\Atlas\TextureAtlasLoader.cs" />
   </ItemGroup>
@@ -135,6 +141,8 @@
     <Content Include="Content\background.jpg" />
     <Content Include="Content\cowboy_walking_pistol.png" />
     <Content Include="Content\demo_tileset.png" />
+    <Content Include="Content\orange_tile_flat.png" />
+    <Content Include="Content\orange_wall_halfcorner.png" />
     <Content Include="Content\player.png" />
     <Content Include="Content\sprite.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>

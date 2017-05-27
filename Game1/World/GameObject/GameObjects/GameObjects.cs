@@ -16,17 +16,17 @@
                 },
                 new {
                     velocity = 50,
-                    name = "Cowboy",
+                    name = "OrangeTile",
                     items = new string[] { },
-                    textureAtlases = new string[] { "cowboy_walking_pistol" },
-                    components = new string[] { "InputComponent", "PhysicsComponent", "GraphicComponent" }
+                    textureAtlases = new string[] { "orange_tile_flat" },
+                    components = new string[] { "GraphicComponent" }
                 },
                 new {
                     velocity = 50,
-                    name = "Cowboy",
+                    name = "OrangeWallHalfCorner",
                     items = new string[] { },
-                    textureAtlases = new string[] { "cowboy_walking_pistol" },
-                    components = new string[] { "InputComponent", "PhysicsComponent", "GraphicComponent" }
+                    textureAtlases = new string[] { "orange_wall_halfcorner" },
+                    components = new string[] { "PhysicsComponent", "GraphicComponent" }
                 }
             };
 

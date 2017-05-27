@@ -10,6 +10,7 @@ namespace World.GameObject
     public class GameObject
     {
         public Vector2 position;
+        public float depth;
 
         public string name;
 

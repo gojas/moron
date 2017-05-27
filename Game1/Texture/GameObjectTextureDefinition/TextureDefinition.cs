@@ -27,5 +27,10 @@ namespace Texture.GameObjectTextureDefinition
         {
             return spriteList[id];
         }
+
+        public int GetSriteTotal()
+        {
+            return spriteList.Length - 1;
+        }
     }
 }

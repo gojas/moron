@@ -8,18 +8,18 @@ namespace Texture
 
     public class AnimationContainer
     {
-        private readonly IDictionary<string, SpriteSheetContainer> spriteSheetContainerList;
+        private readonly IDictionary<string, SpriteContainer> spriteSheetContainerList;
 
         public AnimationContainer()
         {
-            spriteSheetContainerList = new Dictionary<string, SpriteSheetContainer>();
+            spriteSheetContainerList = new Dictionary<string, SpriteContainer>();
         }
 
         public Sprite getCurrentSprite(TextureDefinition textureDefinition, GameTime gameTime)
         {
             float gameTotalSeconds = (float)gameTime.TotalGameTime.TotalSeconds;
 
-            float spritesPerSecond = 10;
+            float spritesPerSecond = textureDefinition.GetSriteTotal();
             float second = 1;
 
             float refreshRate = second / spritesPerSecond;
@@ -31,15 +31,15 @@ namespace Texture
             // CowboyStandingPistol.spriteList[1]
             string sprite = textureDefinition.GetSpriteIndex(animationIndex);
 
-            return SpriteSheetContainer(textureDefinition.GetContentFile()).Sprite(textureDefinition.GetSpriteIndex(animationIndex));
+            return SpriteSheetContainer(textureDefinition.GetContentFile()).GetSpriteByName(textureDefinition.GetSpriteIndex(animationIndex));
         }
 
-        public void Add(string spriteSheetContainerName, SpriteSheetContainer spriteSheetContainer)
+        public void Add(string spriteSheetContainerName, SpriteContainer spriteSheetContainer)
         {
             spriteSheetContainerList.Add(spriteSheetContainerName, spriteSheetContainer);
         }
 
-        public SpriteSheetContainer SpriteSheetContainer(string spriteSheetContainerName)
+        public SpriteContainer SpriteSheetContainer(string spriteSheetContainerName)
         {
             return spriteSheetContainerList[spriteSheetContainerName];
         }

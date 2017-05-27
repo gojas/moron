@@ -13,7 +13,7 @@
 
         public void Add(int id, GameObject gameObject)
         {
-            if (!objectList.ContainsKey(id))
+            if (!Exists(id))
                 objectList.Add(id, gameObject);
         }
 
@@ -36,6 +36,11 @@
         public void Clear()
         {
             objectList.Clear();
+        }
+
+        public bool Exists(int id)
+        {
+            return objectList.ContainsKey(id);
         }
 
     }

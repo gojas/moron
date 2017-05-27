@@ -4,31 +4,32 @@ using Microsoft.Xna.Framework.Graphics;
 namespace World.Scene.Loader
 {
     using World.GameObject;
+    using Texture;
 
     public class SceneLoader
     {
-        ContentManager contentManager;
+        SpriteManager spriteManager;
         GameObjectManager gameObjectManager;
 
         Scene scene;
 
         public SceneLoader(
-            ContentManager contentManager,
+            SpriteManager spriteManager,
             GameObjectManager gameObjectManager,
             Scene scene)
         {
-            this.contentManager = contentManager;
+            this.spriteManager = spriteManager;
             this.gameObjectManager = gameObjectManager;
             this.scene = scene;
         }
 
         public void Load()
         {
-            LoadContent();
-            LoadObjects();
+            loadContent();
+            loadObjects();
         }
 
-        private void LoadContent()
+        private void loadContent()
         {
             loadTextures();
         }
@@ -38,15 +39,15 @@ namespace World.Scene.Loader
             string[] textures = scene.GetTextures();
 
             foreach (string texture in textures)
-                contentManager.Load<Texture2D>(texture);
+                spriteManager.Load(texture);
         }
 
-        private void LoadObjects()
+        private void loadObjects()
         {
             int[] objects = scene.GetGameObjects();
 
             foreach (int objectId in objects) {
-                gameObjectManager.Load(objectId);
+                //gameObjectManager.Load(objectId);
             }
         }
     }

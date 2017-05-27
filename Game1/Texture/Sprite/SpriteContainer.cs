@@ -2,11 +2,11 @@
 
 namespace Texture
 {
-    public class SpriteSheetContainer
+    public class SpriteContainer
     {
         private readonly IDictionary<string, Sprite> spriteList;
 
-        public SpriteSheetContainer()
+        public SpriteContainer()
         {
             spriteList = new Dictionary<string, Sprite>();
         }
@@ -16,7 +16,7 @@ namespace Texture
             spriteList.Add(name, sprite);
         }
 
-        public void Add(SpriteSheetContainer otherSheet)
+        public void Add(SpriteContainer otherSheet)
         {
             foreach (var sprite in otherSheet.spriteList)
             {
@@ -24,7 +24,7 @@ namespace Texture
             }
         }
 
-        public Sprite Sprite(string sprite)
+        public Sprite GetSpriteByName(string sprite)
         {
             return this.spriteList[sprite];
         }

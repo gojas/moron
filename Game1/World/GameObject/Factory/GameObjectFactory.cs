@@ -16,14 +16,14 @@ namespace World.GameObject.Factory
         private const string COMPONENTS_NAMESPACE = "Component";
         private const string GAME_OBJECT_ITEM_NAMESPACE = "World.GameObject.Item";
 
-        ContentManager contentManager;
+        SpriteContainerList spriteContainerList;
 
-        public GameObjectFactory(ContentManager contentManager)
+        public GameObjectFactory(SpriteContainerList spriteContainerList)
         {
-            this.contentManager = contentManager;
+            this.spriteContainerList = spriteContainerList;
         }
 
-        public void Load(GameObjectContainer gameObjectContainer, int id)
+        public GameObject Get(int id)
         {
             object gameObjectConfiguration = GameObjects.getById(id);
 
@@ -50,12 +50,10 @@ namespace World.GameObject.Factory
                                  .Select(x => x.ToString())
                                  .ToArray();
 
-            /** REALLY BAD, INSTANTIATING TextureAtlasLoader and SpriteSheet for EVERY GAME OBJECT, YOU NUTS! **/
-            TextureAtlasLoader textureAtlasLoader = new TextureAtlasLoader(this.contentManager);
             AnimationContainer animationContainer = new AnimationContainer();
 
             foreach (var textureAtlasName in textureAtlasesArray)
-                animationContainer.Add(textureAtlasName.ToString(), textureAtlasLoader.load(textureAtlasName.ToString()));
+                animationContainer.Add(textureAtlasName.ToString(), spriteContainerList.GetSpriteContainer(textureAtlasName.ToString()));
 
             // set components
             ComponentContainer componentContainer = new ComponentContainer();
@@ -71,7 +69,7 @@ namespace World.GameObject.Factory
 
             gameObject.name = namePropertyInfo.GetValue(gameObjectConfiguration, null).ToString();
 
-            gameObjectContainer.Add(id, gameObject);
+            return gameObject;
         }
 
         private Component getInputComponent(string componentName)

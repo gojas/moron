@@ -14,10 +14,10 @@
         public override int[,] GetGameObjectMatrix()
         {
             int[,] a = {
-                {0, 0, 0},
-                {1, 0, 1},
-                {0, 1, 2},
-                {0, 1, 2}
+                {1, 0}, {1, 1},
+                {1, 1}, {1, 1},
+                {1, 2}, {1, 2},
+                {1, 2}, {1, 2}
             };
 
             return a;
@@ -25,7 +25,7 @@
 
         public override string[] GetTextures()
         {
-            string[] a = { "cowboy_walking_pistol" };
+            string[] a = { "cowboy_walking_pistol", "orange_tile_flat", "orange_wall_halfcorner" };
 
             return a;
         }

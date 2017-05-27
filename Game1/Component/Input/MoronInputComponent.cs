@@ -23,24 +23,18 @@ namespace Component
             GameObjectItem weapon = gameObject.GetWeaponItem("Pistol");
 
 
-            string bla = "";
+            string pressedKeysString = "";
 
             foreach (Keys pressedKey in state.GetPressedKeys()) {
-                bla += pressedKey.ToString();
+                pressedKeysString += pressedKey.ToString();
             }
 
-
-
-            // Command 
-            // CommandAW
-
-            //CommandW
-
-            Command command = CommandFactory.Get(bla);
+            Command command = CommandFactory.Get(pressedKeysString);
 
             command.Update(gameObject);
 
-            System.Diagnostics.Debug.Write(bla);
+            System.Diagnostics.Debug.Write(gameObject.position.X);
+
             game.getCamera().Position = gameObject.position;
         }
     }
