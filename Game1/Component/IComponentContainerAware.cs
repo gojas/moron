@@ -3,11 +3,11 @@ using Component;
 
 public interface IComponentContainerAware
 {
-    void add(Component.Component component);
+    void Add(Component.Component component);
 
-    void remove(Component.Component component);
+    void Remove(Component.Component component);
 
-    void clear();
+    void Clear();
 
-    List<Component.Component> getAll();
+    List<Component.Component> GetAll();
 }

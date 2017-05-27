@@ -9,7 +9,7 @@
         {
             gameObject.position.X += gameObject.speed;
             gameObject.position.Y -= gameObject.speed;
-            gameObject.state.currentMovementState = MovementState.WALKING_UP_RIGHT;
+            gameObject.State.currentMovementState = MovementState.WALKING_UP_RIGHT;
         }
     }
 }

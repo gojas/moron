@@ -48,6 +48,8 @@ namespace World.Scene
         {
             int[,] matrix = scene.GetGameObjectMatrix();
 
+            // not optimised at all, grrrr...
+            // do something like TerainObjects, GameObjects?
             SceneObjectContainer sceneObjects = new SceneObjectContainer();
 
             for (int i = 0; i < matrix.GetLength(0); i++)
@@ -57,12 +59,12 @@ namespace World.Scene
 
                 GameObject firstLayerObject = gameObjectManager.Get(firstLayerObjectId);
                 GameObject secondLayerObject = gameObjectManager.Get(secondLayerObjectId);
-
                 
                 firstLayerObject.position.X = i * 128;
                 firstLayerObject.position.Y = i * 128;
                 firstLayerObject.depth = 0;
-                
+
+                secondLayerObject.depth = 0.5f;
 
                 sceneObjects.Add(firstLayerObject);
                 sceneObjects.Add(secondLayerObject);

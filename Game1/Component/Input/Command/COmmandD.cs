@@ -9,7 +9,7 @@
         public override void Update(GameObject gameObject)
         {
             gameObject.position.X += gameObject.speed;
-            gameObject.state.currentMovementState = MovementState.WALKING_RIGHT;
+            gameObject.State.currentMovementState = MovementState.WALKING_RIGHT;
         }
     }
 }

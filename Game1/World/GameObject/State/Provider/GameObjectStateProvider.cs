@@ -5,13 +5,13 @@
 
         public static string GetStateString(GameObject gameObject)
         {
-            string name = gameObject.name;
+            string name = gameObject.Name;
 
-            if (null != gameObject.state.currentMovementState)
-                name += gameObject.state.currentMovementState;
+            if (null != gameObject.State.currentMovementState)
+                name += gameObject.State.currentMovementState;
 
-            if (null != gameObject.state.currentWeaponName)
-                name += gameObject.state.currentWeaponName;
+            if (null != gameObject.State.currentWeaponName)
+                name += gameObject.State.currentWeaponName;
 
             return name;
         }

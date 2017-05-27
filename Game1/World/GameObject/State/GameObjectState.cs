@@ -33,6 +33,8 @@
         public GameObjectState(GameObject gameObject)
         {
             this.gameObject = gameObject;
+
+            // hue heh, stading? NoMovement i guess?
             this.currentMovementState = MovementState.STANDING;
         }
 
@@ -43,7 +45,7 @@
 
         public GameObjectItem GetCurrentWeapon()
         {
-            return gameObject.GetWeaponItem(this.currentWeaponName);
+            return gameObject.GameObjectItemsContainer.Get(this.currentWeaponName);
         }
 
         public bool isMoving()

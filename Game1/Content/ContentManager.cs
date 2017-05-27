@@ -45,26 +45,26 @@ namespace Content
             // 1, 2 means get only specific objects, based on position.X and position.Y
             gameObjectList.ForEach((gameObject) => {
                 // prepare data for physics component
-                if (null != gameObject.getComponentContainer().getPhysicsComponent())
+                if (null != gameObject.ComponentContainer.GetPhysicsComponent())
                     quadTree.insert(gameObject);
             });
 
             gameObjectList.ForEach((gameObject) => {
                 /** handle user input here **/
-                if (null != gameObject.getComponentContainer().getInputComponent())
-                    gameObject.getComponentContainer().getInputComponent().update(gameObject, game);
+                if (null != gameObject.ComponentContainer.GetInputComponent())
+                    gameObject.ComponentContainer.GetInputComponent().update(gameObject, game);
 
                 /** checking the state of a game, did player hit the wall? **/
-                if (null != gameObject.getComponentContainer().getPhysicsComponent())
-                    gameObject.getComponentContainer().getPhysicsComponent().update(gameObject, quadTree);
+                if (null != gameObject.ComponentContainer.GetPhysicsComponent())
+                    gameObject.ComponentContainer.GetPhysicsComponent().update(gameObject, quadTree);
             });
         }
 
         public void updateGraphic(GameTime gameTime)
         {
             gameObjectList.ForEach((gameObject) => {
-                if (null != gameObject.getComponentContainer().getGraphicComponent())
-                    gameObject.getComponentContainer().getGraphicComponent().update(gameObject, spriteRender, gameTime);
+                if (null != gameObject.ComponentContainer.GetGraphicComponent())
+                    gameObject.ComponentContainer.GetGraphicComponent().update(gameObject, spriteRender, gameTime);
             });
 
         }

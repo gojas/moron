@@ -8,7 +8,7 @@
         public override void Update(GameObject gameObject)
         {
             gameObject.position.Y -= gameObject.speed;
-            gameObject.state.currentMovementState = MovementState.WALKING_UP;
+            gameObject.State.currentMovementState = MovementState.WALKING_UP;
         }
     }
 

@@ -12,51 +12,22 @@ namespace World.GameObject
         public Vector2 position;
         public float depth;
 
-        public string name;
 
-        public GameObjectItemsContainer gameObjectItemsContainer;
-        public AnimationContainer animationContainer;
-        public ComponentContainer componentContainer;
-        public GameObjectState state;
+        public string Name { get; set; }
 
-        // huh hah?!
+        public enum Type { Fixed, Static, Dynamic };
+        public Type type { get; set; }
+
+        public Sprite Sprite { get; set; }
+        public GameObjectItemsContainer GameObjectItemsContainer { get; set; }
+        public AnimationContainer AnimationContainer { get; set; }
+        public ComponentContainer ComponentContainer { get; set; }
+        public GameObjectState State { get; set; }
         public float speed = 5;
 
-        public GameObject(
-            GameObjectItemsContainer gameObjectItemsContainer,
-            AnimationContainer animationContainer,
-            ComponentContainer componentContainer
-        )
+        public GameObject()
         {
-            this.gameObjectItemsContainer = gameObjectItemsContainer;
-            this.animationContainer = animationContainer;
-            this.componentContainer = componentContainer;
-            this.state = new GameObjectState(this);
-        }
 
-        public ComponentContainer getComponentContainer()
-        {
-            return componentContainer;
-        }
-
-        public GameObjectItemsContainer GetItemsContainer()
-        {
-            return gameObjectItemsContainer;
-        }
-
-        public GameObjectItem GetPotionItem(string name)
-        {
-            return gameObjectItemsContainer.Get(name);
-        }
-
-        public GameObjectItem GetWeaponItem(string name)
-        {
-            return gameObjectItemsContainer.Get(name);
-        }
-
-        public GameObjectState getState()
-        {
-            return state;
         }
     }
 }

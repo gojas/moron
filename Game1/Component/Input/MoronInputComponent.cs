@@ -16,11 +16,11 @@ namespace Component
         {
             KeyboardState state = Keyboard.GetState();
 
-            gameObject.state.currentMovementState = MovementState.STANDING;
+            gameObject.State.currentMovementState = MovementState.STANDING;
 
-            gameObject.state.SetCurrentWeaponName("Pistol");
+            gameObject.State.SetCurrentWeaponName("Pistol");
 
-            GameObjectItem weapon = gameObject.GetWeaponItem("Pistol");
+            GameObjectItem weapon = gameObject.State.GetCurrentWeapon();
 
 
             string pressedKeysString = "";

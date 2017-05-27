@@ -16,7 +16,7 @@ namespace Component
             TextureDefinition textureDefinition = TextureDefinitionFactory.Get(gameObjectStateString);
 
             // gameObject.state as first param
-            Sprite sprite = gameObject.animationContainer.getCurrentSprite(TextureDefinitionFactory.Get(gameObjectStateString), gameTime);
+            Sprite sprite = gameObject.AnimationContainer.getCurrentSprite(TextureDefinitionFactory.Get(gameObjectStateString), gameTime);
 
             spriteRender.Draw(sprite, gameObject.position, null, gameObject.depth);
         }

@@ -3,30 +3,33 @@
 
     class GameObjects
     {
-        public static object getById(int id)
+        public static object GetById(int id)
         {
             var list = new[]
             {
                 new {
                     velocity = 50,
+                    type = "dynamic",
                     name = "Cowboy",
                     items = new string[] { "Pistol" },
                     textureAtlases = new string[] { "cowboy_walking_pistol" },
                     components = new string[] { "MoronInputComponent", "MoronPhysicsComponent", "MoronGraphicComponent" }
                 },
                 new {
-                    velocity = 50,
+                    velocity = 0,
+                    type = "fixed",
                     name = "OrangeTile",
                     items = new string[] { },
                     textureAtlases = new string[] { "orange_tile_flat" },
-                    components = new string[] { "GraphicComponent" }
+                    components = new string[] { "FixedGraphicComponent" }
                 },
                 new {
-                    velocity = 50,
+                    velocity = 0,
+                    type = "static",
                     name = "OrangeWallHalfCorner",
                     items = new string[] { },
                     textureAtlases = new string[] { "orange_wall_halfcorner" },
-                    components = new string[] { "PhysicsComponent", "GraphicComponent" }
+                    components = new string[] { "PhysicsComponent", "FixedGraphicComponent" }
                 }
             };
 

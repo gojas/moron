@@ -11,27 +11,27 @@ namespace Component
             
         }
 
-        public void add(Component component)
+        public void Add(Component component)
         {
             components.Add(component);
         }
 
-        public void remove(Component component)
+        public void Remove(Component component)
         {
             components.Remove(component);
         }
 
-        public void clear()
+        public void Clear()
         {
             components.Clear();
         }
 
-        public List<Component> getAll()
+        public List<Component> GetAll()
         {
             return components;
         }
 
-        public Component getInputComponent()
+        public Component GetInputComponent()
         {
             return components.Find((Component component) =>
             {
@@ -39,7 +39,7 @@ namespace Component
             });
         }
 
-        public Component getGraphicComponent()
+        public Component GetGraphicComponent()
         {
             return components.Find((Component component) =>
             {
@@ -47,7 +47,7 @@ namespace Component
             });
         }
 
-        public Component getPhysicsComponent()
+        public Component GetPhysicsComponent()
         {
             return components.Find((Component component) =>
             {
