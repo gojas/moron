@@ -9,6 +9,13 @@
             return a;
         }
 
+        public virtual int[,] GetTerrainMatrix()
+        {
+            int[,] a = { };
+
+            return a;
+        }
+
         public virtual int[,] GetGameObjectMatrix()
         {
             int[,] a = { };

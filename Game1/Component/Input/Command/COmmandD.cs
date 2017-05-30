@@ -2,14 +2,17 @@
 {
 
     using World.GameObject;
-    using World.GameObject.State;
+    using World.GameObject.State.States;
 
     public class CommandD : Command
     {
         public override void Update(GameObject gameObject)
         {
-            gameObject.position.X += gameObject.speed;
-            gameObject.State.currentMovementState = MovementState.WALKING_RIGHT;
+            State state = new StateWalkingRight();
+
+            gameObject.GameObjectStateContainer.Change(state);
+
+            state.Update(gameObject);
         }
     }
 }

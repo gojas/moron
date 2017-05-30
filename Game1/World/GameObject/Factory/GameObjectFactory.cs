@@ -6,10 +6,12 @@ using System.Reflection;
 namespace World.GameObject.Factory
 {
     using World.GameObject.Item;
+    using World.GameObject.State.States;
     using Component;
     using GameObjects;
     using System.Linq;
     using Texture;
+    using World.GameObject.State;
 
     public class GameObjectFactory
     {
@@ -44,9 +46,13 @@ namespace World.GameObject.Factory
             setTextures(textureAtlases);
             setComponents(components);
 
-            gameObject.State = new State.GameObjectState(gameObject);
+            gameObject.State = new GameObjectState(gameObject);
 
-            string typeValue = type.GetProperty("type").GetValue(gameObjectConfiguration, null).ToString();
+            gameObject.GameObjectStateContainer = new GameObjectStateContainer(gameObject);
+
+            // string typeValue = type.GetProperty("type").GetValue(gameObjectConfiguration, null).ToString();
+
+
 
             return gameObject;
         }

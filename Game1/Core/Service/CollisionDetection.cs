@@ -1,4 +1,6 @@
-﻿namespace Core.Service
+﻿using Microsoft.Xna.Framework;
+
+namespace Core.Service
 {
 	using World.GameObject;
 	using System;
@@ -13,14 +15,20 @@
 
         // FIX TO VECTORS, NOT GAME OBJECTS!!!!
         public static bool areRectanglesColliding(GameObject gameObject1, GameObject gameObject2) { // fix to position1x, position1y, widht, height, don't use game objects
-            float gameObject1Width = 100;
-            float gameObject2Width = 100;
+            float gameObject1Width = 10;
+            float gameObject2Width = 10;
 
-            float gameObject1Height = 100;
-            float gameObject2Height = 100;
+            float gameObject1Height = 10;
+            float gameObject2Height = 10;
 
             return rangeIntersect(gameObject1.position.X, gameObject1.position.X + gameObject1Width, gameObject2.position.X, gameObject2.position.X + gameObject2Width) &&
                     rangeIntersect(gameObject1.position.Y, gameObject1.position.Y + gameObject1Height, gameObject2.position.Y, gameObject2.position.Y + gameObject2Height);
+        }
+
+        public static bool AreRectanglesColliding(Rectangle rectangleOne, Rectangle rectangleTwo)
+        {
+            return rangeIntersect(rectangleOne.X, rectangleOne.X + rectangleOne.Width, rectangleTwo.X, rectangleTwo.X + rectangleTwo.Width) &&
+                    rangeIntersect(rectangleOne.Y, rectangleOne.Y + rectangleOne.Height, rectangleTwo.Y, rectangleTwo.Y + rectangleTwo.Height);
         }
 
 

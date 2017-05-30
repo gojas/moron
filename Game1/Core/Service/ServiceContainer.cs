@@ -40,6 +40,7 @@ namespace Core.Service
         {
             AddService<ContentManager>(new ContentManager(game));
             AddService<FrameCounter>(new FrameCounter());
+            AddService(new IsometricCalculator(game.GraphicsDevice));
         }
     }
 }

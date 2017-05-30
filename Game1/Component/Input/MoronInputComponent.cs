@@ -6,6 +6,7 @@ namespace Component
 {
     using World.GameObject;
     using World.GameObject.State;
+    using World.GameObject.State.States;
     using World.GameObject.Item;
     using Game1;
 
@@ -16,26 +17,37 @@ namespace Component
         {
             KeyboardState state = Keyboard.GetState();
 
-            gameObject.State.currentMovementState = MovementState.STANDING;
-
-            gameObject.State.SetCurrentWeaponName("Pistol");
-
-            GameObjectItem weapon = gameObject.State.GetCurrentWeapon();
-
+            // gameObject.State.currentMovementState = MovementState.STANDING;
 
             string pressedKeysString = "";
 
-            foreach (Keys pressedKey in state.GetPressedKeys()) {
+            foreach (Keys pressedKey in state.GetPressedKeys())
+            {
                 pressedKeysString += pressedKey.ToString();
             }
 
+            // jedi govna... set invalid keys!
+            if (pressedKeysString.Length > 2)
+            {
+                pressedKeysString = "";
+            }
+
+            gameObject.State.SetCurrentWeaponName("Pistol");
+
+           
+            
             Command command = CommandFactory.Get(pressedKeysString);
+
 
             command.Update(gameObject);
 
-            System.Diagnostics.Debug.Write(gameObject.position.X);
-
             game.getCamera().Position = gameObject.position;
+
+
+            
+
+
+
         }
     }
 }

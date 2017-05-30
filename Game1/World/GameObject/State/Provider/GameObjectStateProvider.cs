@@ -7,8 +7,8 @@
         {
             string name = gameObject.Name;
 
-            if (null != gameObject.State.currentMovementState)
-                name += gameObject.State.currentMovementState;
+            if (null != gameObject.GameObjectStateContainer.GetPrevious())
+                name += gameObject.GameObjectStateContainer.GetPrevious().GetStateAsAString();
 
             if (null != gameObject.State.currentWeaponName)
                 name += gameObject.State.currentWeaponName;

@@ -68,6 +68,7 @@
     <Compile Include="Core\IUpdateable.cs" />
     <Compile Include="Core\Service\CollisionDetection.cs" />
     <Compile Include="Core\Service\FrameCounter.cs" />
+    <Compile Include="Core\Service\IsometricCalculator.cs" />
     <Compile Include="Core\Service\ServiceContainer.cs" />
     <Compile Include="Game1.cs" />
     <Compile Include="Program.cs" />
@@ -98,8 +99,21 @@
     <Compile Include="World\GameObject\Item\Items\Weapons\Range\Pistol.cs" />
     <Compile Include="World\GameObject\Item\Items\Weapons\Range\GameObjectRangeWeaponItem.cs" />
     <Compile Include="World\GameObject\Item\Items\Weapons\GameObjectWeaponItem.cs" />
+    <Compile Include="World\GameObject\Prototype\Fixed.cs" />
     <Compile Include="World\GameObject\State\GameObjectState.cs" />
+    <Compile Include="World\GameObject\State\GameObjectStateContainer.cs" />
     <Compile Include="World\GameObject\State\Provider\GameObjectStateProvider.cs" />
+    <Compile Include="World\GameObject\State\States\Movement\StateWalkingDown.cs" />
+    <Compile Include="World\GameObject\State\States\Movement\StateWalkingDownLeft.cs" />
+    <Compile Include="World\GameObject\State\States\Movement\StateWalkingDownRight.cs" />
+    <Compile Include="World\GameObject\State\States\Movement\StateWalkingLeft.cs" />
+    <Compile Include="World\GameObject\State\States\Movement\StateWalkingRight.cs" />
+    <Compile Include="World\GameObject\State\States\Movement\StateWalkingUp.cs" />
+    <Compile Include="World\GameObject\State\States\Movement\StateWalkingUpLeft.cs" />
+    <Compile Include="World\GameObject\State\States\Movement\StateWalkingUpRight.cs" />
+    <Compile Include="World\GameObject\State\States\State.cs" />
+    <Compile Include="World\GameObject\State\States\StateStanding.cs" />
+    <Compile Include="World\GameObject\State\States\Movement\StateWalking.cs" />
     <Compile Include="World\Scene\Factory\SceneFactory.cs" />
     <Compile Include="World\Scene\Factory\SceneObjectFactory.cs" />
     <Compile Include="World\Scene\Loader\SceneLoader.cs" />
@@ -115,6 +129,9 @@
     <Compile Include="Texture\Sprite\SpriteContainer.cs" />
     <Compile Include="Texture\Atlas\TextureAtlas.cs" />
     <Compile Include="Texture\Atlas\TextureAtlasLoader.cs" />
+    <Compile Include="World\Terrain\Terrain.cs" />
+    <Compile Include="World\Terrain\TerrainContainer.cs" />
+    <Compile Include="World\World.cs" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="Comora, Version=0.5.0.0, Culture=neutral, processorArchitecture=MSIL">

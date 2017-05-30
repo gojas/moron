@@ -9,7 +9,7 @@
             {
                 new {
                     velocity = 50,
-                    type = "dynamic",
+                    prototype = "player",
                     name = "Cowboy",
                     items = new string[] { "Pistol" },
                     textureAtlases = new string[] { "cowboy_walking_pistol" },
@@ -17,7 +17,7 @@
                 },
                 new {
                     velocity = 0,
-                    type = "fixed",
+                    prototype = "fixed",
                     name = "OrangeTile",
                     items = new string[] { },
                     textureAtlases = new string[] { "orange_tile_flat" },
@@ -25,7 +25,7 @@
                 },
                 new {
                     velocity = 0,
-                    type = "static",
+                    prototype = "static",
                     name = "OrangeWallHalfCorner",
                     items = new string[] { },
                     textureAtlases = new string[] { "orange_wall_halfcorner" },

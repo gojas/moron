@@ -5,6 +5,7 @@
     public class MovementState
     {
         public const string STANDING = "Standing";
+        public const string BLOCKED = "Blocked";
 
         public const string WALKING_UP = "WalkingUp";
         public const string WALKING_UP_LEFT = "WalkingUpLeft";

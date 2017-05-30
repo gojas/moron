@@ -33,6 +33,8 @@ namespace Content
             quadTree = new QuadTree(new Rectangle(0, 0, game.GraphicsDevice.Viewport.Bounds.Width, game.GraphicsDevice.Viewport.Bounds.Height));
 
             spriteRender = new SpriteRender(game.getSpriteBatch());
+
+            gameObjectList = sceneManager.GetSceneObjectsContainer(1, 2).GetAll();
         }
 
         public void updateInput(GameTime gameTime)
@@ -40,7 +42,8 @@ namespace Content
             game.getCamera().Update(gameTime);
 
             quadTree.clear();
-            gameObjectList = sceneManager.GetSceneObjectsContainer(1, 2).GetAll();
+            
+            // lazy load here rest of the scene
 
             // 1, 2 means get only specific objects, based on position.X and position.Y
             gameObjectList.ForEach((gameObject) => {
@@ -50,13 +53,15 @@ namespace Content
             });
 
             gameObjectList.ForEach((gameObject) => {
+                /** checking the state of a game, did player hit the wall? **/
+                /** did player enter specific zone **/
+                if (null != gameObject.ComponentContainer.GetPhysicsComponent())
+                    gameObject.ComponentContainer.GetPhysicsComponent().update(gameObject, quadTree);
+
+
                 /** handle user input here **/
                 if (null != gameObject.ComponentContainer.GetInputComponent())
                     gameObject.ComponentContainer.GetInputComponent().update(gameObject, game);
-
-                /** checking the state of a game, did player hit the wall? **/
-                if (null != gameObject.ComponentContainer.GetPhysicsComponent())
-                    gameObject.ComponentContainer.GetPhysicsComponent().update(gameObject, quadTree);
             });
         }
 

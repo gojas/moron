@@ -1,4 +1,5 @@
-﻿using Microsoft.Xna.Framework.Content;
+﻿using Microsoft.Xna.Framework;
+using Microsoft.Xna.Framework.Content;
 
 namespace World.Scene
 {
@@ -6,6 +7,8 @@ namespace World.Scene
     using World.Scene.Loader;
     using World.GameObject;
     using Texture;
+    using Core.Service;
+    using Terrain;
 
     public class SceneManager
     {
@@ -44,7 +47,7 @@ namespace World.Scene
             return scene;
         }
 
-        public SceneObjectContainer GetSceneObjectsContainer(int x, int y)
+        public SceneObjectContainer GetSceneObjectsContainer(int materX, int materY)
         {
             int[,] matrix = scene.GetGameObjectMatrix();
 
@@ -52,22 +55,26 @@ namespace World.Scene
             // do something like TerainObjects, GameObjects?
             SceneObjectContainer sceneObjects = new SceneObjectContainer();
 
-            for (int i = 0; i < matrix.GetLength(0); i++)
+            
+            for (int row = 0; row < matrix.GetLength(0); row++)
             {
-                int firstLayerObjectId = matrix[i, 0];
-                int secondLayerObjectId = matrix[i, 1];
+                int offset_x = 0;
+                if (isOdd(row)) {
+                    offset_x = Sprite.TILE_TEXTURE_WIDTH / 2;
+                }
 
-                GameObject firstLayerObject = gameObjectManager.Get(firstLayerObjectId);
-                GameObject secondLayerObject = gameObjectManager.Get(secondLayerObjectId);
+                for (int column = 0; column < matrix.GetLength(1); column++) {
+                    int gameObjectId = matrix[row, column];
+
+                    GameObject gameObject = gameObjectManager.Get(gameObjectId);
+                    
+                    gameObject.position.X = column * Sprite.TILE_TEXTURE_WIDTH + offset_x;
+                    gameObject.position.Y = row * Sprite.TEXTURE_HEIGHT / 2;
+                    gameObject.depth = 0;
+
+                    sceneObjects.Add(gameObject);
+                }
                 
-                firstLayerObject.position.X = i * 128;
-                firstLayerObject.position.Y = i * 128;
-                firstLayerObject.depth = 0;
-
-                secondLayerObject.depth = 0.5f;
-
-                sceneObjects.Add(firstLayerObject);
-                sceneObjects.Add(secondLayerObject);
             }
 
             return sceneObjects;
@@ -81,6 +88,12 @@ namespace World.Scene
         public void DestroyScene()
         {
 
+        }
+
+        // not here!
+        private bool isOdd(int value)
+        {
+            return value % 2 != 0;
         }
 
     }

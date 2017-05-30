@@ -10,7 +10,7 @@ namespace Texture.GameObjectTextureDefinition
     {
         public static TextureDefinition Get(string name)
         {
-            return Activator.CreateInstance(Type.GetType("Texture.GameObjectTextureDefinition." + name)) as TextureDefinition;
+             return Activator.CreateInstance(Type.GetType("Texture.GameObjectTextureDefinition." + name)) as TextureDefinition;
         }
 
     }

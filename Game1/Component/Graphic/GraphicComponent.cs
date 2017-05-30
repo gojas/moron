@@ -17,8 +17,7 @@ namespace Component
 
             // gameObject.state as first param
             Sprite sprite = gameObject.AnimationContainer.getCurrentSprite(TextureDefinitionFactory.Get(gameObjectStateString), gameTime);
-
-            spriteRender.Draw(sprite, gameObject.position, null, gameObject.depth);
+            spriteRender.Draw(sprite, gameObject.position, null);
         }
     }
 }

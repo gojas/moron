@@ -43,7 +43,7 @@ namespace Texture
                     Rectangle sourceRectangle = new Rectangle(TILE_TEXTURE_WIDTH * column, TILE_TEXTURE_HEIGHT * row, TILE_TEXTURE_WIDTH, TILE_TEXTURE_HEIGHT);
                     Vector2 size = new Vector2(scaleWidth, scaleHeight);
 
-                    spriteContainer.Add(textureName + "_" + column + "_" + row, new Sprite(texture, sourceRectangle, size));
+                    spriteContainer.Add(textureName + "_" + column + "_" + row, new Sprite(texture, sourceRectangle, size, 0.5f));
                 }
             }
 

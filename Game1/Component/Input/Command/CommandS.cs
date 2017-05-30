@@ -1,14 +1,17 @@
 ﻿namespace Component.Input.Command
 {
     using World.GameObject;
-    using World.GameObject.State;
+    using World.GameObject.State.States;
 
     public class CommandS : Command
     {
         public override void Update(GameObject gameObject)
         {
-            gameObject.position.Y += gameObject.speed;
-            gameObject.State.currentMovementState = MovementState.WALKING_DOWN;
+            State state = new StateWalkingDown();
+
+            gameObject.GameObjectStateContainer.Change(state);
+
+            state.Update(gameObject);
         }
     }
 }
