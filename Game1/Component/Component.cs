@@ -3,6 +3,7 @@
 namespace Component
 {
     using World.GameObject;
+    using World.Scene;
     using Game1;
     using QuadTree;
     using Texture;
@@ -25,6 +26,11 @@ namespace Component
         }
 
         public virtual void update(GameObject gameObject, SpriteRender spriteRender, GameTime gameTime)
+        {
+
+        }
+
+        public virtual void update(GameObject gameObject, QuadTree quadTre, SceneManager sceneManager)
         {
 
         }

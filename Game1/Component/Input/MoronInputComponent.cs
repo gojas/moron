@@ -32,7 +32,7 @@ namespace Component
                 pressedKeysString = "";
             }
 
-            gameObject.State.SetCurrentWeaponName("Pistol");
+            
 
            
             

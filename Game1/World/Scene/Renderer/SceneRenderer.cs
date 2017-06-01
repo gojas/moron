@@ -16,7 +16,7 @@ namespace World.Scene.Renderer
 
         public void Render()
         {
-            int[,] objects = scene.GetGameObjectMatrix();
+            int[,] objects = scene.GameObjectMatrix;
 
             int i = 0;
             int offset_x;

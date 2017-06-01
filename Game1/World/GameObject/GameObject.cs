@@ -27,6 +27,9 @@ namespace World.GameObject
 
         public float speed = 5;
 
+        public bool Disabled = false;
+        public bool Destroyed = false;
+
         public void Update()
         {
 

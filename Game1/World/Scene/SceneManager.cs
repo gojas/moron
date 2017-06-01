@@ -1,4 +1,4 @@
-﻿using Microsoft.Xna.Framework;
+﻿using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Content;
 
 namespace World.Scene
@@ -9,33 +9,38 @@ namespace World.Scene
     using Texture;
     using Core.Service;
     using Terrain;
+    using System;
 
     public class SceneManager
     {
+        GraphicsDevice graphicsDevice;
         ContentManager contentManager;
         SpriteManager spriteManager;
-        GameObjectManager gameObjectManager;
+        public GameObjectManager GameObjectManager;
         SceneLoader sceneLoader;
+        public SceneObjectContainer SceneObjectContainer;
 
-        Scene scene;
+        public Scene Scene;
 
-        public SceneManager(ContentManager contentManager)
+        public SceneManager(GraphicsDevice graphicsDevice, ContentManager contentManager)
         {
+            this.graphicsDevice = graphicsDevice;
             this.contentManager = contentManager;
             this.spriteManager = new SpriteManager(contentManager);
-            this.gameObjectManager = new GameObjectManager(contentManager, spriteManager);
+            this.GameObjectManager = new GameObjectManager(contentManager, spriteManager);
+            this.SceneObjectContainer = new SceneObjectContainer();
         }
 
         public SceneManager FirstGet(int id)
         {
-            scene = SceneFactory.Get(id);
+            Scene = SceneFactory.Get(id);
 
             return this;
         }
 
         public SceneManager ThenLoadScene()
         {
-            sceneLoader = new SceneLoader(spriteManager, gameObjectManager, scene);
+            sceneLoader = new SceneLoader(spriteManager, GameObjectManager, Scene);
 
             sceneLoader.Load();
 
@@ -44,18 +49,30 @@ namespace World.Scene
 
         public Scene FinallyGetScene()
         {
-            return scene;
+            return Scene;
         }
 
-        public SceneObjectContainer GetSceneObjectsContainer(int materX, int materY)
+        public SceneObjectContainer GetSceneObjectsContainer(int cammeraOffsetX, int cammeraOffsetY)
         {
-            int[,] matrix = scene.GetGameObjectMatrix();
+            int screenHeight = graphicsDevice.Viewport.Height;
+            int screenWidth = graphicsDevice.Viewport.Width;
+            int[,] matrix = Scene.GameObjectMatrix;
+
+
+            // For each tile position 
+            // for (int row = cammeraOffsetY - screenHeight / 2; row < cammeraOffsetY + Math.Ceiling((float)screenHeight / 2); row++)
+            // {
+            // for (int column = cammeraOffsetX - screenWidth / 2; column < cammeraOffsetX + Math.Ceiling((float)screenWidth / 2); column++)
+            // {
+            //
+            //}
+            // }
 
             // not optimised at all, grrrr...
             // do something like TerainObjects, GameObjects?
-            SceneObjectContainer sceneObjects = new SceneObjectContainer();
 
-            
+
+
             for (int row = 0; row < matrix.GetLength(0); row++)
             {
                 int offset_x = 0;
@@ -66,18 +83,18 @@ namespace World.Scene
                 for (int column = 0; column < matrix.GetLength(1); column++) {
                     int gameObjectId = matrix[row, column];
 
-                    GameObject gameObject = gameObjectManager.Get(gameObjectId);
+                    GameObject gameObject = GameObjectManager.Get(gameObjectId);
                     
                     gameObject.position.X = column * Sprite.TILE_TEXTURE_WIDTH + offset_x;
                     gameObject.position.Y = row * Sprite.TEXTURE_HEIGHT / 2;
                     gameObject.depth = 0;
 
-                    sceneObjects.Add(gameObject);
+                    SceneObjectContainer.Add(gameObject);
                 }
                 
             }
 
-            return sceneObjects;
+            return SceneObjectContainer;
         }
 
         public void InitScene()

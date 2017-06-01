@@ -48,6 +48,10 @@ namespace World.GameObject.Factory
 
             gameObject.State = new GameObjectState(gameObject);
 
+            // FOR NOW!!!
+            if (id == 0)
+                gameObject.State.SetCurrentWeaponName("Pistol");
+
             gameObject.GameObjectStateContainer = new GameObjectStateContainer(gameObject);
 
             // string typeValue = type.GetProperty("type").GetValue(gameObjectConfiguration, null).ToString();

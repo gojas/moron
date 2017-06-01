@@ -62,6 +62,8 @@
     <Compile Include="Component\Physics\MoronPhysicsComponent.cs" />
     <Compile Include="Component\Physics\PhysicsComponent.cs" />
     <Compile Include="Component\Physics\RectanglePhysicsComponent.cs" />
+    <Compile Include="Component\Script\MoronSpawnScriptComponent.cs" />
+    <Compile Include="Component\Script\ScriptComponent.cs" />
     <Compile Include="Content\ContentManager.cs" />
     <Compile Include="Content\IContentManager.cs" />
     <Compile Include="Core\IDrawable.cs" />

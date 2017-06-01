@@ -14,8 +14,18 @@ namespace Texture
         
         public void Draw(Sprite sprite, Vector2 position, Color? color = null)
         {
-
-            spriteBatch.Draw(sprite.Texture, position, null, sprite.SourceRectangle, null, 0, sprite.Size, color, SpriteEffects.None, sprite.Depth);
+            spriteBatch.Draw(
+                sprite.Texture, 
+                position, 
+                null, 
+                sprite.SourceRectangle, 
+                null, 
+                0, 
+                sprite.Size, 
+                color, 
+                SpriteEffects.None, 
+                sprite.Depth
+            );
         }
     }
 }

@@ -30,6 +30,14 @@
                     items = new string[] { },
                     textureAtlases = new string[] { "orange_wall_halfcorner" },
                     components = new string[] { "PhysicsComponent", "FixedGraphicComponent" }
+                },
+                new {
+                    velocity = 0,
+                    prototype = "static",
+                    name = "RespawnScript",
+                    items = new string[] { },
+                    textureAtlases = new string[] { },
+                    components = new string[] { "MoronSpawnScriptComponent", "PhysicsComponent" }
                 }
             };
 

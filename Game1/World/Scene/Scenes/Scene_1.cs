@@ -6,7 +6,7 @@
     {
         public override int[] GetGameObjects()
         {
-            int[] a = { 0, 1, 2 };
+            int[] a = { 0, 1, 2, 3 };
 
             return a;
         }
@@ -24,13 +24,16 @@
             return a;
         }
 
-        public override int[,] GetGameObjectMatrix()
+        protected override void LoadGameObjectMatrix()
         {
             int[,] a = {
-                { 0, 2 }
+                { 1, 1, 1, 1, 3, 3 },
+                { 1, 1, 1, 1, 3, 3 },
+                { 1, 0, 2, 1, 3, 3 },
+                { 1, 1, 1, 1, 3, 3 }
             };
 
-            return a;
+            GameObjectMatrix = a;
         }
 
         public override string[] GetTextures()

@@ -1,4 +1,5 @@
 ﻿using Microsoft.Xna.Framework;
+using Microsoft.Xna.Framework.Graphics;
 
 namespace Content
 {
@@ -24,9 +25,9 @@ namespace Content
             game = game1;
         }
 
-        public void loadContent()
+        public void loadContent(GraphicsDevice graphicsDevice)
         {
-            sceneManager = new SceneManager(game.Content);
+            sceneManager = new SceneManager(graphicsDevice, game.Content);
 
             sceneManager.FirstGet(1).ThenLoadScene().InitScene();
 
@@ -34,7 +35,10 @@ namespace Content
 
             spriteRender = new SpriteRender(game.getSpriteBatch());
 
-            gameObjectList = sceneManager.GetSceneObjectsContainer(1, 2).GetAll();
+            int cameraOffsetX = (int)game.getCamera().PositionOffset.X;
+            int cameraOffsetY = (int)game.getCamera().PositionOffset.Y;
+
+            gameObjectList = sceneManager.GetSceneObjectsContainer(cameraOffsetX, cameraOffsetY).GetAll();
         }
 
         public void updateInput(GameTime gameTime)
@@ -42,35 +46,46 @@ namespace Content
             game.getCamera().Update(gameTime);
 
             quadTree.clear();
-            
-            // lazy load here rest of the scene
 
-            // 1, 2 means get only specific objects, based on position.X and position.Y
-            gameObjectList.ForEach((gameObject) => {
-                // prepare data for physics component
-                if (null != gameObject.ComponentContainer.GetPhysicsComponent())
-                    quadTree.insert(gameObject);
-            });
+            lock (gameObjectList)
+            {
+                foreach (var gameObject in gameObjectList)
+                {
+                    if (null != gameObject.ComponentContainer.GetPhysicsComponent())
+                        quadTree.insert(gameObject);
+                }
+            }
 
-            gameObjectList.ForEach((gameObject) => {
-                /** checking the state of a game, did player hit the wall? **/
-                /** did player enter specific zone **/
-                if (null != gameObject.ComponentContainer.GetPhysicsComponent())
-                    gameObject.ComponentContainer.GetPhysicsComponent().update(gameObject, quadTree);
+            lock (gameObjectList)
+            {
+                foreach (var gameObject in gameObjectList.ToArray())
+                {
+                    /** checking the state of a game, did player hit the wall? **/
+                    if (null != gameObject.ComponentContainer.GetPhysicsComponent())
+                        gameObject.ComponentContainer.GetPhysicsComponent().update(gameObject, quadTree, sceneManager);
 
+                    /** did player enter specific zone **/
+                    if (null != gameObject.ComponentContainer.GetScriptComponent())
+                        gameObject.ComponentContainer.GetScriptComponent().update(gameObject, game);
 
-                /** handle user input here **/
-                if (null != gameObject.ComponentContainer.GetInputComponent())
-                    gameObject.ComponentContainer.GetInputComponent().update(gameObject, game);
-            });
+                    /** handle user input here **/
+                    if (null != gameObject.ComponentContainer.GetInputComponent())
+                        gameObject.ComponentContainer.GetInputComponent().update(gameObject, game);
+                }
+            }
         }
 
         public void updateGraphic(GameTime gameTime)
         {
-            gameObjectList.ForEach((gameObject) => {
-                if (null != gameObject.ComponentContainer.GetGraphicComponent())
-                    gameObject.ComponentContainer.GetGraphicComponent().update(gameObject, spriteRender, gameTime);
-            });
+
+            lock (gameObjectList)
+            {
+                foreach (var gameObject in gameObjectList)
+                {
+                    if (null != gameObject.ComponentContainer.GetGraphicComponent())
+                        gameObject.ComponentContainer.GetGraphicComponent().update(gameObject, spriteRender, gameTime);
+                }
+            }
 
         }
     }

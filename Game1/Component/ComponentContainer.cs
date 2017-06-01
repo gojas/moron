@@ -54,5 +54,13 @@ namespace Component
                 return component is PhysicsComponent;
             });
         }
+
+        public Component GetScriptComponent()
+        {
+            return components.Find((Component component) =>
+            {
+                return component is ScriptComponent;
+            });
+        }
     }
 }
