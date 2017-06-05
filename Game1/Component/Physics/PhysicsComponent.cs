@@ -13,10 +13,10 @@ namespace Component
         {
             quadTree.getObjects(gameObject).ForEach((returnObject) => {
 
-                Rectangle bla1 = new Rectangle((int)gameObject.position.X + 50, (int)gameObject.position.Y + 22, 54, 44);
-                Rectangle bla2 = new Rectangle((int)returnObject.position.X, (int)returnObject.position.Y, 128, 64);
+                Rectangle rect1 = new Rectangle((int)gameObject.position.X, (int)gameObject.position.Y, 128, 128);
+                Rectangle rect2 = new Rectangle((int)returnObject.position.X, (int)returnObject.position.Y, 128, 128);
 
-                if (CollisionDetection.AreRectanglesColliding(bla1, bla2))
+                if (CollisionDetection.AreRectanglesColliding(rect1, rect2))
                 {
                     if (null != gameObject.ComponentContainer.GetScriptComponent() && returnObject is MoronGameObject)
                     {

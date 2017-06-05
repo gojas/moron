@@ -43,10 +43,7 @@ namespace QuadTree
         {
             List<GameObject> objects = root.getObjects(aObject);
 
-            if (objects.Count() > 0)
-                objects.Remove(aObject);
-
-            return objects;
+            return objects.Skip(0).ToList();
         }
 
         public void clear()

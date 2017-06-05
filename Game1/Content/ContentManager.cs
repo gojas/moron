@@ -47,15 +47,11 @@ namespace Content
         {
             game.getCamera().Update(gameTime);
 
-            quadTree.clear();
-
             sceneManager.GameObjectManager.Update(sceneManager, quadTree, game.getCamera());
-
         }
 
         public void updateGraphic(GameTime gameTime)
         {
-
             sceneManager.TerrainManager.Draw(spriteRender, sceneManager);
             sceneManager.GameObjectManager.Draw(spriteRender, gameTime);
         }

@@ -71,7 +71,7 @@ namespace World.GameObject
 
         public void Update(SceneManager sceneManager, QuadTree quadTree, Camera camera) // TODO IUpdateable
         {
-
+            quadTree.clear();
 
             lock (List)
             {

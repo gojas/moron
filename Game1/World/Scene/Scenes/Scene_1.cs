@@ -34,7 +34,7 @@
         public override int[,] GetGameObjectMatrix()
         {
             int[,] a = {
-                {0}
+                {0, 1, 1, 3}
             };
 
             return a;

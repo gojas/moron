@@ -33,8 +33,8 @@ namespace World.GameObject.Factory
         public GameObject Get(int id)
         {
 
-            if (objectPool.ContainsKey(id))
-                return objectPool[id];
+            // if (objectPool.ContainsKey(id)) use prototype to clone it
+               // return objectPool[id];
 
             // cache configuration, less reflection stuff!
             object gameObjectConfiguration = GameObjects.GetById(id);
@@ -69,7 +69,7 @@ namespace World.GameObject.Factory
 
             // string typeValue = type.GetProperty("type").GetValue(gameObjectConfiguration, null).ToString();
 
-            objectPool.Add(id, gameObject);
+            // objectPool.Add(id, gameObject);
 
             return gameObject;
         }
