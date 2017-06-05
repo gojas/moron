@@ -14,7 +14,7 @@
                 moron.position.X = gameObject.position.X + 100;
                 moron.position.Y = gameObject.position.Y - 100;
                 gameObject.depth = 0.1f;
-                sceneManager.SceneObjectContainer.Add(moron);
+                sceneManager.GameObjectManager.List.Add(moron);
 
                 gameObject.Disabled = true;
             }

@@ -4,7 +4,7 @@ namespace Component
 {
     using World.GameObject;
     using World.Scene;
-    using Game1;
+    using Comora;
     using QuadTree;
     using Texture;
 
@@ -15,7 +15,7 @@ namespace Component
 
         }
 
-        public virtual void update(GameObject gameObject, Game1 game)
+        public virtual void update(GameObject gameObject, Camera camera)
         {
 
         }

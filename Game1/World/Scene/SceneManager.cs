@@ -16,9 +16,10 @@ namespace World.Scene
         GraphicsDevice graphicsDevice;
         ContentManager contentManager;
         SpriteManager spriteManager;
+
+        public TerrainManager TerrainManager;
         public GameObjectManager GameObjectManager;
-        SceneLoader sceneLoader;
-        public SceneObjectContainer SceneObjectContainer;
+        public SceneLoader sceneLoader; // loader, but also provider!!!, change name do something smart!
 
         public Scene Scene;
 
@@ -28,7 +29,7 @@ namespace World.Scene
             this.contentManager = contentManager;
             this.spriteManager = new SpriteManager(contentManager);
             this.GameObjectManager = new GameObjectManager(contentManager, spriteManager);
-            this.SceneObjectContainer = new SceneObjectContainer();
+            this.TerrainManager = new TerrainManager(contentManager);
         }
 
         public SceneManager FirstGet(int id)
@@ -40,7 +41,7 @@ namespace World.Scene
 
         public SceneManager ThenLoadScene()
         {
-            sceneLoader = new SceneLoader(spriteManager, GameObjectManager, Scene);
+            sceneLoader = new SceneLoader(spriteManager, GameObjectManager, TerrainManager, Scene);
 
             sceneLoader.Load();
 
@@ -50,51 +51,6 @@ namespace World.Scene
         public Scene FinallyGetScene()
         {
             return Scene;
-        }
-
-        public SceneObjectContainer GetSceneObjectsContainer(int cammeraOffsetX, int cammeraOffsetY)
-        {
-            int screenHeight = graphicsDevice.Viewport.Height;
-            int screenWidth = graphicsDevice.Viewport.Width;
-            int[,] matrix = Scene.GameObjectMatrix;
-
-
-            // For each tile position 
-            // for (int row = cammeraOffsetY - screenHeight / 2; row < cammeraOffsetY + Math.Ceiling((float)screenHeight / 2); row++)
-            // {
-            // for (int column = cammeraOffsetX - screenWidth / 2; column < cammeraOffsetX + Math.Ceiling((float)screenWidth / 2); column++)
-            // {
-            //
-            //}
-            // }
-
-            // not optimised at all, grrrr...
-            // do something like TerainObjects, GameObjects?
-
-
-
-            for (int row = 0; row < matrix.GetLength(0); row++)
-            {
-                int offset_x = 0;
-                if (isOdd(row)) {
-                    offset_x = Sprite.TILE_TEXTURE_WIDTH / 2;
-                }
-
-                for (int column = 0; column < matrix.GetLength(1); column++) {
-                    int gameObjectId = matrix[row, column];
-
-                    GameObject gameObject = GameObjectManager.Get(gameObjectId);
-                    
-                    gameObject.position.X = column * Sprite.TILE_TEXTURE_WIDTH + offset_x;
-                    gameObject.position.Y = row * Sprite.TEXTURE_HEIGHT / 2;
-                    gameObject.depth = 0;
-
-                    SceneObjectContainer.Add(gameObject);
-                }
-                
-            }
-
-            return SceneObjectContainer;
         }
 
         public void InitScene()

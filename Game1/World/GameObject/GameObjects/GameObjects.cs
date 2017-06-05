@@ -9,7 +9,7 @@
             {
                 new {
                     velocity = 50,
-                    prototype = "player",
+                    customClass = "MoronGameObject",
                     name = "Cowboy",
                     items = new string[] { "Pistol" },
                     textureAtlases = new string[] { "cowboy_walking_pistol" },
@@ -17,7 +17,7 @@
                 },
                 new {
                     velocity = 0,
-                    prototype = "fixed",
+                    customClass = "",
                     name = "OrangeTile",
                     items = new string[] { },
                     textureAtlases = new string[] { "orange_tile_flat" },
@@ -25,7 +25,7 @@
                 },
                 new {
                     velocity = 0,
-                    prototype = "static",
+                    customClass = "",
                     name = "OrangeWallHalfCorner",
                     items = new string[] { },
                     textureAtlases = new string[] { "orange_wall_halfcorner" },
@@ -33,7 +33,7 @@
                 },
                 new {
                     velocity = 0,
-                    prototype = "static",
+                    customClass = "",
                     name = "RespawnScript",
                     items = new string[] { },
                     textureAtlases = new string[] { },

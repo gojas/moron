@@ -9,13 +9,15 @@ namespace World.GameObject
 
     public class GameObject
     {
+
+        public GameObject()
+        {
+
+        }
         public Vector2 position;
         public float depth;
 
         public string Name { get; set; }
-
-        public enum Prototype { Fixed, Static, Dynamic };
-        public Prototype prototype { get; set; }
 
         public Sprite Sprite { get; set; }
         public GameObjectItemsContainer GameObjectItemsContainer { get; set; }

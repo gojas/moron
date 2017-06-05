@@ -1,20 +1,23 @@
-﻿using Microsoft.Xna.Framework.Content;
-using System;
+﻿using System;
 using System.Collections;
-using System.Reflection;
+using System.Collections.Generic;
 
 namespace World.GameObject.Factory
 {
     using World.GameObject.Item;
-    using World.GameObject.State.States;
     using Component;
     using GameObjects;
     using System.Linq;
     using Texture;
     using World.GameObject.State;
+    
 
     public class GameObjectFactory
     {
+
+        private readonly IDictionary<int, GameObject> objectPool;
+
+        private const string GAME_OBJECTS_NAMESPACE = "World.GameObject";
         private const string COMPONENTS_NAMESPACE = "Component";
         private const string GAME_OBJECT_ITEM_NAMESPACE = "World.GameObject.Item";
 
@@ -24,11 +27,14 @@ namespace World.GameObject.Factory
         public GameObjectFactory(SpriteContainerList spriteContainerList)
         {
             this.spriteContainerList = spriteContainerList;
+            this.objectPool = new Dictionary<int, GameObject>();
         }
 
         public GameObject Get(int id)
         {
-            gameObject = new GameObject();
+
+            if (objectPool.ContainsKey(id))
+                return objectPool[id];
 
             // cache configuration, less reflection stuff!
             object gameObjectConfiguration = GameObjects.GetById(id);
@@ -39,6 +45,13 @@ namespace World.GameObject.Factory
             object items = type.GetProperty("items").GetValue(gameObjectConfiguration, null);
             object components = type.GetProperty("components").GetValue(gameObjectConfiguration, null);
             object textureAtlases = type.GetProperty("textureAtlases").GetValue(gameObjectConfiguration, null);
+            string customClass = type.GetProperty("customClass").GetValue(gameObjectConfiguration, null).ToString();
+
+            string className = "GameObject";
+            if (customClass != "")
+                className = customClass;
+
+            gameObject = getGameObject(className);
 
             gameObject.Name = type.GetProperty("name").GetValue(gameObjectConfiguration, null).ToString();
 
@@ -56,7 +69,7 @@ namespace World.GameObject.Factory
 
             // string typeValue = type.GetProperty("type").GetValue(gameObjectConfiguration, null).ToString();
 
-
+            objectPool.Add(id, gameObject);
 
             return gameObject;
         }
@@ -103,6 +116,11 @@ namespace World.GameObject.Factory
                 foreach (var component in componentsArray)
                     gameObject.ComponentContainer.Add(getComponent(component.ToString()));
             }
+        }
+
+        private GameObject getGameObject(string name)
+        {
+            return Activator.CreateInstance(Type.GetType(GAME_OBJECTS_NAMESPACE + "." + name)) as GameObject;
         }
 
         private Component getComponent(string componentName)

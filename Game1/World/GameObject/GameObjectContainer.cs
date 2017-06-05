@@ -19,7 +19,6 @@
 
         public GameObject Get(int id)
         {
-
             return objectList[id];
         }
 

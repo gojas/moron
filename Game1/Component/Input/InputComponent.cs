@@ -3,11 +3,11 @@
 namespace Component
 {
     using World.GameObject;
-    using Game1;
+    using Comora;
 
     public class InputComponent : Component
     {
-        public override void update(GameObject gameObject, Game1 game)
+        public override void update(GameObject gameObject, Camera camera)
         {
             KeyboardState state = Keyboard.GetState();
 

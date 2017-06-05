@@ -18,6 +18,7 @@ namespace Content
         
         QuadTree quadTree;
         SpriteRender spriteRender;
+
         List<GameObject> gameObjectList;
 
         public ContentManager(Game1 game1)
@@ -35,10 +36,11 @@ namespace Content
 
             spriteRender = new SpriteRender(game.getSpriteBatch());
 
-            int cameraOffsetX = (int)game.getCamera().PositionOffset.X;
-            int cameraOffsetY = (int)game.getCamera().PositionOffset.Y;
-
-            gameObjectList = sceneManager.GetSceneObjectsContainer(cameraOffsetX, cameraOffsetY).GetAll();
+            gameObjectList = sceneManager.GameObjectManager.Get(
+                sceneManager,
+                (int)game.getCamera().PositionOffset.X,
+                (int)game.getCamera().PositionOffset.Y
+            );
         }
 
         public void updateInput(GameTime gameTime)
@@ -47,46 +49,15 @@ namespace Content
 
             quadTree.clear();
 
-            lock (gameObjectList)
-            {
-                foreach (var gameObject in gameObjectList)
-                {
-                    if (null != gameObject.ComponentContainer.GetPhysicsComponent())
-                        quadTree.insert(gameObject);
-                }
-            }
+            sceneManager.GameObjectManager.Update(sceneManager, quadTree, game.getCamera());
 
-            lock (gameObjectList)
-            {
-                foreach (var gameObject in gameObjectList.ToArray())
-                {
-                    /** checking the state of a game, did player hit the wall? **/
-                    if (null != gameObject.ComponentContainer.GetPhysicsComponent())
-                        gameObject.ComponentContainer.GetPhysicsComponent().update(gameObject, quadTree, sceneManager);
-
-                    /** did player enter specific zone **/
-                    if (null != gameObject.ComponentContainer.GetScriptComponent())
-                        gameObject.ComponentContainer.GetScriptComponent().update(gameObject, game);
-
-                    /** handle user input here **/
-                    if (null != gameObject.ComponentContainer.GetInputComponent())
-                        gameObject.ComponentContainer.GetInputComponent().update(gameObject, game);
-                }
-            }
         }
 
         public void updateGraphic(GameTime gameTime)
         {
 
-            lock (gameObjectList)
-            {
-                foreach (var gameObject in gameObjectList)
-                {
-                    if (null != gameObject.ComponentContainer.GetGraphicComponent())
-                        gameObject.ComponentContainer.GetGraphicComponent().update(gameObject, spriteRender, gameTime);
-                }
-            }
-
+            sceneManager.TerrainManager.Draw(spriteRender, sceneManager);
+            sceneManager.GameObjectManager.Draw(spriteRender, gameTime);
         }
     }
 }

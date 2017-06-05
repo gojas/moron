@@ -7,11 +7,18 @@
 
         public Scene()
         {
-            LoadGameObjectMatrix();
+            
         }
 
 
         public virtual int[] GetGameObjects()
+        {
+            int[] a = { };
+
+            return a;
+        }
+
+        public virtual int[] GetTerrainObjects()
         {
             int[] a = { };
 
@@ -25,9 +32,11 @@
             return a;
         }
 
-        protected virtual void LoadGameObjectMatrix()
+        public virtual int[,] GetGameObjectMatrix()
         {
+            int[,] a = { };
 
+            return a;
         }
 
         public virtual string[] GetTextures()
@@ -35,11 +44,6 @@
             string[] a = { };
 
             return a;
-        }
-
-        public void ChangeGameObjectMatrix(int x, int y, int gameObjectId)
-        {
-            GameObjectMatrix[x, y] = gameObjectId;
         }
 
     }

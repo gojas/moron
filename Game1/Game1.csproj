@@ -96,12 +96,12 @@
     <Compile Include="World\GameObject\GameObject.cs" />
     <Compile Include="World\GameObject\GameObjectContainer.cs" />
     <Compile Include="World\GameObject\GameObjects\GameObjects.cs" />
+    <Compile Include="World\GameObject\GameObjects\MoronGameObject.cs" />
     <Compile Include="World\GameObject\Item\GameObjectItemsContainer.cs" />
     <Compile Include="World\GameObject\Item\GameObjectItem.cs" />
     <Compile Include="World\GameObject\Item\Items\Weapons\Range\Pistol.cs" />
     <Compile Include="World\GameObject\Item\Items\Weapons\Range\GameObjectRangeWeaponItem.cs" />
     <Compile Include="World\GameObject\Item\Items\Weapons\GameObjectWeaponItem.cs" />
-    <Compile Include="World\GameObject\Prototype\Fixed.cs" />
     <Compile Include="World\GameObject\State\GameObjectState.cs" />
     <Compile Include="World\GameObject\State\GameObjectStateContainer.cs" />
     <Compile Include="World\GameObject\State\Provider\GameObjectStateProvider.cs" />
@@ -131,8 +131,11 @@
     <Compile Include="Texture\Sprite\SpriteContainer.cs" />
     <Compile Include="Texture\Atlas\TextureAtlas.cs" />
     <Compile Include="Texture\Atlas\TextureAtlasLoader.cs" />
-    <Compile Include="World\Terrain\Terrain.cs" />
+    <Compile Include="World\Terrain\Factory\TerrainFactory.cs" />
+    <Compile Include="World\Terrain\TerrainManager.cs" />
     <Compile Include="World\Terrain\TerrainContainer.cs" />
+    <Compile Include="World\Terrain\Terrains.cs" />
+    <Compile Include="World\Terrain\Tile.cs" />
     <Compile Include="World\World.cs" />
   </ItemGroup>
   <ItemGroup>

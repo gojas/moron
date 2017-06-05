@@ -11,6 +11,13 @@
             return a;
         }
 
+        public override int[] GetTerrainObjects()
+        {
+            int[] a = { 0, 1, 2, 3 };
+
+            return a;
+        }
+
         public override int[,] GetTerrainMatrix()
         {
             int[,] a = {
@@ -24,16 +31,13 @@
             return a;
         }
 
-        protected override void LoadGameObjectMatrix()
+        public override int[,] GetGameObjectMatrix()
         {
             int[,] a = {
-                { 1, 1, 1, 1, 3, 3 },
-                { 1, 1, 1, 1, 3, 3 },
-                { 1, 0, 2, 1, 3, 3 },
-                { 1, 1, 1, 1, 3, 3 }
+                {0}
             };
 
-            GameObjectMatrix = a;
+            return a;
         }
 
         public override string[] GetTextures()

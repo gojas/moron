@@ -5,15 +5,12 @@ using Component.Input.Command;
 namespace Component
 {
     using World.GameObject;
-    using World.GameObject.State;
-    using World.GameObject.State.States;
-    using World.GameObject.Item;
-    using Game1;
+    using Comora;
 
     public class MoronInputComponent : InputComponent
     {
 
-        public override void update(GameObject gameObject, Game1 game)
+        public override void update(GameObject gameObject, Camera camera)
         {
             KeyboardState state = Keyboard.GetState();
 
@@ -41,7 +38,7 @@ namespace Component
 
             command.Update(gameObject);
 
-            game.getCamera().Position = gameObject.position;
+            camera.Position = gameObject.position;
 
 
             

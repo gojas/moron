@@ -3,52 +3,64 @@ using Microsoft.Xna.Framework.Graphics;
 
 namespace World.Scene.Loader
 {
+    using World.Terrain;
     using World.GameObject;
     using Texture;
 
     public class SceneLoader
     {
-        SpriteManager spriteManager;
-        GameObjectManager gameObjectManager;
+        public SpriteManager SpriteManager;
+        GameObjectManager GameObjectManager;
+        TerrainManager TerrainManager;
 
-        Scene scene;
+        Scene Scene;
 
         public SceneLoader(
-            SpriteManager spriteManager,
-            GameObjectManager gameObjectManager,
-            Scene scene)
+            SpriteManager SpriteManager,
+            GameObjectManager GameObjectManager,
+            TerrainManager TerrainManager,
+            Scene Scene)
         {
-            this.spriteManager = spriteManager;
-            this.gameObjectManager = gameObjectManager;
-            this.scene = scene;
+            this.SpriteManager = SpriteManager;
+            this.GameObjectManager = GameObjectManager;
+            this.TerrainManager = TerrainManager;
+            this.Scene = Scene;
         }
 
         public void Load()
         {
-            loadContent();
-            loadObjects();
+            LoadContent();
+            LoadTerrain();
+            LoadObjects();
         }
 
-        private void loadContent()
+        private void LoadContent()
         {
-            loadTextures();
+            LoadTextures();
         }
 
-        private void loadTextures()
+        private void LoadTerrain()
         {
-            string[] textures = scene.GetTextures();
+            int[] terrains = Scene.GetTerrainObjects();
+
+            foreach (int terrainId in terrains)
+                TerrainManager.Load(terrainId);
+        }
+
+        private void LoadTextures()
+        {
+            string[] textures = Scene.GetTextures();
 
             foreach (string texture in textures)
-                spriteManager.Load(texture);
+                SpriteManager.Load(texture);
         }
 
-        private void loadObjects()
+        private void LoadObjects()
         {
-            int[] objects = scene.GetGameObjects();
+            int[] objects = Scene.GetGameObjects();
 
-            foreach (int objectId in objects) {
-                //gameObjectManager.Load(objectId);
-            }
+            foreach (int objectId in objects)
+                GameObjectManager.Load(objectId);
         }
     }
 }
