@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Microsoft.Xna.Framework.Input;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -8,18 +9,26 @@ namespace Component.Input.Command.Factory
 {
     public class CommandFactory
     {
-        public static Command Get(string name)
-        {
-            if (name == "WD")
-                name = "DW";
-            if (name == "DS")
-                name = "SD";
-            if (name == "SA")
-                name = "AS";
-            if (name == "AW")
-                name = "WA";
+        private static readonly string[] InvalidCommands = { "AD", "DA", "WS", "SW" };
 
-            return Activator.CreateInstance(Type.GetType("Component.Input.Command.Command" + name)) as Command;
+        public static Command Get(KeyboardState state)
+        {
+            string pressedKeysString = "";
+
+            foreach (Keys pressedKey in state.GetPressedKeys())
+            {
+                pressedKeysString += pressedKey.ToString();
+            }
+
+            if (InvalidCommands.Contains(pressedKeysString))
+                pressedKeysString = "";
+
+
+            if (pressedKeysString.Length == 3 && !pressedKeysString.Contains(Keys.Space.ToString()))
+                pressedKeysString = "";
+
+            // CommandAWLeftMouse
+            return Activator.CreateInstance(Type.GetType("Component.Input.Command.Command" + pressedKeysString)) as Command;
         }
     }
 }

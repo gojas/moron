@@ -14,4 +14,12 @@
             state.Update(gameObject);
         }
     }
+
+    public class CommandSA : CommandAS
+    {
+        public override void Update(GameObject gameObject)
+        {
+            base.Update(gameObject);
+        }
+    }
 }

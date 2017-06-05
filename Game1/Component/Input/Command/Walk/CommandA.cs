@@ -3,11 +3,11 @@
     using World.GameObject;
     using World.GameObject.State.States;
 
-    public class CommandDW : Command
+    public class CommandA : Command
     {
         public override void Update(GameObject gameObject)
         {
-            State state = new StateWalkingUpRight();
+            State state = new StateWalkingLeft();
 
             gameObject.GameObjectStateContainer.Change(state);
 
@@ -15,3 +15,6 @@
         }
     }
 }
+
+
+

@@ -6,6 +6,7 @@ namespace Component
 {
     using World.GameObject;
     using Comora;
+    using World.GameObject.State.States;
 
     public class MoronInputComponent : InputComponent
     {
@@ -13,27 +14,27 @@ namespace Component
         public override void update(GameObject gameObject, Camera camera)
         {
             KeyboardState state = Keyboard.GetState();
+            MouseState mouseState = Mouse.GetState();
 
             // gameObject.State.currentMovementState = MovementState.STANDING;
 
-            string pressedKeysString = "";
+            
+            /**
+            if (mouseState.LeftButton == ButtonState.Pressed)
+                pressedKeysString += "LeftMouse";
 
-            foreach (Keys pressedKey in state.GetPressedKeys())
-            {
-                pressedKeysString += pressedKey.ToString();
-            }
+            if (mouseState.RightButton == ButtonState.Pressed)
+                pressedKeysString += "RightMouse";
 
-            // jedi govna... set invalid keys!
-            if (pressedKeysString.Length > 2)
-            {
-                pressedKeysString = "";
+            **/
+
+            Command command = CommandFactory.Get(state);
+
+            if (state.IsKeyDown(Keys.Space) && gameObject.State is StateWalking) {
+                System.Diagnostics.Debug.Write("JUMP");
             }
 
             
-
-           
-            
-            Command command = CommandFactory.Get(pressedKeysString);
 
 
             command.Update(gameObject);
