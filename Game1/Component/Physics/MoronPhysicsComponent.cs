@@ -24,14 +24,19 @@ namespace Component
             // nearby objects...
             quadTree.getObjects(gameObject).ForEach((returnObject) => {
 
-                Rectangle bla1 = new Rectangle((int)gameObject.position.X + 50, (int)gameObject.position.Y + 22, 54, 44);
-                Rectangle bla2 = new Rectangle((int)returnObject.position.X, (int)returnObject.position.Y, 128, 64);
+                if (!(returnObject is MoronGameObject)) { // DUNNO why this happens, check getObjects method..
+                    Rectangle bla1 = new Rectangle((int)gameObject.position.X, (int)gameObject.position.Y, 128, 64);
+                    Rectangle bla2 = new Rectangle((int)returnObject.position.X, (int)returnObject.position.Y, 128, 64);
 
 
-
-                if (CollisionDetection.AreRectanglesColliding(bla1, bla2)) {
-                    
+                    if (CollisionDetection.AreRectanglesColliding(bla1, bla2))
+                    {
+                        if (null != returnObject.ComponentContainer.GetHealthComponent())
+                            returnObject.ComponentContainer.GetHealthComponent().update(gameObject, returnObject);
+                    }
                 }
+
+                
             });
 
             

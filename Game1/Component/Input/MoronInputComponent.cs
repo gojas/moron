@@ -30,9 +30,7 @@ namespace Component
 
             Command command = CommandFactory.Get(state);
 
-            if (state.IsKeyDown(Keys.Space) && gameObject.State is StateWalking) {
-                System.Diagnostics.Debug.Write("JUMP");
-            }
+
 
             
 

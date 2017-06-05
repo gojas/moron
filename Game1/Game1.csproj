@@ -45,6 +45,7 @@
     <Compile Include="Component\Graphic\FixedGraphicComponent.cs" />
     <Compile Include="Component\Graphic\GraphicComponent.cs" />
     <Compile Include="Component\Graphic\MoronGraphicComponent.cs" />
+    <Compile Include="Component\Health\HealthComponent.cs" />
     <Compile Include="Component\IComponent.cs" />
     <Compile Include="Component\IComponentContainerAware.cs" />
     <Compile Include="Component\Input\Command\Command.cs" />

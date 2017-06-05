@@ -29,7 +29,7 @@
                     name = "OrangeWallHalfCorner",
                     items = new string[] { },
                     textureAtlases = new string[] { "orange_wall_halfcorner" },
-                    components = new string[] { "PhysicsComponent", "FixedGraphicComponent" }
+                    components = new string[] { "PhysicsComponent", "FixedGraphicComponent", "HealthComponent" }
                 },
                 new {
                     velocity = 0,

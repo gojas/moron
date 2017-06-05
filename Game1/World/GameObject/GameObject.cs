@@ -14,6 +14,7 @@ namespace World.GameObject
         {
 
         }
+
         public Vector2 position;
         public float depth;
 
@@ -27,7 +28,8 @@ namespace World.GameObject
 
         public GameObjectStateContainer GameObjectStateContainer { get; set; }
 
-        public float speed = 5;
+        public float speed = 5; // for now here
+        public float Health = 100; // for now here
 
         public bool Disabled = false;
         public bool Destroyed = false;

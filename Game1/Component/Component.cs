@@ -15,6 +15,11 @@ namespace Component
 
         }
 
+        public virtual void update(GameObject originGameObject, GameObject gameObject)
+        {
+
+        }
+
         public virtual void update(GameObject gameObject, Camera camera)
         {
 

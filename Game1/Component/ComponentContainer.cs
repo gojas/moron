@@ -62,5 +62,13 @@ namespace Component
                 return component is ScriptComponent;
             });
         }
+
+        public Component GetHealthComponent()
+        {
+            return components.Find((Component component) =>
+            {
+                return component is HealthComponent;
+            });
+        }
     }
 }

@@ -20,12 +20,9 @@ namespace Component.Input.Command.Factory
                 pressedKeysString += pressedKey.ToString();
             }
 
-            if (InvalidCommands.Contains(pressedKeysString))
+            if (null == Type.GetType("Component.Input.Command.Command" + pressedKeysString))
                 pressedKeysString = "";
-
-
-            if (pressedKeysString.Length == 3 && !pressedKeysString.Contains(Keys.Space.ToString()))
-                pressedKeysString = "";
+                // (GU): Log here
 
             // CommandAWLeftMouse
             return Activator.CreateInstance(Type.GetType("Component.Input.Command.Command" + pressedKeysString)) as Command;

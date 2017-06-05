@@ -73,13 +73,15 @@ namespace World.GameObject
         {
             quadTree.clear();
 
-            lock (List)
+            /** maybe remove entire foreach stuff? */
+            for (int i = List.Count - 1; i >= 0; i--)
             {
-                foreach (var gameObject in List)
-                {
-                    if (null != gameObject.ComponentContainer.GetPhysicsComponent())
-                        quadTree.insert(gameObject);
-                }
+                /** remove destroyed objects */
+                if (List[i].Destroyed) List.RemoveAt(i);
+
+                /** prepare new QuadTree */
+                if (null != List[i].ComponentContainer.GetPhysicsComponent() && !List[i].Destroyed)
+                    quadTree.insert(List[i]);
             }
 
             lock (List)
