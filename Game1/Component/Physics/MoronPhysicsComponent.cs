@@ -14,8 +14,7 @@ namespace Component
         public override void update(GameObject gameObject, QuadTree quadTree, SceneManager sceneManager)
         {
 
-            IsometricCalculator isometricCalculator = ServiceContainer.GetService<IsometricCalculator>();
-            Vector2 gameObjectTileCordinates = isometricCalculator.GetTileCoordinates(gameObject.position, 72);
+            
 
            // Debug.Write(gameObject.position + "\n");
 

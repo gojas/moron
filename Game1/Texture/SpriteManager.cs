@@ -9,7 +9,7 @@ namespace Texture
     {
 
         private const int TILE_WIDTH = 128;
-        private const int TILE_HEIGHT = 64;
+        private const int TILE_HEIGHT = 128;
 
         ContentManager contentManager;
         SpriteContainerList spriteContainerList;

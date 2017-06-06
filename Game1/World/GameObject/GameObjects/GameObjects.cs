@@ -11,6 +11,8 @@
                     velocity = 50,
                     customClass = "MoronGameObject",
                     name = "Cowboy",
+                    spriteHeight = 128,
+                    spriteWidth = 128,
                     items = new string[] { "Pistol" },
                     textureAtlases = new string[] { "cowboy_walking_pistol" },
                     components = new string[] { "MoronInputComponent", "MoronPhysicsComponent", "MoronGraphicComponent" }
@@ -19,6 +21,8 @@
                     velocity = 0,
                     customClass = "",
                     name = "OrangeTile",
+                    spriteHeight = 128,
+                    spriteWidth = 128,
                     items = new string[] { },
                     textureAtlases = new string[] { "orange_tile_flat" },
                     components = new string[] { "FixedGraphicComponent" }
@@ -27,6 +31,8 @@
                     velocity = 0,
                     customClass = "",
                     name = "OrangeWallHalfCorner",
+                    spriteHeight = 128,
+                    spriteWidth = 128,
                     items = new string[] { },
                     textureAtlases = new string[] { "orange_wall_halfcorner" },
                     components = new string[] { "PhysicsComponent", "FixedGraphicComponent", "HealthComponent" }
@@ -35,6 +41,8 @@
                     velocity = 0,
                     customClass = "",
                     name = "RespawnScript",
+                    spriteHeight = 0,
+                    spriteWidth = 0,
                     items = new string[] { },
                     textureAtlases = new string[] { },
                     components = new string[] { "MoronSpawnScriptComponent", "PhysicsComponent" }
