@@ -24,7 +24,7 @@ namespace Component
 
             if (mouseState.LeftButton == ButtonState.Pressed) {
                 IsometricCalculator isometricCalculator = ServiceContainer.GetService<IsometricCalculator>();
-                Vector2 gameObjectTileCordinates = isometricCalculator.GetTileCoordinates(gameObject.position, 128);
+                Vector2 gameObjectTileCordinates = isometricCalculator.GetTileCoordinates(gameObject.position);
 
 
                 System.Diagnostics.Debug.Write(gameObject.position.X + "\n");

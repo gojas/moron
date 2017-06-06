@@ -34,7 +34,7 @@
                     spriteHeight = 128,
                     spriteWidth = 128,
                     items = new string[] { },
-                    textureAtlases = new string[] { "orange_wall_halfcorner" },
+                    textureAtlases = new string[] { "orange_wall_halfcorner_2_1" },
                     components = new string[] { "PhysicsComponent", "FixedGraphicComponent", "HealthComponent" }
                 },
                 new {

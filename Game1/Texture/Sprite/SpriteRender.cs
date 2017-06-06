@@ -12,14 +12,15 @@ namespace Texture
             this.spriteBatch = spriteBatch;
         }
         
-        public void Draw(Sprite sprite, Vector2 position, Vector2 origin, Color? color = null)
+        public void Draw(Sprite sprite, Vector2 position, Color? color = null)
         {
+
             spriteBatch.Draw(
                 sprite.Texture, 
                 position, 
                 null, 
                 sprite.SourceRectangle, 
-                origin, 
+                new Vector2(0, sprite.SourceRectangle.Height), 
                 0, 
                 sprite.Size, 
                 color, 

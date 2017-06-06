@@ -24,8 +24,22 @@ namespace Texture
         {
             var texture = contentManager.Load<Texture2D>(textureName);
 
-            int columns = texture.Width / TILE_WIDTH;
-            int rows = texture.Height / TILE_HEIGHT;
+            int spriteHeight = 128;
+            int spriteWidth = 128;
+
+            string sizeParams = textureName.Substring(MathHelper.Max(0, textureName.Length - 3));
+
+            // bla_2_1
+            // width 2 x 64
+            // height 1 x 64
+
+            if (textureName == "orange_wall_halfcorner_2_1") {
+                spriteHeight = 1 * 64;
+            }
+                
+
+            int columns = texture.Width / spriteWidth;
+            int rows = texture.Height / spriteHeight;
 
             var spriteContainer = new SpriteContainer();
 
@@ -36,7 +50,7 @@ namespace Texture
             {
                 for (var row = 0; row < rows; row++)
                 {
-                    Rectangle sourceRectangle = new Rectangle(TILE_WIDTH * column, TILE_HEIGHT * row, TILE_WIDTH, TILE_HEIGHT);
+                    Rectangle sourceRectangle = new Rectangle(spriteWidth * column, spriteHeight * row, spriteWidth, spriteHeight);
                     Vector2 size = new Vector2(1, 1);
 
                     string spriteTextureMap = textureName + "_" + column + "_" + row;

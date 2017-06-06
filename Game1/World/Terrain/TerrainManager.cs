@@ -61,9 +61,7 @@
                         depth
                     );
 
-                    Vector2 origin = new Vector2(0, Tile.HEIGHT);
-
-                    spriteRender.Draw(sprite, new Vector2(positionX, positionY), origin, null);
+                    spriteRender.Draw(sprite, new Vector2(positionX, positionY));
                 }
 
             }

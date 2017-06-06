@@ -42,7 +42,7 @@
 
         public override string[] GetTextures()
         {
-            string[] a = { "cowboy_walking_pistol", "orange_tile_2_1", "orange_wall_halfcorner" };
+            string[] a = { "cowboy_walking_pistol", "orange_tile_2_1", "orange_wall_halfcorner_2_1" };
 
             return a;
         }

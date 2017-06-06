@@ -23,10 +23,10 @@ namespace Core.Service
             return new Vector2(positionX, positionY);
         }
 
-        public Vector2 GetTileCoordinates(Vector2 position, int textureHeight)
+        public Vector2 GetTileCoordinates(Vector2 position)
         {
             float xCoordinate = position.X / Sprite.TEXTURE_WIDTH;
-            float yCoordinate = position.Y / Sprite.TILE_TEXTURE_HEIGHT / 2; // TEXTURE, not TILE
+            float yCoordinate = position.Y / 64; // TEXTURE, not TILE
 
             return new Vector2((int)Math.Floor(xCoordinate), (int)Math.Floor(yCoordinate));
         }

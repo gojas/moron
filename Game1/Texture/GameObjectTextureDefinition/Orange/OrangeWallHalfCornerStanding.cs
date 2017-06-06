@@ -6,7 +6,7 @@
         {
             get
             {
-                return "orange_wall_halfcorner";
+                return "orange_wall_halfcorner_2_1";
             }
         }
 
@@ -15,7 +15,7 @@
             get
             {
                 string[] a = {
-                    "orange_wall_halfcorner_0_0"
+                    "orange_wall_halfcorner_2_1_0_0"
                 };
 
                 return a;
