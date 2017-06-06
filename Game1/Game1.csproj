@@ -189,8 +189,11 @@
   <ItemGroup>
     <Content Include="Content\background.jpg" />
     <Content Include="Content\cowboy_walking_pistol.png" />
+    <Content Include="Content\debug.png" />
+    <Content Include="Content\debug_red.png" />
     <Content Include="Content\demo_tileset.png" />
-    <Content Include="Content\orange_tile_flat.png" />
+    <Content Include="Content\green_tree.png" />
+    <Content Include="Content\orange_tile_2_1.png" />
     <Content Include="Content\orange_wall_halfcorner.png" />
     <Content Include="Content\player.png" />
     <Content Include="Content\sprite.png">

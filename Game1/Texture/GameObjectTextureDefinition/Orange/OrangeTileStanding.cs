@@ -6,7 +6,7 @@
         {
             get
             {
-                return "orange_tile_flat";
+                return "orange_tile_2_1";
             }
         }
 
@@ -15,7 +15,7 @@
             get
             {
                 string[] a = {
-                    "orange_tile_flat_0_0"
+                    "orange_tile_2_1_0_0"
                 };
 
                 return a;

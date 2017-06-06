@@ -23,14 +23,7 @@ namespace World.Terrain
                     name = "OrangeTile",
                     spriteSheetMappingX = 0,
                     spriteSheetMappingY = 0,
-                    spriteSheetName = "orange_tile_flat"
-                },
-                new {
-                    customClass = "",
-                    name = "OrangeTile",
-                    spriteSheetMappingX = 0,
-                    spriteSheetMappingY = 0,
-                    spriteSheetName = "orange_tile_flat"
+                    spriteSheetName = "orange_tile_2_1"
                 }
             };
 

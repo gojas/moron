@@ -2,6 +2,9 @@
 {
     public class Tile
     {
+        public const int WIDTH = 128;
+        public const int HEIGHT = 64;
+
         public string SpriteSheetName;
         public int SpriteSheetContainerMappingX;
         public int SpriteSheetContainerMappingY;
@@ -16,6 +19,11 @@
         public string GetSpriteNameBasedOnMapping()
         {
             return SpriteSheetName + '_' + SpriteSheetContainerMappingX + '_' + SpriteSheetContainerMappingY;
+        }
+
+        public void Draw()
+        {
+
         }
 
     }

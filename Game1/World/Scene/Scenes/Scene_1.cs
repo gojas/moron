@@ -13,7 +13,7 @@
 
         public override int[] GetTerrainObjects()
         {
-            int[] a = { 0, 1, 2, 3 };
+            int[] a = { 0 };
 
             return a;
         }
@@ -21,11 +21,11 @@
         public override int[,] GetTerrainMatrix()
         {
             int[,] a = {
-                {1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1},
-                {1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1},
-                {1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1},
-                {1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1},
-                {1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1}
+                {0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0},
+                {0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0},
+                {0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0},
+                {0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0},
+                {0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0}
             };
 
             return a;
@@ -42,7 +42,7 @@
 
         public override string[] GetTextures()
         {
-            string[] a = { "cowboy_walking_pistol", "orange_tile_flat", "orange_wall_halfcorner" };
+            string[] a = { "cowboy_walking_pistol", "orange_tile_2_1", "orange_wall_halfcorner" };
 
             return a;
         }

@@ -4,9 +4,10 @@
     
     using Terrain.Factory;
     using Microsoft.Xna.Framework;
-    using Microsoft.Xna.Framework.Graphics;
     using Microsoft.Xna.Framework.Content;
+    using World;
     using Scene;
+    using Microsoft.Xna.Framework.Graphics;
 
     public class TerrainManager
     {
@@ -23,7 +24,7 @@
 
         public void Load(int id)
         {
-            //TerrainFactory.Load(id);
+            
         }
 
         public void Draw(SpriteRender spriteRender, SceneManager sceneManager)
@@ -37,7 +38,7 @@
                 int offset_x = 0;
                 if (IsOdd(row))
                 {
-                    offset_x = Sprite.TILE_TEXTURE_WIDTH / 2;
+                    offset_x = Tile.WIDTH / 2;
                 }
 
                 for (int column = 0; column < matrix.GetLength(1); column++)
@@ -46,18 +47,19 @@
 
                     Tile tile = TerrainFactory.Get(terrainId);
 
-                    int positionX = column * Sprite.TILE_TEXTURE_WIDTH + offset_x;
-                    int positionY = row * Sprite.TEXTURE_HEIGHT / 2;
+                    int positionX = column * Tile.WIDTH + offset_x;
+                    int positionY = row * Tile.HEIGHT / 2;
 
-                    Rectangle sourceRectangle = new Rectangle(Sprite.TILE_TEXTURE_WIDTH * column, Sprite.TILE_TEXTURE_HEIGHT * row, Sprite.TILE_TEXTURE_WIDTH, Sprite.TILE_TEXTURE_HEIGHT);
-
-                    string spriteName = tile.GetSpriteNameBasedOnMapping();
-
-                    Sprite sprite = sceneManager.sceneLoader.SpriteManager.GetSpriteContainer(tile.SpriteSheetName).GetSpriteByName(spriteName);
+                    var texture = ContentManager.Load<Texture2D>(tile.SpriteSheetName);
 
                     depth += 0.001f;
 
-                    sprite.Depth = depth;
+                    Sprite sprite = new Sprite(
+                        texture, 
+                        new Rectangle(tile.SpriteSheetContainerMappingX, tile.SpriteSheetContainerMappingY, Tile.WIDTH, Tile.HEIGHT), // 0, 0 draw from upper left corner
+                        new Vector2(1,1), // normal size draw
+                        depth
+                    );
 
                     spriteRender.Draw(sprite, new Vector2(positionX, positionY));
                 }
