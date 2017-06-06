@@ -18,6 +18,8 @@ namespace World.GameObject
         public Vector2 position;
         public float depth;
 
+        public Color Color;
+
         public string Name { get; set; }
 
         public Sprite Sprite { get; set; }

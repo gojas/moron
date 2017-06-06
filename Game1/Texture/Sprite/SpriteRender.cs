@@ -20,7 +20,7 @@ namespace Texture
                 position, 
                 null, 
                 sprite.SourceRectangle, 
-                new Vector2(0, sprite.SourceRectangle.Height), 
+                new Vector2(0, 0), // sprite.SourceRectangle.Height render from bottom left corner
                 0, 
                 sprite.Size, 
                 color, 

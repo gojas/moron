@@ -9,6 +9,7 @@ namespace World.GameObject
     using World.Scene;
     using QuadTree;
     using Comora;
+    using World.Terrain;
 
     public class GameObjectManager
     {
@@ -55,12 +56,10 @@ namespace World.GameObject
                 {
                     int gameObjectId = matrix[row, column];
 
-                    GameObject gameObject = gameObjectFactory.Get(gameObjectId);
+                    GameObject gameObject = Get(gameObjectId);
 
-                    gameObject.position.X = column * Sprite.TILE_TEXTURE_WIDTH + offset_x;
-                    gameObject.position.Y = row * Sprite.TEXTURE_HEIGHT / 2;
-
-                    // fix depth
+                    gameObject.position.X = column * Tile.WIDTH + offset_x;
+                    gameObject.position.Y = row * Tile.HEIGHT / 2;
 
                     List.Add(gameObject);
                 }

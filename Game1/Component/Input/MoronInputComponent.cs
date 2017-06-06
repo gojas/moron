@@ -27,9 +27,14 @@ namespace Component
                 Vector2 gameObjectTileCordinates = isometricCalculator.GetTileCoordinates(gameObject.position);
 
 
-                System.Diagnostics.Debug.Write(gameObject.position.X + "\n");
-                System.Diagnostics.Debug.Write(gameObject.position.Y + "\n");
-                System.Diagnostics.Debug.Write(gameObjectTileCordinates + "\n");
+                System.Diagnostics.Debug.Write(gameObject.position + "\n");
+
+
+                Vector2 mousePosition = new Vector2(mouseState.Position.X, mouseState.Position.Y);
+
+                gameObject.position = mousePosition;
+
+                System.Diagnostics.Debug.Write(mousePosition + "\n");
             }
                 
             /**

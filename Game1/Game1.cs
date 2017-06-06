@@ -44,6 +44,8 @@ namespace Game1
         {
             camera = new Camera(GraphicsDevice);
 
+            IsMouseVisible = true;
+
             graphics.PreferredBackBufferWidth = GraphicsDevice.DisplayMode.Width;
             graphics.PreferredBackBufferHeight = GraphicsDevice.DisplayMode.Height;
             graphics.IsFullScreen = true;
@@ -103,7 +105,7 @@ namespace Game1
 
             graphics.GraphicsDevice.Clear(Color.White);
             
-            spriteBatch.Begin(this.camera, SpriteSortMode.FrontToBack, BlendState.AlphaBlend);
+            spriteBatch.Begin(/** this.camera ,*/ SpriteSortMode.FrontToBack, BlendState.AlphaBlend);
 
             /** draw! **/
             contentManager.updateGraphic(gameTime);
