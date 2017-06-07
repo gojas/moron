@@ -6,8 +6,10 @@ namespace World.GameObject
 {
     using World.GameObject.State;
     using World.GameObject.Item;
+    using World.Scene;
+    using QuadTree;
 
-    public class GameObject
+    public class GameObject: ISceneManagerAware, IQuadTreeAware
     {
 
         public GameObject()
@@ -21,6 +23,9 @@ namespace World.GameObject
         public Color Color;
 
         public string Name { get; set; }
+
+        public SceneManager SceneManager;
+        public QuadTree QuadTree;
 
         public Sprite Sprite { get; set; }
         public GameObjectItemsContainer GameObjectItemsContainer { get; set; }
@@ -39,6 +44,33 @@ namespace World.GameObject
         public void Update()
         {
 
+        }
+
+        public virtual void FireRange()
+        {
+            // this.GameObjectItems.GetRange();
+
+
+        }
+
+        public void SetSceneManager(SceneManager sceneManager)
+        {
+            SceneManager = sceneManager;
+        }
+
+        public SceneManager GetSceneManager()
+        {
+            return SceneManager;
+        }
+
+        public void SetQuadTree(QuadTree quadTree)
+        {
+            QuadTree = quadTree;
+        }
+
+        public QuadTree GetQuadTree()
+        {
+            return QuadTree;
         }
     }
 }

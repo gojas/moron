@@ -7,17 +7,18 @@ namespace Component
     using Texture;
     using Texture.GameObjectTextureDefinition;
 
-    public class GraphicComponent : Component
+    public class ArrowGraphicComponent : GraphicComponent
     {
         public override void update(GameObject gameObject, SpriteRender spriteRender, GameTime gameTime, float depth)
         {
             string gameObjectStateString = GameObjectStateProvider.GetStateString(gameObject);
-            
+
             TextureDefinition textureDefinition = TextureDefinitionFactory.Get(gameObjectStateString);
 
             // gameObject.state as first param
             Sprite sprite = gameObject.AnimationContainer.getCurrentSprite(TextureDefinitionFactory.Get(gameObjectStateString), gameTime);
             sprite.Depth = depth;
+            sprite.Size = new Vector2(0.3f, 0.3f);
             spriteRender.Draw(sprite, gameObject.position);
         }
     }

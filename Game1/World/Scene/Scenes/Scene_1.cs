@@ -25,7 +25,10 @@
                 {0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0},
                 {0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0},
                 {0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0},
-                {0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0}
+                {0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0},
+                {0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0},
+
+
             };
 
             return a;
@@ -34,7 +37,7 @@
         public override int[,] GetGameObjectMatrix()
         {
             int[,] a = {
-                {0, 2, 2, 3}
+                {0, 2},
             };
 
             return a;
@@ -42,7 +45,7 @@
 
         public override string[] GetTextures()
         {
-            string[] a = { "cowboy_walking_pistol", "orange_tile_2_1", "orange_wall_halfcorner_2_1" };
+            string[] a = { "cowboy_walking_pistol", "orange_tile_2_1", "orange_wall_halfcorner_2_1", "arrow_2_2" };
 
             return a;
         }

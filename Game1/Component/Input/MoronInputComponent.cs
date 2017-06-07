@@ -9,16 +9,25 @@ namespace Component
     using Core.Service;
     using World.GameObject.State.States;
     using Microsoft.Xna.Framework;
+    using System;
 
     public class MoronInputComponent : InputComponent
     {
 
         public override void update(GameObject gameObject, Camera camera)
         {
+
+            float moronPositionX = gameObject.position.X;
+            float moronPositionY = gameObject.position.Y;
+
+
             KeyboardState state = Keyboard.GetState();
             MouseState mouseState = Mouse.GetState();
 
-            // gameObject.State.currentMovementState = MovementState.STANDING;
+            float mousePositionX = mouseState.Position.X;
+            float mousePositionY = mouseState.Position.Y;
+
+            Vector2 mousePosition = new Vector2(mousePositionX, mousePositionY);
 
 
 
@@ -29,19 +38,19 @@ namespace Component
 
                 System.Diagnostics.Debug.Write(gameObject.position + "\n");
 
-
-                Vector2 mousePosition = new Vector2(mouseState.Position.X, mouseState.Position.Y);
-
-                gameObject.position = mousePosition;
+                // gameObject.position = mousePosition; // la la :D
 
                 System.Diagnostics.Debug.Write(mousePosition + "\n");
             }
-                
-            /**
-            if (mouseState.RightButton == ButtonState.Pressed)
-                pressedKeysString += "RightMouse";
 
-            **/
+            if (mouseState.RightButton == ButtonState.Pressed) {
+                GameObject rangeWeaponGameObject = gameObject.SceneManager.GameObjectManager.Get(4);
+
+                rangeWeaponGameObject.ComponentContainer.GetScriptComponent().update(gameObject, gameObject.QuadTree, gameObject.SceneManager);
+
+                // gameObject.FireRange();
+            }
+                
 
             Command command = CommandFactory.Get(state);
 

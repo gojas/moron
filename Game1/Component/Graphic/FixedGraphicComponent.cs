@@ -9,11 +9,11 @@ namespace Component
 
     public class FixedGraphicComponent : GraphicComponent
     {
-        public override void update(GameObject gameObject, SpriteRender spriteRender, GameTime gameTime)
+        public override void update(GameObject gameObject, SpriteRender spriteRender, GameTime gameTime, float depth)
         {
             // fixed gameObjects, like walls, crates... no animations components...
             // so find a way to not animate them at all... because this can lead to performance issues later on :)
-            base.update(gameObject, spriteRender, gameTime);
+            base.update(gameObject, spriteRender, gameTime, depth);
         }
     }
 }

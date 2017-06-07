@@ -13,7 +13,7 @@
                     name = "Cowboy",
                     spriteHeight = 128,
                     spriteWidth = 128,
-                    items = new string[] { "Pistol" },
+                    items = new string[] { "Bow" },
                     textureAtlases = new string[] { "cowboy_walking_pistol" },
                     components = new string[] { "MoronInputComponent", "MoronPhysicsComponent", "MoronGraphicComponent" }
                 },
@@ -24,7 +24,7 @@
                     spriteHeight = 128,
                     spriteWidth = 128,
                     items = new string[] { },
-                    textureAtlases = new string[] { "orange_tile_flat" },
+                    textureAtlases = new string[] { "orange_tile_2_1" },
                     components = new string[] { "FixedGraphicComponent" }
                 },
                 new {
@@ -46,6 +46,26 @@
                     items = new string[] { },
                     textureAtlases = new string[] { },
                     components = new string[] { "MoronSpawnScriptComponent", "PhysicsComponent" }
+                },
+                new {
+                    velocity = 100,
+                    customClass = "",
+                    name = "Bow",
+                    spriteHeight = 0,
+                    spriteWidth = 0,
+                    items = new string[] { },
+                    textureAtlases = new string[] { },
+                    components = new string[] { "ArrowSpawnScriptComponent", "ArrowPhysicsComponent", "ArrowGraphicComponent" }
+                },
+                new {
+                    velocity = 100,
+                    customClass = "",
+                    name = "Arrow",
+                    spriteHeight = 0,
+                    spriteWidth = 0,
+                    items = new string[] { },
+                    textureAtlases = new string[] { "arrow_2_2" },
+                    components = new string[] { "ArrowPhysicsComponent", "ArrowGraphicComponent" }
                 }
             };
 

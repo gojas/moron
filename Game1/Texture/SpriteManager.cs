@@ -36,7 +36,12 @@ namespace Texture
             if (textureName == "orange_wall_halfcorner_2_1") {
                 spriteHeight = 1 * 64;
             }
-                
+
+            if (textureName == "orange_tile_2_1")
+            {
+                spriteHeight = 1 * 64;
+            }
+
 
             int columns = texture.Width / spriteWidth;
             int rows = texture.Height / spriteHeight;

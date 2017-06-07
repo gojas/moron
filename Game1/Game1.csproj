@@ -42,6 +42,7 @@
   </PropertyGroup>
   <ItemGroup>
     <Compile Include="Component\ComponentContainer.cs" />
+    <Compile Include="Component\Graphic\ArrowGraphicComponent.cs" />
     <Compile Include="Component\Graphic\FixedGraphicComponent.cs" />
     <Compile Include="Component\Graphic\GraphicComponent.cs" />
     <Compile Include="Component\Graphic\MoronGraphicComponent.cs" />
@@ -68,9 +69,11 @@
     <Compile Include="Component\Input\Command\Roll\CommandASpace.cs" />
     <Compile Include="Component\Input\InputComponent.cs" />
     <Compile Include="Component\Input\MoronInputComponent.cs" />
+    <Compile Include="Component\Physics\ArrowPhysicsComponent.cs" />
     <Compile Include="Component\Physics\MoronPhysicsComponent.cs" />
     <Compile Include="Component\Physics\PhysicsComponent.cs" />
     <Compile Include="Component\Physics\RectanglePhysicsComponent.cs" />
+    <Compile Include="Component\Script\ArrowSpawnScriptComponent.cs" />
     <Compile Include="Component\Script\MoronSpawnScriptComponent.cs" />
     <Compile Include="Component\Script\ScriptComponent.cs" />
     <Compile Include="Content\ContentManager.cs" />
@@ -84,8 +87,10 @@
     <Compile Include="Game1.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Quadtree\IQuadTreeAware.cs" />
     <Compile Include="Quadtree\Quadtree.cs" />
     <Compile Include="Texture\Atlas\TextureAtlasContainer.cs" />
+    <Compile Include="Texture\GameObjectTextureDefinition\Arrow\ArrowStanding.cs" />
     <Compile Include="Texture\GameObjectTextureDefinition\Cowboy\Rolling\CowboyRollingDownLeftPistol.cs" />
     <Compile Include="Texture\GameObjectTextureDefinition\Cowboy\Rolling\CowboyRollingDownPistol.cs" />
     <Compile Include="Texture\GameObjectTextureDefinition\Cowboy\Rolling\CowboyRollingDownRightPistol.cs" />
@@ -116,6 +121,7 @@
     <Compile Include="World\GameObject\GameObjects\MoronGameObject.cs" />
     <Compile Include="World\GameObject\Item\GameObjectItemsContainer.cs" />
     <Compile Include="World\GameObject\Item\GameObjectItem.cs" />
+    <Compile Include="World\GameObject\Item\Items\Weapons\Range\Bow.cs" />
     <Compile Include="World\GameObject\Item\Items\Weapons\Range\Pistol.cs" />
     <Compile Include="World\GameObject\Item\Items\Weapons\Range\GameObjectRangeWeaponItem.cs" />
     <Compile Include="World\GameObject\Item\Items\Weapons\GameObjectWeaponItem.cs" />
@@ -144,6 +150,7 @@
     <Compile Include="World\GameObject\State\States\Walking\StateWalking.cs" />
     <Compile Include="World\Scene\Factory\SceneFactory.cs" />
     <Compile Include="World\Scene\Factory\SceneObjectFactory.cs" />
+    <Compile Include="World\Scene\ISceneManagerAware.cs" />
     <Compile Include="World\Scene\Loader\SceneLoader.cs" />
     <Compile Include="World\GameObject\GameObjectManager.cs" />
     <Compile Include="World\Scene\Renderer\SceneRenderer.cs" />

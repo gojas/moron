@@ -24,14 +24,19 @@ namespace Component
             quadTree.getObjects(gameObject).ForEach((returnObject) => {
 
                 if (!(returnObject is MoronGameObject)) { // DUNNO why this happens, check getObjects method..
-                    Rectangle bla1 = new Rectangle((int)gameObject.position.X, (int)gameObject.position.Y, 128, 64);
+                    Rectangle bla1 = new Rectangle((int)gameObject.position.X + 59, (int)gameObject.position.Y + 105, 10, 2); // player movement box, imagine rectangle at the bottom of the character
                     Rectangle bla2 = new Rectangle((int)returnObject.position.X, (int)returnObject.position.Y, 128, 64);
 
 
                     if (CollisionDetection.AreRectanglesColliding(bla1, bla2))
                     {
-                        if (null != returnObject.ComponentContainer.GetHealthComponent())
-                            returnObject.ComponentContainer.GetHealthComponent().update(gameObject, returnObject);
+                        gameObject.Color = Color.Red;
+                        gameObject.GameObjectStateContainer.GetPrevious().Reverse(gameObject);
+                        // if (null != returnObject.ComponentContainer.GetHealthComponent())
+                        // returnObject.ComponentContainer.GetHealthComponent().update(gameObject, returnObject);
+                    }
+                    else {
+                        gameObject.Color = Color.White;
                     }
                 }
 

@@ -15,7 +15,7 @@ namespace Texture
 
         public Rectangle SourceRectangle { get; private set; }
 
-        public Vector2 Size { get; private set; }
+        public Vector2 Size { get; set; }
 
         public float Depth { get; set; }
 

@@ -30,7 +30,7 @@ namespace Component
 
         }
 
-        public virtual void update(GameObject gameObject, SpriteRender spriteRender, GameTime gameTime)
+        public virtual void update(GameObject gameObject, SpriteRender spriteRender, GameTime gameTime, float depth)
         {
 
         }

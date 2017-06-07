@@ -72,11 +72,18 @@ namespace World.GameObject
         {
             quadTree.clear();
 
+            List.Sort((x, y) => x.position.Y.CompareTo(y.position.Y));
+
             /** maybe remove entire foreach stuff? */
             for (int i = List.Count - 1; i >= 0; i--)
             {
                 /** remove destroyed objects */
                 if (List[i].Destroyed) List.RemoveAt(i);
+            }
+
+            for (int i = List.Count - 1; i >= 0; i--)
+            {
+                List[i].SetSceneManager(sceneManager);
 
                 /** prepare new QuadTree */
                 if (null != List[i].ComponentContainer.GetPhysicsComponent() && !List[i].Destroyed)
@@ -104,12 +111,16 @@ namespace World.GameObject
 
         public void Draw(SpriteRender spriteRender, GameTime gameTime)
         {
+            float depth = 0.4f;
+
             lock (List)
             {
                 foreach (var gameObject in List)
                 {
+                    depth += 0.001f;
+
                     if (null != gameObject.ComponentContainer.GetGraphicComponent())
-                        gameObject.ComponentContainer.GetGraphicComponent().update(gameObject, spriteRender, gameTime);
+                        gameObject.ComponentContainer.GetGraphicComponent().update(gameObject, spriteRender, gameTime, depth);
                 }
             }
         }

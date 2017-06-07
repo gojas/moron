@@ -9,7 +9,7 @@ namespace Component
 
     public class MoronGraphicComponent : GraphicComponent
     {
-        public override void update(GameObject gameObject, SpriteRender spriteRender, GameTime gameTime)
+        public override void update(GameObject gameObject, SpriteRender spriteRender, GameTime gameTime, float depth)
         {
             string gameObjectStateString = GameObjectStateProvider.GetStateString(gameObject);
 
@@ -18,8 +18,8 @@ namespace Component
 
             // gameObject.state as first param
             Sprite sprite = gameObject.AnimationContainer.getCurrentSprite(TextureDefinitionFactory.Get(gameObjectStateString), gameTime);
-            sprite.Depth = 0.5f;
-            spriteRender.Draw(sprite, gameObject.position);
+            sprite.Depth = depth;
+            spriteRender.Draw(sprite, gameObject.position, gameObject.Color);
         }
     }
 }
