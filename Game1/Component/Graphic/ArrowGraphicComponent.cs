@@ -17,7 +17,9 @@ namespace Component
 
             // gameObject.state as first param
             Sprite sprite = gameObject.AnimationContainer.getCurrentSprite(TextureDefinitionFactory.Get(gameObjectStateString), gameTime);
-            sprite.Depth = depth;
+            sprite.Depth = 0.6f;
+
+            //based on arrow facing rotate the sprite
             sprite.Size = new Vector2(0.3f, 0.3f);
             spriteRender.Draw(sprite, gameObject.position);
         }

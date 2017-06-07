@@ -117,6 +117,7 @@
     <Compile Include="World\GameObject\Factory\GameObjectFactory.cs" />
     <Compile Include="World\GameObject\GameObject.cs" />
     <Compile Include="World\GameObject\GameObjectContainer.cs" />
+    <Compile Include="World\GameObject\GameObjects\DamageGameObject.cs" />
     <Compile Include="World\GameObject\GameObjects\GameObjects.cs" />
     <Compile Include="World\GameObject\GameObjects\MoronGameObject.cs" />
     <Compile Include="World\GameObject\Item\GameObjectItemsContainer.cs" />

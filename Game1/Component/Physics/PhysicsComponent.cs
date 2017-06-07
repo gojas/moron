@@ -18,6 +18,7 @@ namespace Component
 
                 if (CollisionDetection.AreRectanglesColliding(rect1, rect2))
                 {
+
                     if (null != gameObject.ComponentContainer.GetScriptComponent() && returnObject is MoronGameObject)
                     {
                         gameObject.ComponentContainer.GetScriptComponent().update(gameObject, quadTree, sceneManager);

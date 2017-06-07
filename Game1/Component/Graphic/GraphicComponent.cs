@@ -15,10 +15,12 @@ namespace Component
             
             TextureDefinition textureDefinition = TextureDefinitionFactory.Get(gameObjectStateString);
 
+            gameObject.Color = gameObject.Damaged ? Color.Red : Color.White;
+
             // gameObject.state as first param
             Sprite sprite = gameObject.AnimationContainer.getCurrentSprite(TextureDefinitionFactory.Get(gameObjectStateString), gameTime);
             sprite.Depth = depth;
-            spriteRender.Draw(sprite, gameObject.position);
+            spriteRender.Draw(sprite, gameObject.position, gameObject.Color);
         }
     }
 }

@@ -59,7 +59,7 @@
                 },
                 new {
                     velocity = 100,
-                    customClass = "",
+                    customClass = "DamageGameObject",
                     name = "Arrow",
                     spriteHeight = 0,
                     spriteWidth = 0,

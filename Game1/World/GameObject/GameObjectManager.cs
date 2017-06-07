@@ -83,6 +83,7 @@ namespace World.GameObject
 
             for (int i = List.Count - 1; i >= 0; i--)
             {
+                List[i].Damaged = false;
                 List[i].SetSceneManager(sceneManager);
 
                 /** prepare new QuadTree */

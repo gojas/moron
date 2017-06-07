@@ -20,7 +20,7 @@ namespace World.GameObject
         public Vector2 position;
         public float depth;
 
-        public Color Color;
+        public Color Color = Color.White;
 
         public string Name { get; set; }
 
@@ -40,6 +40,7 @@ namespace World.GameObject
 
         public bool Disabled = false;
         public bool Destroyed = false;
+        public bool Damaged = false;
 
         public void Update()
         {
