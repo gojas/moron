@@ -3,9 +3,9 @@ using Microsoft.Xna.Framework.Graphics;
 
 public interface IContentManager
 {
-    void loadContent(GraphicsDevice graphicsDevice);
+    void LoadContent(GraphicsDevice graphicsDevice);
 
-    void updateInput(GameTime gameTime);
+    void Update(GameTime gameTime);
 
-    void updateGraphic(GameTime gameTime);
+    void Draw(GameTime gameTime);
 }

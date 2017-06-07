@@ -15,7 +15,7 @@ namespace Game1
     {
 
         GraphicsDeviceManager graphics;
-        ContentManager contentManager;
+        ContentManager ContentManager;
         FrameCounter frameCounter;
 
         SpriteBatch spriteBatch;
@@ -28,7 +28,7 @@ namespace Game1
 
             ServiceContainer.registerServices(this);
 
-            contentManager = ServiceContainer.GetService<ContentManager>();
+            ContentManager = ServiceContainer.GetService<ContentManager>();
             frameCounter = ServiceContainer.GetService<FrameCounter>();
 
             Content.RootDirectory = "Content";
@@ -65,7 +65,7 @@ namespace Game1
 
             camera.LoadContent(GraphicsDevice);
 
-            contentManager.loadContent(GraphicsDevice);
+            ContentManager.LoadContent(GraphicsDevice);
 
 
             // TODO: use this.Content to load your game content here
@@ -88,7 +88,7 @@ namespace Game1
         protected override void Update(GameTime gameTime)
         {
             /** player or AI input goes here **/
-            contentManager.updateInput(gameTime);
+            ContentManager.Update(gameTime);
 
             base.Update(gameTime);
         }
@@ -108,7 +108,7 @@ namespace Game1
             spriteBatch.Begin(/** this.camera ,*/ SpriteSortMode.FrontToBack, BlendState.AlphaBlend);
 
             /** draw! **/
-            contentManager.updateGraphic(gameTime);
+            ContentManager.Draw(gameTime);
 
             spriteBatch.End();
 

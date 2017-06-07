@@ -26,7 +26,7 @@ namespace Content
             game = game1;
         }
 
-        public void loadContent(GraphicsDevice graphicsDevice)
+        public void LoadContent(GraphicsDevice graphicsDevice)
         {
             sceneManager = new SceneManager(graphicsDevice, game.Content);
 
@@ -43,14 +43,14 @@ namespace Content
             );
         }
 
-        public void updateInput(GameTime gameTime)
+        public void Update(GameTime gameTime)
         {
             game.getCamera().Update(gameTime);
 
             sceneManager.GameObjectManager.Update(sceneManager, quadTree, game.getCamera());
         }
 
-        public void updateGraphic(GameTime gameTime)
+        public void Draw(GameTime gameTime)
         {
             sceneManager.TerrainManager.Draw(spriteRender, sceneManager);
             sceneManager.GameObjectManager.Draw(spriteRender, gameTime);
