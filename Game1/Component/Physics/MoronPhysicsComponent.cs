@@ -23,9 +23,9 @@ namespace Component
             // nearby objects...
             quadTree.getObjects(gameObject).ForEach((returnObject) => {
 
-                if (!(returnObject is MoronGameObject)) { // DUNNO why this happens, check getObjects method..
+                if (!(returnObject is MoronGameObject) && !(returnObject.ComponentContainer.GetPhysicsComponent() is GrassPhysicsComponent)) { // DUNNO why this happens, check getObjects method..
                     Rectangle bla1 = new Rectangle((int)gameObject.position.X + 59, (int)gameObject.position.Y + 105, 10, 2); // player movement box, imagine rectangle at the bottom of the character
-                    Rectangle bla2 = new Rectangle((int)returnObject.position.X, (int)returnObject.position.Y, 128, 64);
+                    Rectangle bla2 = new Rectangle((int)returnObject.position.X, (int)returnObject.position.Y + 64 /* HEIGHT */, 128, 64);
 
 
                     if (CollisionDetection.AreRectanglesColliding(bla1, bla2))

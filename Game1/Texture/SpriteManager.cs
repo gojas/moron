@@ -42,6 +42,22 @@ namespace Texture
                 spriteHeight = 1 * 64;
             }
 
+            if (textureName == "grass_flowers" || textureName == "grass")
+            {
+                spriteHeight = 1 * 83;
+            }
+
+            if (textureName == "barrel")
+            {
+                spriteHeight = 1 * 80;
+            }
+
+            if (textureName == "explosion")
+            {
+                spriteHeight = 1 * 40;
+                spriteWidth = 1 * 40;
+            }
+
 
             int columns = texture.Width / spriteWidth;
             int rows = texture.Height / spriteHeight;
@@ -50,6 +66,9 @@ namespace Texture
 
             if(rows == 0)
                 rows = 1;
+
+            if (columns == 0)
+                columns = 1;
 
             for (var column = 0; column < columns; column++)
             {

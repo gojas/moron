@@ -53,7 +53,7 @@ namespace Component
                 // gameObject.FireRange();
             }
 
-            
+            gameObject.GameObjectStateContainer.Change(new StateStanding());
             Command command = CommandFactory.Get(state);
 
             command.Update(gameObject);

@@ -32,5 +32,10 @@ namespace Texture.GameObjectTextureDefinition
         {
             return spriteList.Length - 1;
         }
+
+        public string[] GetList()
+        {
+            return spriteList;
+        }            
     }
 }

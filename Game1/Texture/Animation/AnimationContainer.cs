@@ -31,7 +31,14 @@ namespace Texture
             // CowboyStandingPistol.spriteList[1]
             string sprite = textureDefinition.GetSpriteIndex(animationIndex);
 
+            
+
             return SpriteSheetContainer(textureDefinition.GetContentFile()).GetSpriteByName(textureDefinition.GetSpriteIndex(animationIndex));
+        }
+
+        public Sprite GetSpriteBasedOnTextureDefinitionAndIndex(TextureDefinition textureDefinition, int spriteIndex)
+        {
+            return SpriteSheetContainer(textureDefinition.GetContentFile()).GetSpriteByName(textureDefinition.GetSpriteIndex(spriteIndex));
         }
 
         public void Add(string spriteSheetContainerName, SpriteContainer spriteSheetContainer)

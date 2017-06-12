@@ -43,8 +43,10 @@
   <ItemGroup>
     <Compile Include="Component\ComponentContainer.cs" />
     <Compile Include="Component\Graphic\ArrowGraphicComponent.cs" />
+    <Compile Include="Component\Graphic\ExplosionGraphicComponent.cs" />
     <Compile Include="Component\Graphic\FixedGraphicComponent.cs" />
     <Compile Include="Component\Graphic\GraphicComponent.cs" />
+    <Compile Include="Component\Graphic\GrassGraphicComponent.cs" />
     <Compile Include="Component\Graphic\MoronGraphicComponent.cs" />
     <Compile Include="Component\Health\HealthComponent.cs" />
     <Compile Include="Component\IComponent.cs" />
@@ -74,6 +76,7 @@
     <Compile Include="Component\Physics\PhysicsComponent.cs" />
     <Compile Include="Component\Physics\RectanglePhysicsComponent.cs" />
     <Compile Include="Component\Script\ArrowSpawnScriptComponent.cs" />
+    <Compile Include="Component\Script\ExplosionSpawnScriptComponent.cs" />
     <Compile Include="Component\Script\MoronSpawnScriptComponent.cs" />
     <Compile Include="Component\Script\ScriptComponent.cs" />
     <Compile Include="Content\ContentManager.cs" />
@@ -89,8 +92,10 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Quadtree\IQuadTreeAware.cs" />
     <Compile Include="Quadtree\Quadtree.cs" />
+    <Compile Include="Texture\Animation\Animation.cs" />
     <Compile Include="Texture\Atlas\TextureAtlasContainer.cs" />
     <Compile Include="Texture\GameObjectTextureDefinition\Arrow\ArrowStanding.cs" />
+    <Compile Include="Texture\GameObjectTextureDefinition\Barrel\BarrelStanding.cs" />
     <Compile Include="Texture\GameObjectTextureDefinition\Cowboy\Rolling\CowboyRollingDownLeftPistol.cs" />
     <Compile Include="Texture\GameObjectTextureDefinition\Cowboy\Rolling\CowboyRollingDownPistol.cs" />
     <Compile Include="Texture\GameObjectTextureDefinition\Cowboy\Rolling\CowboyRollingDownRightPistol.cs" />
@@ -108,6 +113,10 @@
     <Compile Include="Texture\GameObjectTextureDefinition\Cowboy\Walking\CowboyWalkingUpRightPistol.cs" />
     <Compile Include="Texture\GameObjectTextureDefinition\Cowboy\Rolling\CowboyRollingLeftPistol.cs" />
     <Compile Include="Texture\GameObjectTextureDefinition\Cowboy\Rolling\CowboyRollingRightPistol.cs" />
+    <Compile Include="Texture\GameObjectTextureDefinition\Explosion\ExplosionStanding.cs" />
+    <Compile Include="Texture\GameObjectTextureDefinition\Grass\GrassFlowersStanding.cs" />
+    <Compile Include="Texture\GameObjectTextureDefinition\Grass\GrassStanding.cs" />
+    <Compile Include="Texture\GameObjectTextureDefinition\Grass\GrassWaving.cs" />
     <Compile Include="Texture\GameObjectTextureDefinition\Orange\OrangeTileStanding.cs" />
     <Compile Include="Texture\GameObjectTextureDefinition\Orange\OrangeWallHalfCornerStanding.cs" />
     <Compile Include="Texture\GameObjectTextureDefinition\TextureDefinition.cs" />
@@ -149,6 +158,7 @@
     <Compile Include="World\GameObject\State\States\State.cs" />
     <Compile Include="World\GameObject\State\States\StateStanding.cs" />
     <Compile Include="World\GameObject\State\States\Walking\StateWalking.cs" />
+    <Compile Include="World\GameObject\State\States\Waving\StateWaving.cs" />
     <Compile Include="World\Scene\Factory\SceneFactory.cs" />
     <Compile Include="World\Scene\Factory\SceneObjectFactory.cs" />
     <Compile Include="World\Scene\ISceneManagerAware.cs" />
@@ -200,6 +210,7 @@
     <Content Include="Content\debug.png" />
     <Content Include="Content\debug_red.png" />
     <Content Include="Content\demo_tileset.png" />
+    <Content Include="Content\grass_flowers.png" />
     <Content Include="Content\green_tree.png" />
     <Content Include="Content\orange_tile_2_1.png" />
     <Content Include="Content\orange_wall_halfcorner.png" />
@@ -219,6 +230,9 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Component\Component.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Component\Physics\GrassPhysicsComponent.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Import Project="$(MSBuildExtensionsPath)\MonoGame\v3.0\MonoGame.Content.Builder.targets" />

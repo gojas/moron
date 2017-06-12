@@ -66,6 +66,46 @@
                     items = new string[] { },
                     textureAtlases = new string[] { "arrow_2_2" },
                     components = new string[] { "ArrowPhysicsComponent", "ArrowGraphicComponent" }
+                },
+                new {
+                    velocity = 0,
+                    customClass = "",
+                    name = "GrassFlowers",
+                    spriteHeight = 0,
+                    spriteWidth = 0,
+                    items = new string[] { },
+                    textureAtlases = new string[] { "grass_flowers" },
+                    components = new string[] { "FixedGraphicComponent" }
+                },
+                new {
+                    velocity = 0,
+                    customClass = "",
+                    name = "Grass",
+                    spriteHeight = 0,
+                    spriteWidth = 0,
+                    items = new string[] { },
+                    textureAtlases = new string[] { "grass" },
+                    components = new string[] { "GrassPhysicsComponent", "GrassGraphicComponent" }
+                },
+                new {
+                    velocity = 0,
+                    customClass = "",
+                    name = "Barrel",
+                    spriteHeight = 0,
+                    spriteWidth = 0,
+                    items = new string[] { },
+                    textureAtlases = new string[] { "barrel" },
+                    components = new string[] { "PhysicsComponent", "FixedGraphicComponent", "HealthComponent", "ExplosionSpawnScriptComponent" }
+                },
+                new {
+                    velocity = 0,
+                    customClass = "",
+                    name = "Explosion",
+                    spriteHeight = 0,
+                    spriteWidth = 0,
+                    items = new string[] { },
+                    textureAtlases = new string[] { "explosion" },
+                    components = new string[] { "ExplosionGraphicComponent" }
                 }
             };
 
