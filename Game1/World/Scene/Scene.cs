@@ -39,9 +39,9 @@
             return a;
         }
 
-        public virtual string[] GetTextures()
+        public virtual object[] GetSpriteSheets()
         {
-            string[] a = { };
+            object[] a = { };
 
             return a;
         }

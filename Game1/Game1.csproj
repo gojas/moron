@@ -88,6 +88,8 @@
     <Compile Include="Core\Service\IsometricCalculator.cs" />
     <Compile Include="Core\Service\ServiceContainer.cs" />
     <Compile Include="Game1.cs" />
+    <Compile Include="ParticleEngine2D\ParticleEngine.cs" />
+    <Compile Include="ParticleEngine2D\Particle.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Quadtree\IQuadTreeAware.cs" />
@@ -114,6 +116,7 @@
     <Compile Include="Texture\GameObjectTextureDefinition\Cowboy\Rolling\CowboyRollingLeftPistol.cs" />
     <Compile Include="Texture\GameObjectTextureDefinition\Cowboy\Rolling\CowboyRollingRightPistol.cs" />
     <Compile Include="Texture\GameObjectTextureDefinition\Explosion\ExplosionStanding.cs" />
+    <Compile Include="Texture\GameObjectTextureDefinition\Fire\EmberStanding.cs" />
     <Compile Include="Texture\GameObjectTextureDefinition\Grass\GrassFlowersStanding.cs" />
     <Compile Include="Texture\GameObjectTextureDefinition\Grass\GrassStanding.cs" />
     <Compile Include="Texture\GameObjectTextureDefinition\Grass\GrassWaving.cs" />

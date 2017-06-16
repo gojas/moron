@@ -48,11 +48,58 @@
             return a;
         }
 
-        public override string[] GetTextures()
+        public override object[] GetSpriteSheets()
         {
-            string[] a = { "cowboy_walking_pistol", "orange_tile_2_1", "orange_wall_halfcorner_2_1", "arrow_2_2", "grass_flowers", "grass", "barrel", "explosion" };
+            var list = new[]
+            {
+                new {
+                    spriteSheetName = "cowboy_walking_pistol",
+                    spriteWidth = 128,
+                    spriteHeight = 128
+                },
+                new {
+                    spriteSheetName = "orange_tile_2_1",
+                    spriteWidth = 128,
+                    spriteHeight = 64
+                },
+                new {
+                    spriteSheetName = "orange_wall_halfcorner_2_1",
+                    spriteWidth = 128,
+                    spriteHeight = 64
+                },
+                new {
+                    spriteSheetName = "arrow_2_2",
+                    spriteWidth = 128,
+                    spriteHeight = 128
+                },
+                new {
+                    spriteSheetName = "grass_flowers",
+                    spriteWidth = 128,
+                    spriteHeight = 88
+                },
+                new {
+                    spriteSheetName = "grass",
+                    spriteWidth = 128,
+                    spriteHeight = 88
+                },
+                new {
+                    spriteSheetName = "barrel",
+                    spriteWidth = 64,
+                    spriteHeight = 80
+                },
+                new {
+                    spriteSheetName = "explosion",
+                    spriteWidth = 250,
+                    spriteHeight = 188
+                },
+                new {
+                    spriteSheetName = "ember",
+                    spriteWidth = 4,
+                    spriteHeight = 4
+                }
+            };
 
-            return a;
+            return list;
         }
     }
     

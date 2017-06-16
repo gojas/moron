@@ -6,9 +6,11 @@ namespace Texture.Animation
 {
     public class Animation
     {
-        public List<Sprite> Sprites;
+        private List<Sprite> Sprites;
         private SpriteRender SpriteRender;
         private GameTime GameTime;
+        private float Speed = 1f; // 1 second
+        private Vector2 Position;
 
         private int SpriteIndex;
         private float timeElapsed = 0;
@@ -17,26 +19,28 @@ namespace Texture.Animation
         private bool IsRunning = true;
         private bool IsLooping = true;
 
-        private float timeToUpdate = 1f; // 1 second
+        
         private int FramesPerSecond
         {
-            set { timeToUpdate = (1f / value); }
+            set { Speed = (1f / value); }
         }
 
-        public Animation(SpriteRender SpriteRender, GameTime GameTime)
+        public Animation(SpriteRender SpriteRender, GameTime GameTime, float Speed, Vector2 Position)
         {
             Sprites = new List<Sprite>();
             this.SpriteRender = SpriteRender;
             this.GameTime = GameTime;
+            this.Speed = Speed;
+            this.Position = Position;
         }
 
-        public void Play()
+        public void Draw()
         {
             timeElapsed += (float)GameTime.ElapsedGameTime.TotalSeconds; 
 
-            if (timeElapsed > timeToUpdate && IsRunning)
+            if (timeElapsed > Speed && IsRunning)
             {
-                timeElapsed -= timeToUpdate;
+                timeElapsed -= Speed;
 
                 if (SpriteIndex < Sprites.Count - 1)
                 {
@@ -50,7 +54,7 @@ namespace Texture.Animation
                 }
             }
 
-            SpriteRender.Draw(Sprites[SpriteIndex], new Vector2(300, 300) /**gameObject.position**/);
+            SpriteRender.Draw(Sprites[SpriteIndex], Position);
         }
 
         public void AddSprite(Sprite sprite)

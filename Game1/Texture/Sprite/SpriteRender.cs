@@ -5,17 +5,17 @@ namespace Texture
 {
     public class SpriteRender
     {
-        private SpriteBatch spriteBatch;
+        public SpriteBatch SpriteBatch;
 
-        public SpriteRender(SpriteBatch spriteBatch)
+        public SpriteRender(SpriteBatch SpriteBatch)
         {
-            this.spriteBatch = spriteBatch;
+            this.SpriteBatch = SpriteBatch;
         }
         
         public void Draw(Sprite sprite, Vector2 position, Color? color = null)
         {
 
-            spriteBatch.Draw(
+            SpriteBatch.Draw(
                 sprite.Texture, 
                 position, 
                 null, 

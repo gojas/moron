@@ -6,6 +6,7 @@ namespace World.Scene.Loader
     using World.Terrain;
     using World.GameObject;
     using Texture;
+    using System;
 
     public class SceneLoader
     {
@@ -49,10 +50,20 @@ namespace World.Scene.Loader
 
         private void LoadTextures()
         {
-            string[] textures = Scene.GetTextures();
+            object[] textures = Scene.GetSpriteSheets();
 
-            foreach (string texture in textures)
-                SpriteManager.Load(texture);
+            foreach (object texture in textures) {
+                object gameObjectConfiguration = texture;
+
+                Type type = gameObjectConfiguration.GetType();
+
+                string spriteSheetName = type.GetProperty("spriteSheetName").GetValue(gameObjectConfiguration, null).ToString(); ;
+                string spriteWidth = type.GetProperty("spriteWidth").GetValue(gameObjectConfiguration, null).ToString();
+                string spriteHeight = type.GetProperty("spriteHeight").GetValue(gameObjectConfiguration, null).ToString(); ;
+
+                SpriteManager.LoadSpriteSheet(spriteSheetName, Int32.Parse(spriteWidth), Int32.Parse(spriteHeight));
+            }
+                
         }
 
         private void LoadObjects()
