@@ -8,62 +8,68 @@ namespace ParticleEngine2D
     public class ParticleEngine
     {
         private Random random;
-        public Vector2 EmitterLocation { get; set; }
-        private List<Particle> Particles;
-        private List<Texture2D> Textures;
+        private List<Particle> particles;
+        private List<Texture2D> textures;
+        private GameTime gameTime;
+        private float timeElapsed = 0;
 
-        public ParticleEngine(List<Texture2D> Textures, Vector2 Location)
+        public Rectangle EmitterRectangle { get; set; }
+
+        public float Tick { get; set; }  = 0.01f; // 1f == 1 second
+        public int TotalPerTick { get; set; } = 2; // how many particles should be generated on turn
+
+        public ParticleEngine(List<Texture2D> Textures, GameTime GameTime)
         {
-            EmitterLocation = Location;
-            this.Textures = Textures;
-            this.Particles = new List<Particle>();
-            random = new Random();
+            this.textures = Textures;
+            this.particles = new List<Particle>();
+            this.gameTime = GameTime;
+            this.random = new Random();
         }
 
         public void Update()
         {
-            int total = 10;
+            timeElapsed += (float)gameTime.ElapsedGameTime.TotalSeconds;
 
-            for (int i = 0; i < total; i++)
+            if (timeElapsed > Tick)
             {
-                Particles.Add(GenerateNewParticle());
-            }
+                timeElapsed -= Tick;
 
-            for (int particle = 0; particle < Particles.Count; particle++)
-            {
-                Particles[particle].Update();
-                if (Particles[particle].TTL <= 0)
+                for (int i = 0; i < TotalPerTick; i++)
                 {
-                    Particles.RemoveAt(particle);
-                    particle--;
+                    particles.Add(GenerateNewParticle());
+                }
+
+                for (int particle = 0; particle < particles.Count; particle++)
+                {
+                    particles[particle].TTL--;
+                    particles[particle].Update();
+                    if (particles[particle].TTL <= 0)
+                    {
+                        particles.RemoveAt(particle); // (GU): add effects
+                        particle--;
+                    }
                 }
             }
         }
 
         private Particle GenerateNewParticle()
         {
-            Texture2D texture = Textures[random.Next(Textures.Count)];
-            Vector2 position = EmitterLocation;
-            Vector2 velocity = new Vector2(
-                                    1f * (float)(random.NextDouble() * 2 - 1),
-                                    1f * (float)(random.NextDouble() * 2 - 1));
-            float angle = 0;
-            float angularVelocity = 0.1f * (float)(random.NextDouble() * 2 - 1);
-            Color color = new Color(
-                        (float)random.NextDouble(),
-                        (float)random.NextDouble(),
-                        (float)random.NextDouble());
-            float size = (float)random.NextDouble();
-            int ttl = 20 + random.Next(40);
+            Texture2D texture = textures[random.Next(textures.Count)];
+            Vector2 position = new Vector2(
+                EmitterRectangle.X + random.Next(EmitterRectangle.X, EmitterRectangle.Width), 
+                EmitterRectangle.Y + random.Next(EmitterRectangle.Y, EmitterRectangle.Height)
+            );
 
-            return new Particle(texture, position, velocity, angle, angularVelocity, color, size, ttl);
+            return new SnowParticle(texture, position);
         }
 
         public void Draw(SpriteBatch spriteBatch)
         {
-            for (int index = 0; index < Particles.Count; index++)
+            Update();
+
+            for (int index = 0; index < particles.Count; index++)
             {
-                Particles[index].Draw(spriteBatch);
+                particles[index].Draw(spriteBatch);
             }
         }
     }

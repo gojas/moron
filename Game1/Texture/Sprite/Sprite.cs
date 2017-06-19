@@ -5,12 +5,6 @@ namespace Texture
 {
     public class Sprite
     {
-        public const int TILE_TEXTURE_WIDTH = 128;
-        public const int TILE_TEXTURE_HEIGHT = 128;
-
-        public const int TEXTURE_WIDTH = 128;
-        public const int TEXTURE_HEIGHT = 72;
-
         public Texture2D Texture { get; private set; }
 
         public Rectangle SourceRectangle { get; private set; }

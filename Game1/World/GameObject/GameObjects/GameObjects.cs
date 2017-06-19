@@ -3,6 +3,8 @@
 
     class GameObjects
     {
+        public const int RAIN_SCRIPT_COMPONENT = 10;
+
         public static object GetById(int id)
         {
             var list = new[]
@@ -106,7 +108,17 @@
                     items = new string[] { },
                     textureAtlases = new string[] { "explosion" },
                     components = new string[] { "ExplosionGraphicComponent" }
-                }
+                },
+                new {
+                    velocity = 0,
+                    customClass = "",
+                    name = "RainScript",
+                    spriteHeight = 0,
+                    spriteWidth = 0,
+                    items = new string[] { },
+                    textureAtlases = new string[] { "ember" },
+                    components = new string[] { "RainGraphicComponent" }
+                },
             };
 
             return list[id];

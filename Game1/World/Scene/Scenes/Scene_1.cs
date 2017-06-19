@@ -1,5 +1,6 @@
 ﻿namespace World.Scene.Scenes
 {
+    using World.GameObject.GameObjects;
     using World.Scene;
 
     public class Scene_1 : Scene
@@ -40,9 +41,9 @@
                 {0, 1, 7, 1},
                 {7, 7, 7, 1},
                 {7, 7, 6, 2},
-                {7, 7, 7, 1},
-                {7, 7, 7, 2},
-                {6, 6, 6, 8},
+                {7, 7, 6, 1},
+                {7, 7, 6, 2},
+                {8, 1, 8, GameObjects.RAIN_SCRIPT_COMPONENT}
             };
 
             return a;

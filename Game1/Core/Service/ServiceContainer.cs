@@ -5,6 +5,7 @@ using Content;
 namespace Core.Service
 {
     using Game1;
+    using ParticleEngine2D;
 
     public static class ServiceContainer
     {
@@ -41,6 +42,7 @@ namespace Core.Service
             AddService<ContentManager>(new ContentManager(game));
             AddService<FrameCounter>(new FrameCounter());
             AddService(new IsometricCalculator(game.GraphicsDevice));
+            AddService(new ParticleFactory());
         }
     }
 }

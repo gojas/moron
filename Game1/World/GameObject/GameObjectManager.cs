@@ -49,7 +49,7 @@ namespace World.GameObject
                 int offset_x = 0;
                 if (IsOdd(row))
                 {
-                    offset_x = Sprite.TILE_TEXTURE_WIDTH / 2;
+                    offset_x = Tile.WIDTH/ 2;
                 }
 
                 for (int column = 0; column < matrix.GetLength(1); column++)
