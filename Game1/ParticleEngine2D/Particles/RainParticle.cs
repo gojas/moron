@@ -7,7 +7,7 @@ namespace ParticleEngine2D
     public class RainParticle : Particle
     {
 
-        public RainParticle(Texture2D Texture, Vector2 Position) : base(Texture, Position)
+        public RainParticle() : base()
         {
             Random random = new Random();
 

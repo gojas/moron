@@ -4,21 +4,21 @@ using System;
 
 namespace ParticleEngine2D
 {
-    public class SnowParticle : Particle
+    public class FireParticle : Particle
     {
         Random random;
 
-        public SnowParticle() : base()
+        public FireParticle() : base()
         {
             random = new Random();
-            
-            this.TTL = random.Next(1, 500);
-            this.Color = Color.WhiteSmoke;
 
-            // 0.2 1 normal
-            // 2 4 fast
-            float randomBetween = (float)GetRandomNumber(0.2, 1); // falling in down-right direction
-            float randomBetweenTo = (float)GetRandomNumber(0.8, 1.6); // falling in down-right direction
+            this.Texture = Texture;
+            this.Position = Position;
+            this.TTL = 60 + random.Next(40);
+            this.Color = new Color(250, 20, 20);
+
+            float randomBetween = (float)GetRandomNumber(-0.01, -0.01); 
+            float randomBetweenTo = (float)GetRandomNumber(-0.4, -0.4); 
 
             this.Velocity = new Vector2(randomBetween, randomBetweenTo);
         }

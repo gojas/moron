@@ -48,7 +48,7 @@
     <Compile Include="Component\Graphic\GraphicComponent.cs" />
     <Compile Include="Component\Graphic\GrassGraphicComponent.cs" />
     <Compile Include="Component\Graphic\MoronGraphicComponent.cs" />
-    <Compile Include="Component\Graphic\RainGraphicComponent.cs" />
+    <Compile Include="Component\Graphic\SnowGraphicComponent.cs" />
     <Compile Include="Component\Health\HealthComponent.cs" />
     <Compile Include="Component\IComponent.cs" />
     <Compile Include="Component\IComponentContainerAware.cs" />
@@ -93,7 +93,8 @@
     <Compile Include="ParticleEngine2D\ParticleEngine.cs" />
     <Compile Include="ParticleEngine2D\Particle.cs" />
     <Compile Include="ParticleEngine2D\ParticleFactory.cs" />
-    <Compile Include="ParticleEngine2D\Particles\ParticlesContainer.cs" />
+    <Compile Include="ParticleEngine2D\Particles\FireParticle.cs" />
+    <Compile Include="ParticleEngine2D\Particles\LeavesParticle.cs" />
     <Compile Include="ParticleEngine2D\Particles\RainParticle.cs" />
     <Compile Include="ParticleEngine2D\Particles\SnowParticle.cs" />
     <Compile Include="Program.cs" />

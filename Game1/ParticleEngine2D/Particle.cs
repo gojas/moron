@@ -15,7 +15,7 @@ namespace ParticleEngine2D
         public float Size { get; set; }
         public int TTL { get; set; } // particle lifetime
 
-        public Particle(Texture2D Texture, Vector2 Position)
+        public Particle()
         {
             Random random = new Random();
 

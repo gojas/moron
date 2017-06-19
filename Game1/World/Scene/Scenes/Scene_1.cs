@@ -43,7 +43,7 @@
                 {7, 7, 6, 2},
                 {7, 7, 6, 1},
                 {7, 7, 6, 2},
-                {8, 1, 8, GameObjects.RAIN_SCRIPT_COMPONENT}
+                {8, 1, 8, GameObjects.SNOW_SCRIPT_COMPONENT}
             };
 
             return a;

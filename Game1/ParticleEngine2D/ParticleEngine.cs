@@ -2,28 +2,33 @@
 using System.Collections.Generic;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
+using Core.Service;
 
 namespace ParticleEngine2D
 {
     public class ParticleEngine
     {
         private Random random;
+        private string particleName = "Particle";
         private List<Particle> particles;
         private List<Texture2D> textures;
         private GameTime gameTime;
         private float timeElapsed = 0;
+        private ParticleFactory particleFactory;
 
         public Rectangle EmitterRectangle { get; set; }
 
         public float Tick { get; set; }  = 0.01f; // 1f == 1 second
         public int TotalPerTick { get; set; } = 2; // how many particles should be generated on turn
 
-        public ParticleEngine(List<Texture2D> Textures, GameTime GameTime)
+        public ParticleEngine(string particleName, List<Texture2D> Textures, GameTime GameTime)
         {
+            this.particleName = particleName;
             this.textures = Textures;
             this.particles = new List<Particle>();
             this.gameTime = GameTime;
             this.random = new Random();
+            this.particleFactory = ServiceContainer.GetService<ParticleFactory>();
         }
 
         public void Update()
@@ -56,11 +61,11 @@ namespace ParticleEngine2D
         {
             Texture2D texture = textures[random.Next(textures.Count)];
             Vector2 position = new Vector2(
-                EmitterRectangle.X + random.Next(EmitterRectangle.X, EmitterRectangle.Width), 
-                EmitterRectangle.Y + random.Next(EmitterRectangle.Y, EmitterRectangle.Height)
+                EmitterRectangle.X + random.Next(0, EmitterRectangle.Width), 
+                EmitterRectangle.Y + random.Next(0, EmitterRectangle.Height)
             );
 
-            return new SnowParticle(texture, position);
+            return particleFactory.Get(particleName, texture, position);
         }
 
         public void Draw(SpriteBatch spriteBatch)

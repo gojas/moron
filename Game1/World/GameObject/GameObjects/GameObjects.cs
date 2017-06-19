@@ -3,7 +3,7 @@
 
     class GameObjects
     {
-        public const int RAIN_SCRIPT_COMPONENT = 10;
+        public const int SNOW_SCRIPT_COMPONENT = 10;
 
         public static object GetById(int id)
         {
@@ -117,7 +117,7 @@
                     spriteWidth = 0,
                     items = new string[] { },
                     textureAtlases = new string[] { "ember" },
-                    components = new string[] { "RainGraphicComponent" }
+                    components = new string[] { "SnowGraphicComponent" }
                 },
             };
 

@@ -1,24 +1,36 @@
 ﻿using Microsoft.Xna.Framework.Graphics;
-using Microsoft.Xna.Framework;
+using Microsoft.Xna.Framework.Content;
 using System;
+using System.Collections.Generic;
+using Microsoft.Xna.Framework;
 
 namespace ParticleEngine2D
 {
     public class ParticleFactory
     {
-        /**
-        public static Particle Get(int particleConfigurationId)
+        public ContentManager contentManager;
+
+        public ParticleFactory(ContentManager contentManager)
         {
-
-            object particleConfiguration = ParticlesContainer.GetById(particleConfigurationId);
-
-            Type type = particleConfiguration.GetType();
-
-
-            object items = type.GetProperty("Name").GetValue(particleConfiguration, null);
-
-            return new Particle();
+            this.contentManager = contentManager;
         }
-        **/
+
+        public Particle Get(string particleName, Texture2D texture, Vector2 position)
+        {
+            Particle particle = GetParticle(particleName);
+
+            particle.Texture = texture;
+            particle.Position = position;
+
+            return particle;
+        }
+
+        private Particle GetParticle(string name)
+        {
+            if (null == name)
+                name = "Particle";
+
+            return Activator.CreateInstance(Type.GetType("ParticleEngine2D." + name)) as Particle;
+        }
     }
 }
